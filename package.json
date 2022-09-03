@@ -9,6 +9,7 @@
   "packageManager": "yarn@3.2.1",
   "scripts": {
     "start" : "cd ./server/ && node ./dist/app.js",
-    "build" : "cd ./server/ && yarn build"
+    "build" : "cd ./server/ && yarn build",
+    "vercel-build": "cd ./client && yarn build"
   }
 }
