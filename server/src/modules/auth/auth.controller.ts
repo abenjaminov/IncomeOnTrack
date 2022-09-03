@@ -1,7 +1,8 @@
+import { ILoginArgs, IRegisterArgs } from "@iot/shared";
 import { inject } from "inversify";
 import { BaseHttpController, controller, httpGet, httpPost, requestBody } from "inversify-express-utils";
 import { InjectionTokens } from "../../config";
-import { IAuthService, ILoginArgs, IRegisterArgs } from "./auth.types";
+import { IAuthService } from "./auth.types";
 
 @controller('/auth')
 export class AuthController extends BaseHttpController {

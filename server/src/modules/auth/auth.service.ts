@@ -1,12 +1,14 @@
-import { compare, hash } from "bcrypt";
+import { compare } from "bcrypt";
 import { JwtPayload, sign, verify } from "jsonwebtoken";
-import { IAuthService, ILoginArgs, IRegisterArgs } from "./auth.types";
+import { IAuthService } from "./auth.types";
 import { v4 as uuidv4 } from 'uuid';
-import { IUser, IUserService } from "../user";
+import { IUserService } from "../user";
 import { InjectionTokens } from "../../config";
-import { inject } from "inversify";
+import { inject, injectable } from "inversify";
 import { IRequestContext } from "../../types/request-context";
+import { ILoginArgs, IRegisterArgs } from "@iot/shared";
 
+@injectable()
 export class AuthService implements IAuthService {
 
     constructor(
@@ -14,12 +16,12 @@ export class AuthService implements IAuthService {
         @inject(InjectionTokens.requestContext) private requestContext: IRequestContext
     ) {}
 
-    me(): Promise<string | JwtPayload> {
+    me(): string {
         const decodedToken: any = this.verifyToken(this.requestContext.token);
 
         if(!decodedToken) throw new Error();
 
-        return decodedToken;
+        return this.requestContext.token;
     }
 
     async register(args: IRegisterArgs): Promise<void> {

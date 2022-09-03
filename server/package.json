@@ -9,6 +9,7 @@
     "dev": "nodemon src/app.ts"
   },
   "dependencies": {
+    "@iot/shared": "^1.0.0",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv-extended": "^2.9.0",

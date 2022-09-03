@@ -2,7 +2,9 @@ import { ICreateUserArgs, IGetUserArgs, IUserService } from "./user.types";
 import { IUser } from "./user.model";
 import { hash } from "bcrypt";
 import { nanoid } from "nanoid";
+import { injectable } from "inversify";
 
+@injectable()
 export class UserService implements IUserService {
     async createUser(args: ICreateUserArgs): Promise<void> {
         const saltedPassword = await hash(args.password, parseInt(process.env.SALT_ROUNDS));

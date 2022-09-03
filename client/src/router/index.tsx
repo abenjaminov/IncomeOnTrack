@@ -1,13 +1,13 @@
 import React from 'react';
 import { useRoutes, RouteObject, HashRouter, Navigate } from 'react-router-dom';
-import { DefaultRoute } from '../features/default/DefaultRoute';
+import { MainLayout } from '../features/main/MainLayout';
 import { LoginRoutes } from './login';
 
 export * from './routes';
 
 const routes: Array<RouteObject> = [
   {
-    element: <DefaultRoute />,
+    element: <MainLayout />,
     path: '/'
   },
   LoginRoutes

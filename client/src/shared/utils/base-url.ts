@@ -1,0 +1,1 @@
+export const baseURL = import.meta.env.MODE === 'production' ? 'https://income-on-track.herokuapp.com' : 'http://localhost:3000';
