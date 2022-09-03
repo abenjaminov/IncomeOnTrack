@@ -13,7 +13,7 @@ export const createServer = () => {
 
 export const bootstrapServer = (app: express.Application) => {
   const corsOptions = {
-    origin: [/overwolf/, /prodrops/],
+    origin: [/iot/, 'http://127.0.0.1:1993'],
     methods: ['POST', 'GET', 'PUT', 'DELETE'],
     credentials: true,
     maxAge: 3600,

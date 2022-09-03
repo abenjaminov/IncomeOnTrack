@@ -8,6 +8,7 @@
   "workspaces": ["server", "shared", "client"],
   "packageManager": "yarn@3.2.1",
   "scripts": {
-    "start" : "cd ./server/ && node ./dist/app.js"
+    "start" : "cd ./server/ && node ./dist/app.js",
+    "build" : "cd ./server/ && yarn build"
   }
 }

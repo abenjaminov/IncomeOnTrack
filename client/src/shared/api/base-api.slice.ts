@@ -5,7 +5,7 @@ import { RootState } from '../types';
 export const baseApiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${baseURL}/api/v1`,
+    baseUrl: `${baseURL}/api`,
     prepareHeaders: (headers, api) => {
       const state = api.getState() as RootState;
       const token = state.auth?.token;

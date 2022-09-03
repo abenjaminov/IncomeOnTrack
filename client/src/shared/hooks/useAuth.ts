@@ -8,25 +8,18 @@ import { useLoginUserMutation } from '../api';
 
 export const useAuth = () => {
   const dispatch = useDispatch();
-  const setToken = React.useCallback((token: string) => dispatch(setTokenInStore(token)), []);
   const navigate = useNavigate();
   const location = useLocation();
-  
-  const [ login, {data: token} ] = useLoginUserMutation();
 
-  useEffect(() => {
-    if(!token) return;
-
-    setToken(token);
-  },[token])
+  const [ login ] = useLoginUserMutation();
 
   const _login = React.useCallback(async (paylod: ILoginArgs) => {
     try {
       const token = await login(paylod).unwrap();
       
       if (token) {
-        setToken(token);
-        navigate(Route.main, { replace: true, state: location.state });
+        dispatch(setTokenInStore(token))
+        navigate(Route.home, { replace: true, state: location.state });
       }
     }
     catch(e) {
