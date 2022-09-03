@@ -5,5 +5,8 @@
   "main": "index.js",
   "author": "Asaf Benjaminov",
   "license": "MIT",
-  "workspaces": ["server", "shared"]
+  "workspaces": ["server", "shared", "client"],
+  "scripts": {
+    "start" : "cd ./server/ && node ./dist/app.js"
+  }
 }
