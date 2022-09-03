@@ -1,0 +1,55 @@
+@import '@/styles/box';
+
+.loginView {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 30rem;
+    width: 42rem;
+    
+    @include box;
+
+    display: flex;
+    flex-direction: column;
+    padding-left: 3rem;
+    
+    .title {
+        width: 100%;
+        height: 5rem;
+        font-size: 2rem;
+        padding-top: 1.5rem;
+    }
+
+    .loginDetails{
+        width: 100%;
+        height: 15rem;
+
+        .loginDetail {
+            height: 5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+
+            .label {
+                font-size: 1.25rem;
+                margin-bottom: .25rem;
+            }
+        }
+
+        .rememberMe {
+            padding-top: 1rem;
+        }
+    }
+
+    .loginLinks {
+        width: 100%;
+        height: 3rem;
+    }
+
+    .actions {
+        width: 100%;
+        height: 7rem;
+    }
+}

@@ -1,0 +1,23 @@
+@import '@/styles/box';
+
+.button {
+    @include box;
+
+    width: 6rem;
+    height: 2.5rem;
+    border: .1rem solid transparent;
+    color: white;
+    background-color: $mainColor;
+
+
+    &:hover {
+        cursor: pointer;
+        border: .1rem solid $mainColor;
+        color: $mainColor;
+        background-color: white;
+    }
+
+    &:active {
+        box-shadow: none;
+    }
+}
