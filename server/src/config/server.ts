@@ -19,6 +19,10 @@ export const bootstrapServer = (app: express.Application) => {
     maxAge: 3600,
   };
 
+  app.use('/', (req,res,next) => {
+    res.send("Hello").end();
+  })
+
   app.use(cors(corsOptions));
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
