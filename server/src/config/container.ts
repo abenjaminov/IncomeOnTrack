@@ -8,6 +8,8 @@ import { TokenValidationMiddleware } from "../middleware/token-validation-middle
 import { IRequestContext } from "../types/request-context";
 import { RequestContext } from "../services";
 import { AuthController } from "../modules/auth/auth.controller";
+import { IAirtableConnection, IClientRepository } from "../types";
+import { AirtableConnection, ClientRepository } from "../repositories";
 
 cleanUpMetadata();
 
@@ -20,10 +22,13 @@ container.bind<TokenValidationMiddleware>(InjectionTokens.tokenValidationMiddlew
     return new TokenValidationMiddleware();
 }).inSingletonScope();
 
+container.bind<IAirtableConnection>(InjectionTokens.airtableConnection).to(AirtableConnection).inSingletonScope();
+container.bind<IUserService>(InjectionTokens.userService).to(UserService).inSingletonScope();
+container.bind<IClientRepository>(InjectionTokens.clientRepository).to(ClientRepository).inSingletonScope();
+
 
 container.bind<IRequestContext>(InjectionTokens.requestContext).to(RequestContext).inRequestScope()
 
-container.bind<IUserService>(InjectionTokens.userService).to(UserService).inSingletonScope();
 container.bind<IAuthService>(InjectionTokens.authService).to(AuthService).inRequestScope();
 
 export { container };
