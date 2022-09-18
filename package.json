@@ -5,11 +5,15 @@
   "main": "index.js",
   "author": "Asaf Benjaminov",
   "license": "MIT",
-  "workspaces": ["server", "shared", "client"],
+  "workspaces": [
+    "server",
+    "shared",
+    "client"
+  ],
   "packageManager": "yarn@3.2.1",
   "scripts": {
-    "start" : "cd ./server/ && node ./dist/app.js",
-    "build" : "cd ./server/ && yarn build",
+    "start": "cd ./server/ && node ./dist/app.js",
+    "build": "cd ./server/ && yarn build",
     "vercel-build": "cd ./client && yarn build"
   }
 }

@@ -28,3 +28,5 @@ benchmarks/graphs
 *.vsix
 
 **/.env
+
+.yarn/**

@@ -1,33 +1,59 @@
-import { injectable } from "inversify";
-import { IClient, IClientRepository, IGetClientsArgs, TableNames } from "../../types";
-import { AirtableRepository } from "../../repositories/airtable.repository";
+import { inject, injectable } from "inversify";
+import { MongoRepository } from "../../repositories/mongo.repository";
+import { IMongoConnection, IRequestContext } from "../../types";
+import { ClientModel, IClient } from "./client.model";
+import { Model } from "mongoose";
+import { ICreateClient, IGetClientsArgs } from "@iot/shared";
+import { InjectionTokens } from "../../config";
+import { IClientRepository } from "./client.types";
+import { nanoid } from "nanoid";
 
 @injectable()
-export class ClientRepository extends AirtableRepository implements IClientRepository {
-    getTableName(): TableNames {
-        return TableNames.clients
+export class ClientRepository extends MongoRepository<IClient> implements IClientRepository {
+    protected getModel(): Model<IClient> {
+        return ClientModel
+    }
+
+    constructor(
+        @inject(InjectionTokens.connection) mongoConnection: IMongoConnection,
+        @inject(InjectionTokens.requestContext) private requestContext: IRequestContext
+    ) {
+        super(mongoConnection)
+    }
+
+    async create(args: ICreateClient): Promise<void> {
+        const query: IClient = {
+            id: nanoid(),
+            isActive: true,
+            name: args.name,
+            paymentPerHour: args.paymentPerHour,
+            email: args.email,
+            paymentMonthOffset: args.paymentMonthOffset,
+            phoneNumber: args.phoneNumber,
+            userId: this.requestContext.user.userId
+        }
+
+        await this.model.create(query);
     }
 
     async getClients(args: IGetClientsArgs): Promise<Array<IClient>> {
-        let filterFormula = '';
-        const conditions = [];
+        let filter: any = {};
 
-        if(args) {
-            if(args.ids) {
-                const orCondition = `OR(${args.ids.map(id => `{id}=${id}`).join(',')})`;
+        if(args.userId) {
+            filter["userId"] = args.userId;
+        }
 
-                conditions.push(orCondition);
-            }
-
-            if(args.filterText) {
-                let lowerFilter = args.filterText.toLowerCase();
-                conditions.push(`OR(FIND({name},'${lowerFilter}') != 0,FIND({notes},'${lowerFilter}') != 0`)
+        if(args.filterText) {
+            filter['name'] = {
+                $regex: args.filterText
             }
         }
 
-        filterFormula = `AND(${conditions.join(",")})`;
+        if(args.includeDebt) {
+            // TODO : Calculate debt
+        }
 
-        const result = await super.select<IClient>(filterFormula);
+        const result = await this.model.find(filter);
 
         return result;
     }

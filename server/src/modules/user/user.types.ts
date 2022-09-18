@@ -1,3 +1,5 @@
+import { IGetUsersArgs } from "@iot/shared";
+import { IMongoRepository } from "../../types";
 import { IUser } from "./user.model";
 
 export interface IGetUserArgs {
@@ -12,6 +14,10 @@ export interface ICreateUserArgs {
 }
 
 export interface IUserService {
-    getUser(args: IGetUserArgs) : Promise<IUser>;
+    getUsers(args: IGetUsersArgs): Promise<Array<IUser>>;
     createUser(args: ICreateUserArgs) : Promise<void>
+}
+
+export interface IUserRepository extends IMongoRepository<IUser> {
+    getUsers(args: IGetUsersArgs): Promise<Array<IUser>>;
 }

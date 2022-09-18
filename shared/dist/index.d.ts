@@ -9,4 +9,23 @@ interface IRegisterArgs {
     password: string;
 }
 
-export { ILoginArgs, IRegisterArgs };
+interface IGetUsersArgs {
+    ids?: Array<string>;
+    email?: string;
+}
+
+interface IGetClientsArgs {
+    userId?: string;
+    filterText?: string;
+    includeDebt?: boolean;
+}
+interface ICreateClient {
+    id?: string;
+    name: string;
+    paymentPerHour: number;
+    paymentMonthOffset: number;
+    phoneNumber?: string;
+    email?: string;
+}
+
+export { ICreateClient, IGetClientsArgs, IGetUsersArgs, ILoginArgs, IRegisterArgs };

@@ -1,11 +1,18 @@
-import { ICreateUserArgs, IGetUserArgs, IUserService } from "./user.types";
+import { ICreateUserArgs, IUserRepository, IUserService } from "./user.types";
 import { IUser } from "./user.model";
 import { hash } from "bcrypt";
 import { nanoid } from "nanoid";
-import { injectable } from "inversify";
+import { inject, injectable } from "inversify";
+import { InjectionTokens } from "../../config";
+import { IGetUsersArgs } from "@iot/shared";
 
 @injectable()
 export class UserService implements IUserService {
+
+    constructor(
+        @inject(InjectionTokens.userRepo) private userRepo: IUserRepository
+    ){}
+
     async createUser(args: ICreateUserArgs): Promise<void> {
         const saltedPassword = await hash(args.password, parseInt(process.env.SALT_ROUNDS));
 
@@ -17,16 +24,12 @@ export class UserService implements IUserService {
             saltedPassword
         }
 
-        // TODO : Add user to DB
+        this.userRepo.model.create(newUser)
     }
 
-    getUser(args: IGetUserArgs): Promise<IUser> {
-        return Promise.resolve({
-            id: '21m290md09m124m=-da;sldm',
-            firstName: 'Shir',
-            lastName: 'Ashkenazi',
-            email: 'shir.ashkenazi10@gmail.com',
-            saltedPassword: '$2b$10$TpSU4nDijUEb6DRcxsEbFeoIAW2/RhusGxLiuqVejURIdzyKquXTi'
-        });
+    async getUsers(args: IGetUsersArgs): Promise<Array<IUser>> {
+        const result = this.userRepo.getUsers(args)
+
+        return result;
     }
 }

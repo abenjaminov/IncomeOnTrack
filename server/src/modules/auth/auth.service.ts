@@ -27,11 +27,11 @@ export class AuthService implements IAuthService {
     async register(args: IRegisterArgs): Promise<void> {
         const { password, email } = args;
 
-        const user = await this.userService.getUser({
+        const users = await this.userService.getUsers({
             email
         })
 
-        if(user)
+        if(users.length > 0)
             throw new Error();
 
         await this.userService.createUser(args);
@@ -62,13 +62,14 @@ export class AuthService implements IAuthService {
     async login(args: ILoginArgs): Promise<string | JwtPayload> {
         const {email, password} = args;
 
-        const user = await this.userService.getUser({
+        const users = await this.userService.getUsers({
             email
         });
 
-        if(!user)
+        if(!users.length || users.length > 1)
             throw new Error();
 
+        const user = users[0];
         const passwordCorrect = await compare(password, user.saltedPassword);
 
         if(!passwordCorrect)
