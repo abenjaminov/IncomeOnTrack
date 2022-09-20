@@ -7,5 +7,7 @@ export const InjectionTokens = {
     clientRepository: Symbol.for("clientRepository"),
     clientService: Symbol.for("clientService"),
     log: Symbol.for('logService'),
-    connection: Symbol.for('connection')
+    connection: Symbol.for('connection'),
+    sessionService: Symbol.for('sessionService'),
+    sessionRepo: Symbol.for('sessionRepo')
 }

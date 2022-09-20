@@ -1,2 +1,2 @@
-export * from './endpoints';
+export * from './models';
 //# sourceMappingURL=index.d.ts.map

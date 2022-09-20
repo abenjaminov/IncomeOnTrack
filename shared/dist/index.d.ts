@@ -28,4 +28,29 @@ interface ICreateClient {
     email?: string;
 }
 
-export { ICreateClient, IGetClientsArgs, IGetUsersArgs, ILoginArgs, IRegisterArgs };
+declare enum PaymentState {
+    owed = "owed",
+    payed = "payed"
+}
+interface ISession {
+    id: string;
+    userId: string;
+    client: {
+        id: string;
+        name: string;
+        paymentOffset: number;
+    };
+    notes: string;
+    startDate: Date;
+    endDate: Date;
+    paymentState: PaymentState;
+    datePayed?: Date;
+    receipt?: boolean;
+}
+interface IGetSessionArgs {
+    clientId?: string;
+    month?: number;
+    year?: number;
+}
+
+export { ICreateClient, IGetClientsArgs, IGetSessionArgs, IGetUsersArgs, ILoginArgs, IRegisterArgs, ISession, PaymentState };
