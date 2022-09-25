@@ -1,4 +1,4 @@
-import { IGetSessionArgs, ISession } from "@iot/shared";
+import { IGetSessionArgs, ISession, IUpdateSessionArgs } from "@iot/shared";
 import { injectable } from "inversify";
 import { Model } from "mongoose";
 import { MongoRepository } from "../../repositories/mongo.repository";
@@ -36,6 +36,22 @@ export class SessionRepository extends MongoRepository<ISession> implements ISes
         }
 
         const result = await this.model.find(filter);
+
+        return result;
+    }
+
+    async addSession(session: ISession) : Promise<void> {
+        await this.model.create(session);
+    }
+
+    async updateSession(args: IUpdateSessionArgs): Promise<ISession> {
+        const result = await this.model.findOneAndUpdate({
+            id: args.id
+        }, {
+            $set: args.values
+        }, {
+            new: true
+        }).lean();
 
         return result;
     }

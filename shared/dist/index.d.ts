@@ -32,9 +32,11 @@ declare enum PaymentState {
     owed = "owed",
     payed = "payed"
 }
-interface ISession {
+interface IUpdateSessionArgs {
     id: string;
-    userId: string;
+    values: Partial<ISessionBase>;
+}
+interface ISessionBase {
     client: {
         id: string;
         name: string;
@@ -47,10 +49,14 @@ interface ISession {
     datePayed?: Date;
     receipt?: boolean;
 }
+interface ISession extends ISessionBase {
+    id: string;
+    userId: string;
+}
 interface IGetSessionArgs {
     clientId?: string;
     month?: number;
     year?: number;
 }
 
-export { ICreateClient, IGetClientsArgs, IGetSessionArgs, IGetUsersArgs, ILoginArgs, IRegisterArgs, ISession, PaymentState };
+export { ICreateClient, IGetClientsArgs, IGetSessionArgs, IGetUsersArgs, ILoginArgs, IRegisterArgs, ISession, ISessionBase, IUpdateSessionArgs, PaymentState };

@@ -3,9 +3,12 @@ export enum PaymentState {
     payed = 'payed',
 }
 
-export interface ISession {
-    id: string;
-    userId: string;
+export interface IUpdateSessionArgs {
+    id: string,
+    values: Partial<ISessionBase>
+}
+
+export interface ISessionBase {
     client: {
         id: string;
         name: string;
@@ -17,6 +20,11 @@ export interface ISession {
     paymentState: PaymentState;
     datePayed?: Date;
     receipt?: boolean;
+}
+
+export interface ISession extends ISessionBase{
+    id: string;
+    userId: string;
 }
 
 export interface IGetSessionArgs {

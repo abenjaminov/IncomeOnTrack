@@ -4,28 +4,26 @@ import { inject } from "inversify";
 import { InjectionTokens } from "../../config";
 import { IUserService } from "./user.types";
 import { ILog } from "../../types";
+import { BaseController } from "../../helpers/base-controller";
 
 @controller('/user')
-export class UserController extends BaseHttpController {
+export class UserController extends BaseController {
     constructor(
         @inject(InjectionTokens.userService) private userService: IUserService,
-        @inject(InjectionTokens.log) private log: ILog
+        @inject(InjectionTokens.log) log: ILog
     ) {
-        super();
+        super(log);
     }
 
     @httpPost('')
     private async getUsers(
         @requestBody() body: IGetUsersArgs
     ) {
-        try {
+        const result = this.tryExecute(async () => {
             const result = await this.userService.getUsers(body);
-            return this.ok(result);
-        }
-        catch(e) {
-            this.log.error("Error Getting users", e);
-            return this.internalServerError();   
-        }
+            return result;
+        })
+
+        return result;
     }
-    
 }
