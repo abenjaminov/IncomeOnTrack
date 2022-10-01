@@ -1,28 +1,20 @@
 import React from 'react';
-import { useRoutes, RouteObject, HashRouter, Navigate } from 'react-router-dom';
+import { useRoutes, RouteObject, HashRouter, Navigate, RouterProvider, createHashRouter } from 'react-router-dom';
+import { CalendarView } from '../features/main/components';
 import { MainLayout } from '../features/main/MainLayout';
 import { LoginRoutes } from './login';
 import { MainRoutes } from './main';
+import { Route } from './routes';
 
 export * from './routes';
 
 const routes: Array<RouteObject> = [
-  {
-    element: <MainLayout />,
-    path: '/'
-  },
   MainRoutes,
   LoginRoutes
 ];
 
-export const Routes: React.FC = () => {
-  return useRoutes(routes);
-};
+const router = createHashRouter(routes);
 
 export const Router: React.FC = () => {
-  return (
-    <HashRouter>
-      <Routes />
-    </HashRouter>
-  );
+  return <RouterProvider router={router} />
 };

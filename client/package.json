@@ -10,12 +10,14 @@
   "dependencies": {
     "@iot/shared": "^1.0.0",
     "@reduxjs/toolkit": "^1.8.5",
+    "@vanilla-extract/css": "^1.9.1",
+    "@vanilla-extract/vite-plugin": "^3.6.0",
     "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-error-boundary": "^3.1.4",
     "react-redux": "^8.0.2",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.4.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",

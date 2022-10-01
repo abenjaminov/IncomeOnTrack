@@ -8,8 +8,6 @@ export const LoginView: React.FC = () => {
     const emailState = React.useState('')
     const passwordState = React.useState('')
     
-    const navigate = useNavigate();
-
     const { login } = useAuth();
 
     const onLoginClicked = () => {

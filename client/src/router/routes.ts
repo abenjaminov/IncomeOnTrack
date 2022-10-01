@@ -1,5 +1,8 @@
 export enum Route {
-    default = '/',
-    login = '/login',
-    home = '/home'
+    login = 'login',
+    home = '',
+    calendar = 'calendar',
+    dashboard = 'dashboard',
+    sessions = 'sessions',
+    clients = 'clients'
 }
