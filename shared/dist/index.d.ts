@@ -15,7 +15,6 @@ interface IGetUsersArgs {
 }
 
 interface IGetClientsArgs {
-    userId?: string;
     filterText?: string;
     includeDebt?: boolean;
 }
@@ -26,6 +25,17 @@ interface ICreateClient {
     paymentMonthOffset: number;
     phoneNumber?: string;
     email?: string;
+}
+interface IClient {
+    id: string;
+    userId: string;
+    name: string;
+    phoneNumber: string;
+    paymentPerHour: number;
+    isActive: boolean;
+    paymentMonthOffset: number;
+    email: string;
+    debt?: number;
 }
 
 declare enum PaymentState {
@@ -59,4 +69,4 @@ interface IGetSessionArgs {
     year?: number;
 }
 
-export { ICreateClient, IGetClientsArgs, IGetSessionArgs, IGetUsersArgs, ILoginArgs, IRegisterArgs, ISession, ISessionBase, IUpdateSessionArgs, PaymentState };
+export { IClient, ICreateClient, IGetClientsArgs, IGetSessionArgs, IGetUsersArgs, ILoginArgs, IRegisterArgs, ISession, ISessionBase, IUpdateSessionArgs, PaymentState };

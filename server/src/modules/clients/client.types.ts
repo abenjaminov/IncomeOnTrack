@@ -1,6 +1,5 @@
-import { ICreateClient, IGetClientsArgs } from "@iot/shared";
+import { IClient, ICreateClient, IGetClientsArgs } from "@iot/shared";
 import { IMongoRepository } from "../../types";
-import { IClient } from "./client.model";
 
 export interface IClientService {
     getClients(args: IGetClientsArgs): Promise<Array<IClient>>
@@ -9,4 +8,10 @@ export interface IClientService {
 
 export interface IClientRepository extends IMongoRepository<IClient>{
     create(args: ICreateClient): Promise<void>
+    getClients(args: IGetClientsArgs): Promise<Array<IClient>>;
+}
+
+export interface IDebtObject {
+    id: string;
+    debtHours: number
 }

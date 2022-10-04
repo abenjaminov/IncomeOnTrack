@@ -16,7 +16,7 @@ export const MainRoutes: RouteObject = {
         },
         {
             element: <DashboardView />,
-            path: '',
+            path: 'dashboard',
         },
         {
             element: <ClientsView />,

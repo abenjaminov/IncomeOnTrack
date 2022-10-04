@@ -1,5 +1,4 @@
 export interface IGetClientsArgs {
-    userId?: string;
     filterText?: string;
     includeDebt?: boolean;
 }
@@ -11,4 +10,16 @@ export interface ICreateClient {
     paymentMonthOffset: number;
     phoneNumber?: string;
     email?: string;
+}
+
+export interface IClient {
+    id: string;
+    userId: string;
+    name: string;
+    phoneNumber: string;
+    paymentPerHour: number;
+    isActive: boolean;
+    paymentMonthOffset: number;
+    email: string;
+    debt?: number;
 }

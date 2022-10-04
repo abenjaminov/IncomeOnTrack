@@ -30,12 +30,12 @@ export class ClientController extends BaseHttpController {
         }
     }
 
-    @httpGet('')
+    @httpPost('/get-clients')
     private async getClients(
         @requestBody() body: IGetClientsArgs
     ) {
         try {
-            const result = this.clientService.getClients(body);
+            const result = await this.clientService.getClients(body);
             return this.ok(result);
         }
         catch(e) {  
@@ -43,6 +43,7 @@ export class ClientController extends BaseHttpController {
                 error: e,
                 body
             })
+            return this.internalServerError();
         }
     }
 }

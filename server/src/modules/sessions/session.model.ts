@@ -13,6 +13,7 @@ const sessionSchema = IOTSchema({
     notes: {type: String, required: true},
     startDate: {type: Date, required: true},
     endDate: {type: Date, required: true},
+    timeInHours: {type: Number, required: true},
     paymentState: {type: String, required: true, enum: PaymentState},
     datePayed: { type: Date },
     receipt: { type: Boolean }

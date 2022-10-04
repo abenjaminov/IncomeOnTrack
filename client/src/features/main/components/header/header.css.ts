@@ -10,8 +10,9 @@ export const header = style({
 
 export const headerSection = style({
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flex: 1,
 })
 
 export const logo = style({
@@ -27,4 +28,14 @@ export const avatar = style({
     width: '3.5rem',
     backgroundColor: 'blue',
     borderRadius: '50%'
+})
+
+export const navigationItem = style({
+    fontSize: '1rem',
+    flex: 1,
+    cursor: 'pointer'
+})
+
+export const selectedNavigationItem = style({
+    textDecoration: 'underline'
 })

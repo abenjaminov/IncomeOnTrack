@@ -1,12 +1,12 @@
 import { inject, injectable } from "inversify";
-import { MongoRepository } from "../../repositories/mongo.repository";
-import { IMongoConnection, IRequestContext } from "../../types";
-import { ClientModel, IClient } from "./client.model";
 import { Model } from "mongoose";
-import { ICreateClient, IGetClientsArgs } from "@iot/shared";
+import { MongoRepository } from "../../repositories/mongo.repository";
+import { CollectionNames, IMongoConnection, IRequestContext } from "../../types";
+import { ClientModel } from "./client.model";
 import { InjectionTokens } from "../../config";
-import { IClientRepository } from "./client.types";
+import { IClientRepository, IDebtObject } from "./client.types";
 import { nanoid } from "nanoid";
+import { IClient, ICreateClient, IGetClientsArgs, PaymentState } from "@iot/shared";
 
 @injectable()
 export class ClientRepository extends MongoRepository<IClient> implements IClientRepository {
@@ -39,9 +39,7 @@ export class ClientRepository extends MongoRepository<IClient> implements IClien
     async getClients(args: IGetClientsArgs): Promise<Array<IClient>> {
         let filter: any = {};
 
-        if(args.userId) {
-            filter["userId"] = args.userId;
-        }
+        filter["userId"] = this.requestContext.user.userId;
 
         if(args.filterText) {
             filter['name'] = {
@@ -49,11 +47,34 @@ export class ClientRepository extends MongoRepository<IClient> implements IClien
             }
         }
 
-        if(args.includeDebt) {
-            // TODO : Calculate debt
-        }
+        const aggregation = this.model.aggregate<IClient>().match(filter);
 
-        const result = await this.model.find(filter);
+        const result = await aggregation.exec();
+
+        if(args.includeDebt) {
+            const debtHours = await this.model.aggregate<IDebtObject>().lookup({
+                from: CollectionNames.sessions,
+                localField: 'id',
+                foreignField: 'client.id',
+                as: 'sessions',
+                pipeline: [
+                    {
+                        $match: {
+                            "paymentState": "owed"
+                        }
+                    }
+                ]
+            }).project({
+                "_id": 0,
+                "id": 1,
+                debtHours: {"$sum": "$sessions.timeInHours" }
+            }).exec();
+
+            result.forEach(client => {
+                const debtObject = debtHours.find(x => x.id === client.id);
+                client.debt = debtObject.debtHours * client.paymentPerHour;
+            })
+        }
 
         return result;
     }

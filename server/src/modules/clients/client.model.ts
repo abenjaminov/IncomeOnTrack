@@ -1,17 +1,7 @@
 import mongoose from "mongoose";
 import { CollectionNames } from "../../types";
 import { IOTSchema } from "../../helpers";
-
-export interface IClient {
-    id: string;
-    userId: string;
-    name: string;
-    phoneNumber: string;
-    paymentPerHour: number;
-    isActive: boolean;
-    paymentMonthOffset: number;
-    email: string;
-}
+import { IClient } from "@iot/shared";
 
 const clientSchema = IOTSchema({
     userId: {type: String, required: true},

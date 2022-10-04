@@ -1,7 +1,6 @@
-import { ICreateClient, IGetClientsArgs } from "@iot/shared";
+import { IClient, ICreateClient, IGetClientsArgs } from "@iot/shared";
 import { inject, injectable } from "inversify";
 import { InjectionTokens } from "../../config";
-import { IClient } from "./client.model";
 import { IClientRepository, IClientService } from "./client.types";
 
 @injectable()
@@ -15,7 +14,7 @@ export class ClientService implements IClientService {
     }
 
     async getClients(args: IGetClientsArgs): Promise<IClient[]> {
-        const result = await this.getClients(args);
+        const result = await this.clientRepo.getClients(args);
 
         return result;
     }
