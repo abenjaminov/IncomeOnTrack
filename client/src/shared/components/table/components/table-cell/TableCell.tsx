@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { TableColumnSize } from '../../../../types';
 import * as classes from './table-cell.css';
 
 interface ITableCellProps {
-    text: string;
-    size?: TableColumnSize
+    size?: TableColumnSize;
+    children: ReactNode
 }
 
 export const TableCell: React.FC<ITableCellProps> = (props) => {
@@ -20,7 +20,7 @@ export const TableCell: React.FC<ITableCellProps> = (props) => {
 
     return (
         <div className={`${classes.tableCell} ${sizeClass}`}>
-            {props.text}
+            {props.children}
         </div>
     )
 }

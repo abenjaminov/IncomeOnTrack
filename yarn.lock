@@ -662,6 +662,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@reach/portal@npm:^0.17.0":
+  version: 0.17.0
+  resolution: "@reach/portal@npm:0.17.0"
+  dependencies:
+    "@reach/utils": 0.17.0
+    tiny-warning: ^1.0.3
+    tslib: ^2.3.0
+  peerDependencies:
+    react: ^16.8.0 || 17.x
+    react-dom: ^16.8.0 || 17.x
+  checksum: 2e5874cdfd021304d28b527a00d95da84ca98453a5211f816e26b974c2bd1b9837855989f8ab10eeeecfa384b34e21afab43f81dea784aca079aab94bf3f4755
+  languageName: node
+  linkType: hard
+
+"@reach/utils@npm:0.17.0":
+  version: 0.17.0
+  resolution: "@reach/utils@npm:0.17.0"
+  dependencies:
+    tiny-warning: ^1.0.3
+    tslib: ^2.3.0
+  peerDependencies:
+    react: ^16.8.0 || 17.x
+    react-dom: ^16.8.0 || 17.x
+  checksum: b9ee31b5d07e7f204f3605be3fa45448c9817937a3364d894054c57de9113d417014019d21ad895aebf848a43c20988924d069ba926c0cb20d6f2e8654d7a11e
+  languageName: node
+  linkType: hard
+
 "@reduxjs/toolkit@npm:^1.8.5":
   version: 1.8.5
   resolution: "@reduxjs/toolkit@npm:1.8.5"
@@ -936,6 +963,15 @@ __metadata:
     media-query-parser: ^2.0.2
     outdent: ^0.8.0
   checksum: 91127d8e2eaaf521b155a39fb6a93e0fbfe5ddd5a8bdf1c732aba278cfdb9505cba24c755a982bc47682b9ff582a06d11e51e6f8d810404164ba098799ce6800
+  languageName: node
+  linkType: hard
+
+"@vanilla-extract/dynamic@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "@vanilla-extract/dynamic@npm:2.0.2"
+  dependencies:
+    "@vanilla-extract/private": ^1.0.3
+  checksum: c6f22606bce094a5682c6d842be6d6965b9448f8973eaabdaa7a7438146458c22490c1c63345f08d2226f1c95ac20731835a5140c2c18646b2c1287b65607b84
   languageName: node
   linkType: hard
 
@@ -1467,10 +1503,12 @@ __metadata:
   resolution: "client@workspace:client"
   dependencies:
     "@iot/shared": ^1.0.0
+    "@reach/portal": ^0.17.0
     "@reduxjs/toolkit": ^1.8.5
     "@types/react": ^18.0.17
     "@types/react-dom": ^18.0.6
     "@vanilla-extract/css": ^1.9.1
+    "@vanilla-extract/dynamic": ^2.0.2
     "@vanilla-extract/vite-plugin": ^3.6.0
     "@vitejs/plugin-react": ^2.0.1
     path: ^0.12.7
@@ -4604,6 +4642,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tiny-warning@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "tiny-warning@npm:1.0.3"
+  checksum: da62c4acac565902f0624b123eed6dd3509bc9a8d30c06e017104bedcf5d35810da8ff72864400ad19c5c7806fc0a8323c68baf3e326af7cb7d969f846100d71
+  languageName: node
+  linkType: hard
+
 "to-fast-properties@npm:^2.0.0":
   version: 2.0.0
   resolution: "to-fast-properties@npm:2.0.0"
@@ -4714,6 +4759,13 @@ __metadata:
     ts-node-transpile-only: dist/bin-transpile.js
     ts-script: dist/bin-script-deprecated.js
   checksum: 090adff1302ab20bd3486e6b4799e90f97726ed39e02b39e566f8ab674fd5bd5f727f43615debbfc580d33c6d9d1c6b1b3ce7d8e3cca3e20530a145ffa232c35
+  languageName: node
+  linkType: hard
+
+"tslib@npm:^2.3.0":
+  version: 2.4.0
+  resolution: "tslib@npm:2.4.0"
+  checksum: 8c4aa6a3c5a754bf76aefc38026134180c053b7bd2f81338cb5e5ebf96fefa0f417bff221592bf801077f5bf990562f6264fecbc42cd3309b33872cb6fc3b113
   languageName: node
   linkType: hard
 

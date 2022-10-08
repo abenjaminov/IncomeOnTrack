@@ -6,5 +6,11 @@ export const tableRow = style({
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    borderBottom: '1px solid black'
+    borderBottom: '1px solid black',
+    cursor: "pointer",
+    selectors: {
+        "&:hover" : {
+            backgroundColor: "#F5F5F5"
+        }
+    }
 }, 'tableRow')

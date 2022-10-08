@@ -1,56 +1,52 @@
+import { IClient } from '@iot/shared';
 import React from 'react';
-import { View } from '../../../../shared/components';
+import { Button, View } from '../../../../shared/components';
+import { TableCell, TableHeaderRow, TableRow } from '../../../../shared/components/table';
 import { Table } from '../../../../shared/components/table/Table';
-import { useClients } from '../../../../shared/hooks';
-import { ITableRow, TableColumnSize } from '../../../../shared/types';
+import { ViewHeader } from '../../../../shared/components/view/components/view-header/ViewHeader';
+import { useClients, useModals } from '../../../../shared/hooks';
+import { ModalReferenceAlign, TableColumnSize } from '../../../../shared/types';
 import * as classes from './clients-view.css';
+import { AddClientModal } from './components/add-client-modal/AddClientModal';
 
 export const ClientsView: React.FC = () => {
     const {clients} = useClients();
+    const { openModal } = useModals();
 
-    const clientRows: Array<ITableRow> = React.useMemo(() => {
-        if(!clients) return [];
-
-        const clientRows: Array<ITableRow> = [];
-
-        clients.forEach(client => {
-            const row: ITableRow = {
-                object: client,
-                columns: [{
-                    propName: 'name'
-                }, {
-                    propName: 'phoneNumber'
-                },{
-                    propName: 'email'
-                }, {
-                    propName: 'paymentPerHour'
-                }, {
-                    propName: 'debt',
-                    size: TableColumnSize.small
-                }]
-            }
-
-            clientRows.push(row);
+    const onAddClientClicked = React.useCallback(() => {
+        openModal({
+            name: "AddClientModal",
+            size: {
+                height: '100%',
+                width: '100%'
+            },
+            component: <AddClientModal />,
         })
+    }, [])
 
-        return clientRows;
-    }, [clients])
     return (
         <View>
-            <Table rows={clientRows} headerRow={{
-                columns: [{
-                    text: 'Name'
-                }, {
-                    text: 'Phone Number'
-                },{
-                    text: 'Email'
-                },{
-                    text: 'Pay Per Hour'
-                }, {
-                    text: 'Debt',
-                    size: TableColumnSize.small
-                }]
-            }}/>
+            <ViewHeader>
+                <Button text='Add Client' onClick={onAddClientClicked}/>
+            </ViewHeader>
+            <Table>
+                <TableHeaderRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell>Phone Number</TableCell>
+                    <TableCell>Email</TableCell>
+                    <TableCell>Pay Per Hour</TableCell>
+                    <TableCell size={TableColumnSize.small}>Debt</TableCell>
+                </TableHeaderRow>
+                {clients && clients.map((client: IClient) => (
+                    <TableRow>
+                        <TableCell>{client.name}</TableCell>
+                        <TableCell>{client.phoneNumber}</TableCell>
+                        <TableCell>{client.email}</TableCell>
+                        <TableCell>{client.paymentPerHour}</TableCell>
+                        <TableCell size={TableColumnSize.small}>{client.debt}</TableCell>
+                    </TableRow>
+                ))}
+            </Table>
         </View>
     )
 }

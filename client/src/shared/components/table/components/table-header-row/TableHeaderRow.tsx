@@ -1,17 +1,17 @@
 import React, { ReactNode } from 'react';
 import { ITableRow } from '../../../../types';
 import { TableCell } from '../table-cell/TableCell';
-import * as classes from './table-row.css';
+import * as classes from './table-header-row.css';
 
-interface ITableRowProps {
+interface ITableHeaderRowProps {
     children: ReactNode
 }
 
-export const TableRow: React.FC<ITableRowProps> = (props) => {
+export const TableHeaderRow: React.FC<ITableHeaderRowProps> = (props) => {
     const cellId = React.useId();
 
     return (
-        <div className={classes.tableRow}>
+        <div className={classes.tableHeaderRow}>
             {props.children}
         </div>
     )
