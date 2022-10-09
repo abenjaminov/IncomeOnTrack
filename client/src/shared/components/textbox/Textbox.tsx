@@ -1,19 +1,21 @@
 import React from 'react';
+import { useFormContext } from '../../hooks';
 import classes from './textbox.module.scss';
 
 interface ITextboxProps {
-    type: "email" | "password" | "text",
-    valueState: [string, React.Dispatch<React.SetStateAction<string>>]
+    type: "email" | "password" | "text" | "number" | "tel",
+    formKey: string,
+    initialValue: string
 }
 
 export const Textbox: React.FC<ITextboxProps> = (props) => {
-    const [input, setInput] = props.valueState;
-    
+    const { getValue, setValue } = useFormContext(props.formKey, props.initialValue);
+
     return (
         <div className={classes.textbox}>      
             <input type={props.type} 
-                   onChange={(x) => setInput(x.target.value)}
-                   value={input}/>
+                   onChange={(x) => setValue(x.target.value)}
+                   value={getValue()}/>
         </div>
     )
 }

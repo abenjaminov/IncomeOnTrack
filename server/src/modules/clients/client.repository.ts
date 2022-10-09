@@ -6,7 +6,7 @@ import { ClientModel } from "./client.model";
 import { InjectionTokens } from "../../config";
 import { IClientRepository, IDebtObject } from "./client.types";
 import { nanoid } from "nanoid";
-import { IClient, ICreateClient, IGetClientsArgs, PaymentState } from "@iot/shared";
+import { IClient, ICreateClientArgs, IGetClientsArgs, PaymentState } from "@iot/shared";
 
 @injectable()
 export class ClientRepository extends MongoRepository<IClient> implements IClientRepository {
@@ -21,7 +21,7 @@ export class ClientRepository extends MongoRepository<IClient> implements IClien
         super(mongoConnection)
     }
 
-    async create(args: ICreateClient): Promise<void> {
+    async create(args: ICreateClientArgs): Promise<void> {
         const query: IClient = {
             id: nanoid(),
             isActive: true,

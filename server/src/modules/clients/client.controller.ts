@@ -1,4 +1,4 @@
-import { ICreateClient, IGetClientsArgs } from "@iot/shared";
+import { ICreateClientArgs, IGetClientsArgs } from "@iot/shared";
 import { inject } from "inversify";
 import { BaseHttpController, controller, httpGet, httpPost, httpPut, requestBody } from "inversify-express-utils";
 import { ILog } from "../../types";
@@ -16,7 +16,7 @@ export class ClientController extends BaseHttpController {
 
     @httpPut('')
     private async createOrUpdateClient(
-        @requestBody() body: ICreateClient
+        @requestBody() body: ICreateClientArgs
     ) {
         try {
             await this.clientService.create(body);

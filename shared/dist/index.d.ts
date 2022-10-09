@@ -18,7 +18,7 @@ interface IGetClientsArgs {
     filterText?: string;
     includeDebt?: boolean;
 }
-interface ICreateClient {
+interface ICreateClientArgs {
     id?: string;
     name: string;
     paymentPerHour: number;
@@ -69,4 +69,4 @@ interface IGetSessionArgs {
     year?: number;
 }
 
-export { IClient, ICreateClient, IGetClientsArgs, IGetSessionArgs, IGetUsersArgs, ILoginArgs, IRegisterArgs, ISession, ISessionBase, IUpdateSessionArgs, PaymentState };
+export { IClient, ICreateClientArgs, IGetClientsArgs, IGetSessionArgs, IGetUsersArgs, ILoginArgs, IRegisterArgs, ISession, ISessionBase, IUpdateSessionArgs, PaymentState };

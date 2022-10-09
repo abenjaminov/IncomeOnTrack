@@ -28,7 +28,7 @@ export const useModals = () => {
 
     const showModal = React.useCallback((name: string, groupKey?: string) => {
         dispatch(showModalInStore(name));
-      }, []);
+    }, []);
     
       const hideModal = React.useCallback((name: string, groupKey?: string) => {
         dispatch(hideModalInStore(name));

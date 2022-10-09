@@ -5,7 +5,7 @@ import { TableCell, TableHeaderRow, TableRow } from '../../../../shared/componen
 import { Table } from '../../../../shared/components/table/Table';
 import { ViewHeader } from '../../../../shared/components/view/components/view-header/ViewHeader';
 import { useClients, useModals } from '../../../../shared/hooks';
-import { ModalReferenceAlign, TableColumnSize } from '../../../../shared/types';
+import { TableColumnSize } from '../../../../shared/types';
 import * as classes from './clients-view.css';
 import { AddClientModal } from './components/add-client-modal/AddClientModal';
 
@@ -20,7 +20,7 @@ export const ClientsView: React.FC = () => {
                 height: '100%',
                 width: '100%'
             },
-            component: <AddClientModal />,
+            component: <AddClientModal />
         })
     }, [])
 

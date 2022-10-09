@@ -2,7 +2,7 @@ export interface IGetClientsArgs {
     filterText?: string;
     includeDebt?: boolean;
 }
-export interface ICreateClient {
+export interface ICreateClientArgs {
     id?: string;
     name: string;
     paymentPerHour: number;
