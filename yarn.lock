@@ -526,7 +526,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@iot/shared@^1.0.0, @iot/shared@workspace:shared":
+"@iot/shared@^1.0.0, @iot/shared@workspace:^, @iot/shared@workspace:shared":
   version: 0.0.0-use.local
   resolution: "@iot/shared@workspace:shared"
   dependencies:
@@ -1502,7 +1502,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "client@workspace:client"
   dependencies:
-    "@iot/shared": ^1.0.0
+    "@iot/shared": "workspace:^"
     "@reach/portal": ^0.17.0
     "@reduxjs/toolkit": ^1.8.5
     "@types/react": ^18.0.17
@@ -1511,6 +1511,7 @@ __metadata:
     "@vanilla-extract/dynamic": ^2.0.2
     "@vanilla-extract/vite-plugin": ^3.6.0
     "@vitejs/plugin-react": ^2.0.1
+    date-fns: ^2.29.3
     path: ^0.12.7
     react: ^18.2.0
     react-dom: ^18.2.0

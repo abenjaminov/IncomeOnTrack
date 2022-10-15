@@ -6,3 +6,7 @@ export const mainLayout = style({
     display: 'flex',
     flexDirection: 'column'
 })
+
+export const content = style({
+    height: 'calc(100% - 5rem)'
+})

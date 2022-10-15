@@ -31,7 +31,7 @@ export class SessionRepository extends MongoRepository<ISession> implements ISes
 
             filter["startDate"] = {
                 $gte: startOfMonth(filterDate),
-                lte: endOfMonth(filterDate)
+                $lte: endOfMonth(filterDate)
             } 
         }
 

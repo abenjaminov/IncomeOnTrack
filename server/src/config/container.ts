@@ -18,6 +18,11 @@ import { ClientService } from "../modules/clients/client.service";
 import { IClientService } from "../modules/clients/client.types";
 import { IClientRepository } from "../modules/clients/client.types";
 import { ClientController } from "../modules/clients/client.controller";
+import { SessionController } from "../modules/sessions/session.controller";
+import { ISessionRepository } from "../modules/sessions/session.types";
+import { SessionRepository } from "../modules/sessions/session.repository";
+import { ISessionService } from "../modules/sessions/session.types";
+import { SessionService } from "../modules/sessions/session.service";
 
 cleanUpMetadata();
 
@@ -27,7 +32,8 @@ for(let controller of [
     AppController,
     AuthController,
     UserController,
-    ClientController
+    ClientController,
+    SessionController
 ]){
     container.bind<inversifyExpressInterfaces.Controller>(InversifyExpressInjectionTokens.Controller).to(controller).whenTargetNamed(controller.name);
 }
@@ -44,6 +50,9 @@ container.bind<IClientService>(InjectionTokens.clientService).to(ClientService).
 
 container.bind<IUserRepository>(InjectionTokens.userRepo).to(UserRepository).inRequestScope();
 container.bind<IUserService>(InjectionTokens.userService).to(UserService).inSingletonScope();
+
+container.bind<ISessionRepository>(InjectionTokens.sessionRepo).to(SessionRepository).inSingletonScope();
+container.bind<ISessionService>(InjectionTokens.sessionService).to(SessionService).inSingletonScope();
 
 container.bind<IRequestContext>(InjectionTokens.requestContext).to(RequestContext).inRequestScope()
 

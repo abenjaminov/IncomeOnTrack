@@ -16,7 +16,7 @@ export interface ISessionBase {
     },
     notes: string;
     startDate: Date;
-    endDate: Date;
+    timeInHours: Date;
     paymentState: PaymentState;
     datePayed?: Date;
     receipt?: boolean;

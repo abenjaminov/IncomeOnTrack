@@ -15,14 +15,16 @@ export class SessionController extends BaseController {
         super(log);
     }
 
-    @httpGet('')
+    @httpPost('')
     private async getSessions(
         @requestBody() body: IGetSessionArgs
     ) {
-        const result = this.tryExecute(async () => {
+        const result = await this.tryExecute(async () => {
             const sessions = await this.sessionService.getSessions(body);
-            return this.ok(sessions);
+            return sessions;
         })
+
+        return result;
     }
 
     @httpPut('')

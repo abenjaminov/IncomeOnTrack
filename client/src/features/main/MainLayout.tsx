@@ -8,10 +8,8 @@ export const MainLayout: React.FC = () => {
     return (
         <AuthorizedOnly>
             <div className={classes.mainLayout}>
-                <div>
-                    <Header />
-                </div>
-                <div>
+                <Header />
+                <div className={classes.content}>
                     <Outlet />
                 </div>
             </div>
