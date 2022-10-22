@@ -1,6 +1,4 @@
 import React, { ReactNode } from 'react';
-import { ITableRow } from '../../../../types';
-import { TableCell } from '../table-cell/TableCell';
 import * as classes from './table-row.css';
 
 interface ITableRowProps {

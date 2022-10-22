@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from '@/shared/components/form/useForm';
 import { Textbox, Button, Checkbox } from '../../../shared/components';
 import { useAuth } from '../../../shared/hooks';
 import classes from './login-view.module.scss';
@@ -19,6 +20,8 @@ export const LoginView: React.FC = () => {
             password
         })
     }
+
+    const {} = useForm();
 
     return (
         <div className={classes.loginView}>
