@@ -34,7 +34,8 @@ export class ClientsRepository extends RepositoryBase<IClientBase, IGetClientsFr
             name: args.name,
             isActive: args.isActive,
             payment: args.payment,
-            userId: this.requestContext.userId
+            userId: this.requestContext.userId,
+            isSalary: args.isSalary
         }
 
         await this.model.create(newClient);

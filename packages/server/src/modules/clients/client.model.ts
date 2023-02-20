@@ -9,7 +9,8 @@ const ClientSchema = new Schema({
     name: { type: String, required: true },
     userId: { type: String, required: true },
     payment: { type: Number, required: true },
-    isActive: { type: Boolean, required: true }
+    isActive: { type: Boolean, required: true },
+    isSalary: { type: Boolean, required: true }
 })
 
 export const ClientModel = mongoose.model<IClientBase>(CollectionNames.clients, ClientSchema);

@@ -5,7 +5,8 @@ export const ZClientBase = ZObjectBase.extend({
     userId: z.string(),
     name: z.string(),
     payment: z.number(),
-    isActive: z.boolean()
+    isActive: z.boolean(),
+    isSalary: z.boolean()
 })
 
 export type IClientBase = z.infer<typeof ZClientBase>;

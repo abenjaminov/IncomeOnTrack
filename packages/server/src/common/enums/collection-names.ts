@@ -1,4 +1,5 @@
 export enum CollectionNames {
     users = 'users',
-    clients = 'clients'
+    clients = 'clients',
+    sessions = 'sessions'
 }
