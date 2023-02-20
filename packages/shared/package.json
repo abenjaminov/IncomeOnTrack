@@ -1,0 +1,36 @@
+{
+  "name": "@income-on-track/shared",
+  "version": "1.0.0",
+  "description": "Common utils for ProDrops workspaces",
+  "author": "ProDrops ltd",
+  "types": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "scripts": {
+    "build": "tsup",
+    "build:watch": "tsup --watch",
+    "pre-commit": "yarn lint"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@types/http-errors": "^1.8.2",
+    "@types/jsonwebtoken": "^8.5.1",
+    "@types/node": "^18.11.9",
+    "@types/request": "^2.48.8",
+    "eslint": "^8.30.0",
+    "prettier": "^2.7.1",
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "date-fns": "^2.29.3",
+    "http-errors": "^2.0.0",
+    "http-status-codes": "^2.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "nanoid": "^3.3.4",
+    "rxjs": "^7.5.5",
+    "short-unique-id": "^4.4.4",
+    "zod": "^3.20.2"
+  }
+}
