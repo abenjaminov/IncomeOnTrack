@@ -1,5 +1,5 @@
 import {BaseHttpController, controller, httpPost, requestBody} from "inversify-express-utils";
-import {ILoginArgs} from "@income-on-track/shared";
+import {ILoginArgs, IRegisterArgs} from "@income-on-track/shared";
 import {inject} from "inversify";
 import {InjectionTokens} from "../../config";
 import {IAuthService} from "./auth.interface";
@@ -19,5 +19,18 @@ export class AuthController extends BaseHttpController {
       const loginResult = await this.authService.login(args);
 
       return this.json(loginResult);
+    }
+
+    @httpPost('/register')
+    private async register(
+        @requestBody() args: IRegisterArgs
+    ) {
+        const result = await this.authService.register(args);
+
+        if(!result) {
+            return this.badRequest();
+        }
+
+        return this.ok();
     }
 }

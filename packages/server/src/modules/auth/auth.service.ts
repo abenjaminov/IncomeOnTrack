@@ -1,6 +1,6 @@
 import {inject, injectable} from "inversify";
 import {IAuthService} from "./auth.interface";
-import {ILoginArgs, ILoginResponse} from "@income-on-track/shared";
+import {ILoginArgs, ILoginResponse, IRegisterArgs} from "@income-on-track/shared";
 import {InjectionTokens} from "../../config";
 import {IUsersService} from "../users";
 import { compare, hash } from 'bcrypt';
@@ -11,6 +11,25 @@ export class AuthService implements IAuthService {
     constructor(
         @inject(InjectionTokens.usersService) private userService: IUsersService
     ) {}
+
+    async register(args: IRegisterArgs) {
+        const user = await this.userService.getUser({
+            email: args.email
+        });
+
+        if(user) {
+            return false;
+        }
+
+        const saltedPassword = await hash(args.password, process.env.SALT_ROUNDS ?? 10);
+
+        await this.userService.createUser({
+            ...args,
+            saltedPassword
+        })
+
+        return true;
+    }
 
     async login(args: ILoginArgs): Promise<ILoginResponse> {
         const user = await this.userService.getUser({

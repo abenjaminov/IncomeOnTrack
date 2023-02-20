@@ -1,11 +1,9 @@
 import { z } from 'zod';
+import {ZObjectBase} from "../../object";
 
-const ZUserBase = z.object({
-    id: z.string(),
+export const ZUserBase = ZObjectBase.extend({
     userName: z.string(),
     email: z.string(),
-    creationDate: z.string(),
-    modifiedDate: z.string()
 })
 
 export type IUserBase = z.infer<typeof ZUserBase>;
