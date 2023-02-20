@@ -6,10 +6,19 @@ import {
     interfaces as inversifyExpressInterfaces,
     TYPE as InversifyExpressInjectionTokens,
 } from 'inversify-express-utils';
+import {AuthController, AuthService, IAuthService} from "../modules/auth";
 
 cleanUpMetadata();
 
 const container = new Container();
+
+// Auth
+container
+    .bind<inversifyExpressInterfaces.Controller>(InversifyExpressInjectionTokens.Controller)
+    .to(AuthController)
+    .whenTargetNamed(AuthController.name);
+container.bind<IAuthService>(InjectionTokens.authService).to(AuthService);
+
 
 // Users
 container

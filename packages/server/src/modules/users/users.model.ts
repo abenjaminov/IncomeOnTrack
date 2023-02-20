@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
-import {IUser} from "@income-on-track/shared";
 import {CollectionNames} from "../../common";
+import {IUser} from "./users.interface";
 
 const UserSchema = new Schema({
     id: { type: String, required: true},
