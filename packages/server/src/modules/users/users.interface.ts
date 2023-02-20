@@ -20,6 +20,7 @@ export interface IUserRepository extends IRepositoryBase<IUser, IGetUsersArgs> {
 export type IUser = IUserBase & {
     saltedPassword: string;
     isVerified: boolean;
+    isActive: boolean;
 }
 
 export type IGetUserResult = IGetObjectsResult & {

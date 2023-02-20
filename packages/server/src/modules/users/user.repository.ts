@@ -30,6 +30,7 @@ export class UserRepository extends RepositoryBase<IUser, IGetUsersArgs> impleme
             creationDate: new Date(),
             modifiedDate: new Date(),
             isVerified: false,
+            isActive: false,
             saltedPassword: args.saltedPassword
         }
 

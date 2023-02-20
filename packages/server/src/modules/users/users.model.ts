@@ -9,7 +9,8 @@ const UserSchema = new Schema({
     modifiedDate: { type: Date, required: true },
     email: { type: String, required: true},
     saltedPassword: { type: String, required: true},
-    isVerified: { type: Boolean, required: true }
+    isVerified: { type: Boolean, required: true },
+    isActive: { type: Boolean, required: true }
 })
 
 export const UserModel = mongoose.model<IUser>(CollectionNames.users, UserSchema);

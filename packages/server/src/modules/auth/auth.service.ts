@@ -1,10 +1,10 @@
 import {inject, injectable} from "inversify";
 import {IAuthService} from "./auth.interface";
-import {ILoginArgs, ILoginResponse, IRegisterArgs} from "@income-on-track/shared";
+import {ILoginArgs, ILoginResponse, IRegisterArgs, LoginFailReason} from "@income-on-track/shared";
 import {InjectionTokens} from "../../config";
 import {IUsersService} from "../users";
-import { compare, hash } from 'bcrypt';
-import { JwtPayload, sign, verify } from 'jsonwebtoken';
+import {compare, hash} from 'bcrypt';
+import {sign} from 'jsonwebtoken';
 
 @injectable()
 export class AuthService implements IAuthService {
@@ -36,14 +36,26 @@ export class AuthService implements IAuthService {
             email: args.email
         });
 
-        if(!user || !user.isVerified) return {
-            success: false
-        };
+        if(!user) return {
+            success: false,
+            reason: LoginFailReason.generalFail
+        }
+
+        if(!user.isVerified) return {
+            success: false,
+            reason: LoginFailReason.userNotVerified
+        }
+
+        if(!user.isActive) return {
+            success: false,
+            reason: LoginFailReason.userNotActive
+        }
 
         const passwordValidated = compare(args.password, user.saltedPassword);
 
         if(!passwordValidated) return {
             success: false,
+            reason: LoginFailReason.generalFail
         }
 
         const tokenPayload = {
@@ -51,7 +63,7 @@ export class AuthService implements IAuthService {
         }
 
         const authToken = sign(tokenPayload, process.env.TOKEN_SECRET as string, {
-            algorithm:'HS256',
+            algorithm: 'HS256',
             subject: user.userName,
             expiresIn: '2w',
             issuer: process.env.TOKEN_ISSUER as string,

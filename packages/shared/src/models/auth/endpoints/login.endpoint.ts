@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import {LoginFailReason} from "../../../enums/auth";
 
 export const ZLoginArgs = z.object({
     email: z.string(),
@@ -11,6 +12,7 @@ export const ZLoginRequest = z.object({
 
 export const ZLoginResponse = z.object({
     success: z.boolean(),
+    reason: z.nativeEnum(LoginFailReason).optional(),
     authToken: z.string().optional()
 })
 
