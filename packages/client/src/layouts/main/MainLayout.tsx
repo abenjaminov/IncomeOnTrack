@@ -1,12 +1,17 @@
 import React from 'react';
 import {AuthorizedOnly} from "./components/AuthorizedOnly";
 import classes from './main.css';
+import {AppHeader} from "./components/header/AppHeader";
+import {Outlet} from "react-router-dom";
 
 export const MainLayout: React.FC = () => {
     return (
         <AuthorizedOnly>
             <div className={classes.mainLayout}>
-                Main Layout
+                <AppHeader />
+                <div className={classes.outletContainer}>
+                    <Outlet />
+                </div>
             </div>
         </AuthorizedOnly>
     )
