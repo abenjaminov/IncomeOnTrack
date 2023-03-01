@@ -1,5 +1,6 @@
 import {createBrowserRouter} from "react-router-dom";
 import {LoginLayout, MainLayout} from "../layouts";
+import {ClientsView} from "../layouts/main/components/clients-view/ClientsView";
 
 export enum Routes {
     login = "/login",
@@ -29,7 +30,7 @@ export const mainRouter = createBrowserRouter([{
             element: <div>sessions</div>
         }, {
             path: Routes.clients,
-            element: <div>clients</div>
+            element: <ClientsView />
         }, {
             path: Routes.calendar,
             element: <div>Calendar</div>
