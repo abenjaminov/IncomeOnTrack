@@ -2,10 +2,10 @@ import {style} from '@vanilla-extract/css';
 import {themeVars} from "../../../style";
 
 const classes = {
-    primaryButton: style({
-        backgroundColor: themeVars.colors.primary,
+    secondaryButton: style({
+        backgroundColor: themeVars.colors.secondary,
         borderColor: themeVars.colors.accent,
-        color: 'white',
+        color: themeVars.colors.text,
     })
 }
 
