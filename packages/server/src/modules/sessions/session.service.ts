@@ -9,11 +9,11 @@ export class SessionService implements ISessionService {
     ) {
     }
     async getSessions(args: IGetSessionArgs): Promise<IGetSessionsResult> {
-        const result = await this.sessionRepository.getObjects(args);
+        //const result = await this.sessionRepository.getObjects(args);
 
         return {
-            count: result.count,
-            objects: result.objects as Array<ISessionBase>
+            count: 0,
+            objects: []
         }
     }
 

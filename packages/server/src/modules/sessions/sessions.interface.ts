@@ -5,4 +5,4 @@ export interface ISessionService {
     getSessions(args: IGetSessionArgs): Promise<IGetSessionsResult>
 }
 
-export interface ISessionsRepository extends IRepositoryBase<ISessionBase, IGetSessionArgs> {}
+export interface ISessionsRepository {}

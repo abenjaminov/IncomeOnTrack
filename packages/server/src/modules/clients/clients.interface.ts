@@ -10,6 +10,6 @@ export interface IClientsService {
     addClient(args: IAddClientArgs): Promise<void>
 }
 
-export interface IClientsRepository extends IRepositoryBase<IClientBase, IGetClientsFromRepoArgs> {
+export interface IClientsRepository {
     addClient(args: IAddClientArgs): Promise<void>
 }

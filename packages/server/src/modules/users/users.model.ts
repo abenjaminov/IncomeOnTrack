@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import {CollectionNames} from "../../common";
+import {TableNames} from "../../common";
 import {IUser} from "./users.interface";
 
 const UserSchema = new Schema({
@@ -13,4 +13,4 @@ const UserSchema = new Schema({
     isActive: { type: Boolean, required: true }
 })
 
-export const UserModel = mongoose.model<IUser>(CollectionNames.users, UserSchema);
+export const UserModel = mongoose.model<IUser>(TableNames.users, UserSchema);

@@ -1,5 +1,5 @@
-import {Model} from "mongoose";
+import {Sequelize} from "sequelize";
 
 export interface IDBService {
-    getRepository<T>(model: Model<T>): Model<T>
+    getDatabase(): Sequelize;
 }

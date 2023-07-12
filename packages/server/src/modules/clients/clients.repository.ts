@@ -1,29 +1,18 @@
-import {IRequestContext, RepositoryBase} from "../../common";
+import {IDBService, IRequestContext, TableNames} from "../../common";
 import {IAddClientArgs, IClientBase } from "@income-on-track/shared";
-import {IClientsRepository, IGetClientsFromRepoArgs} from "./clients.interface";
-import {FilterQuery} from "mongoose";
+import {IClientsRepository } from "./clients.interface";
 import {inject, injectable} from "inversify";
-import {ClientModel} from "./client.model";
 import {nanoid} from "nanoid";
 import {InjectionTokens} from "../../config";
+import {ClientModel} from "./client.model";
 
 @injectable()
-export class ClientsRepository extends RepositoryBase<IClientBase, IGetClientsFromRepoArgs> implements IClientsRepository {
+export class ClientsRepository implements IClientsRepository {
     constructor(
-        @inject(InjectionTokens.requestContext) private requestContext: IRequestContext
+        @inject(InjectionTokens.requestContext) private requestContext: IRequestContext,
+        @inject(InjectionTokens.dbService) private dbService: IDBService
     ) {
-        super(ClientModel);
-    }
-    buildFilterInternal(args: IGetClientsFromRepoArgs): FilterQuery<IClientBase> {
-        const filter: FilterQuery<IClientBase> = {
-            userId: args.userId
-        };
-
-        if(args.isActive !== undefined) {
-            filter.isActive = args.isActive;
-        }
-
-        return filter;
+        this.dbService.getDatabase().define(TableNames.clients, ClientModel)
     }
 
     async addClient(args: IAddClientArgs): Promise<void> {
@@ -38,7 +27,7 @@ export class ClientsRepository extends RepositoryBase<IClientBase, IGetClientsFr
             isSalary: args.isSalary
         }
 
-        await this.model.create(newClient);
+        //await this.model.create(newClient);
     }
 
 }

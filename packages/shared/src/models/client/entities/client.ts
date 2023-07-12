@@ -4,16 +4,14 @@ import {ZObjectBase} from "../../object";
 export const ZClientBase = ZObjectBase.extend({
     userId: z.string(),
     name: z.string(),
-    payment: z.number(),
-    isActive: z.boolean(),
-    isSalary: z.boolean()
+    defaultPayment: z.number(),
+    isActive: z.boolean()
 })
 
 export const ZClientView = ZClientBase.pick({
     isActive: true,
     name: true,
-    isSalary: true,
-    payment: true,
+    defaultPayment: true,
     creationDate: true,
     id: true
 }).extend({

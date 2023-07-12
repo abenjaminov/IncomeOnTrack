@@ -1,16 +1,26 @@
-import mongoose, { Schema } from 'mongoose';
-import {IClientBase} from "@income-on-track/shared";
-import {CollectionNames} from "../../common";
+import * as Sequelize from "sequelize";
 
-const ClientSchema = new Schema({
-    id: { type: String, required: true},
-    creationDate: { type: Date, required: true },
-    modifiedDate: { type: Date, required: true },
-    name: { type: String, required: true },
-    userId: { type: String, required: true },
-    payment: { type: Number, required: true },
-    isActive: { type: Boolean, required: true },
-    isSalary: { type: Boolean, required: true }
-})
-
-export const ClientModel = mongoose.model<IClientBase>(CollectionNames.clients, ClientSchema);
+export const ClientModel: Sequelize.ModelAttributes = {
+    id: {
+        type: Sequelize.STRING,
+        primaryKey: true,
+        allowNull: false,
+        unique: true
+    },
+    userId: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    isActive: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+    },
+    defaultPayment: {
+        type: Sequelize.NUMBER,
+        allowNull: false,
+    }
+}

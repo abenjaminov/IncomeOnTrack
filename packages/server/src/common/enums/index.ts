@@ -1,1 +1,1 @@
-export * from './collection-names';
+export * from './table-names';

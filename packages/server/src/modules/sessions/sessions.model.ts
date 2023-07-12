@@ -1,18 +1,38 @@
-import mongoose, {Schema} from "mongoose";
-import {CollectionNames} from "../../common";
-import {ISessionBase} from "@income-on-track/shared";
+import * as Sequelize from "sequelize";
 
-export const SessionSchema = new Schema({
-    id: { type: String, required: true},
-    creationDate: { type: Date, required: true },
-    modifiedDate: { type: Date, required: true },
-    clientId: { type: String, required: true },
-    payment: { type: Number, required: true },
-    date: { type: Date, required: true },
-    isPayed: { type: Boolean, required: true },
-    datePayed: { type: Date },
-    issuedReceipt: { type: Boolean, required: true },
-    notes: { type: String }
-})
-
-export const SessionModel = mongoose.model<ISessionBase>(CollectionNames.sessions, SessionSchema);
+export const SessionModel: Sequelize.ModelAttributes = {
+    id:{
+        type: Sequelize.STRING,
+        primaryKey: true,
+        allowNull: false,
+        unique: true
+    },
+    userId: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    clientId: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    payment: {
+        type: Sequelize.NUMBER,
+        allowNull: false,
+    },
+    date: {
+        type: Sequelize.DATE,
+        allowNull: false,
+    },
+    datePayed: {
+        type: Sequelize.DATE,
+        allowNull: true,
+    },
+    issuedReceipt: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+    },
+    notes: {
+        type: Sequelize.STRING,
+        allowNull: true,
+    }
+}

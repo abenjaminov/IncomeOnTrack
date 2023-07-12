@@ -17,6 +17,7 @@
     "@types/compression": "^1.7.2",
     "@types/cors": "^2.8.13",
     "@types/method-override": "^0.0.32",
+    "@types/sequelize": "^4.28.15",
     "bcrypt": "^5.1.0",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
@@ -28,9 +29,10 @@
     "inversify": "^6.0.1",
     "inversify-express-utils": "^6.4.3",
     "method-override": "^3.0.0",
-    "mongoose": "^6.9.2",
     "nanoid": "3.0.0",
+    "pg": "^8.11.1",
     "reflect-metadata": "^0.1.13",
+    "sequelize": "^6.32.1",
     "typescript": "^4.9.5"
   },
   "devDependencies": {

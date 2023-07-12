@@ -13,7 +13,7 @@ export interface IUsersService {
     getUser(args: IGetUsersArgs): Promise<IUser | undefined>;
 }
 
-export interface IUserRepository extends IRepositoryBase<IUser, IGetUsersArgs> {
+export interface IUserRepository {
     createUser(args: ICreateUserArgs): Promise<void>
 }
 
