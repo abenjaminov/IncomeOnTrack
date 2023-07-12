@@ -12,7 +12,6 @@ export const ZClientView = ZClientBase.pick({
     isActive: true,
     name: true,
     defaultPayment: true,
-    creationDate: true,
     id: true
 }).extend({
     debt: z.number()

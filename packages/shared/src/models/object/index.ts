@@ -2,8 +2,6 @@ import { z } from 'zod';
 
 export const ZObjectBase = z.object({
     id: z.string(),
-    creationDate: z.date(),
-    modifiedDate: z.date()
 });
 
 export const ZGetObjectsBase = z.object({

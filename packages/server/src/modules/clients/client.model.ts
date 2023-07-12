@@ -1,26 +1,26 @@
-import * as Sequelize from "sequelize";
+import {ModelAttributes, DataTypes} from "sequelize";
 
-export const ClientModel: Sequelize.ModelAttributes = {
+export const ClientModel: ModelAttributes = {
     id: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
         unique: true
     },
     userId: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     name: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     isActive: {
-        type: Sequelize.BOOLEAN,
+        type: DataTypes.BOOLEAN,
         allowNull: false,
     },
     defaultPayment: {
-        type: Sequelize.NUMBER,
+        type: DataTypes.FLOAT,
         allowNull: false,
     }
 }

@@ -1,38 +1,38 @@
-import * as Sequelize from "sequelize";
+import {ModelAttributes, DataTypes} from "sequelize";
 
-export const SessionModel: Sequelize.ModelAttributes = {
+export const SessionModel: ModelAttributes = {
     id:{
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
         unique: true
     },
     userId: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     clientId: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     payment: {
-        type: Sequelize.NUMBER,
+        type: DataTypes.NUMBER,
         allowNull: false,
     },
     date: {
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
         allowNull: false,
     },
     datePayed: {
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
         allowNull: true,
     },
     issuedReceipt: {
-        type: Sequelize.BOOLEAN,
+        type: DataTypes.BOOLEAN,
         allowNull: false,
     },
     notes: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: true,
     }
 }
