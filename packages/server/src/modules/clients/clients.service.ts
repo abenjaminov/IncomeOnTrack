@@ -12,7 +12,7 @@ export class ClientsService implements IClientsService {
     ) {
     }
 
-    async addClient(args: IAddClientArgs): Promise<void> {
+    async addClient(args: IAddClientArgs): Promise<IClientBase | undefined> {
         return this.clientRepo.addClient(args);
     }
 

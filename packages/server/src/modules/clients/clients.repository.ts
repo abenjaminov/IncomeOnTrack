@@ -20,20 +20,30 @@ export class ClientsRepository implements IClientsRepository {
         });
 
         this.ClientTable.sync().then(() => {
-            console.log("User Table Created")
+            console.log("Clients Table Synced")
         })
     }
 
-    async addClient(args: IAddClientArgs): Promise<void> {
+    async addClient(args: IAddClientArgs): Promise<IClientBase | undefined> {
         const newClient: IClientBase = {
             id: nanoid(),
             name: args.name,
             isActive: args.isActive,
             defaultPayment: args.defaultPayment,
-            userId: this.requestContext.userId,
+            userId: args.userId ?? this.requestContext.userId,
         }
 
-        await this.ClientTable.create(newClient);
+        let result;
+
+        try {
+            result = await this.ClientTable.create(newClient);
+        }
+        catch(error: any) {
+            console.log(error)
+        }
+
+
+        return result?.toJSON();
     }
 
 }

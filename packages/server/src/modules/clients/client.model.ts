@@ -22,5 +22,16 @@ export const ClientModel: ModelAttributes = {
     defaultPayment: {
         type: DataTypes.FLOAT,
         allowNull: false,
+    },
+    deletedAt: {
+        type: DataTypes.DATE,
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
     }
 }

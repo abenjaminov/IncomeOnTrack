@@ -4,7 +4,9 @@ import {ZClientBase} from "../entities";
 export const ZAddClientArgs = ZClientBase.pick({
     name: true,
     isActive: true,
-    defaultPayment: true,
+    defaultPayment: true
+}).extend({
+    userId: z.string().optional()
 })
 
 export const ZAddClientRequest = z.object({

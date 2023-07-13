@@ -12,8 +12,6 @@ export class UserRepository implements IUserRepository{
             id: nanoid(),
             userName: args.userName,
             email: args.email,
-            creationDate: new Date(),
-            modifiedDate: new Date(),
             isVerified: false,
             isActive: false,
             saltedPassword: args.saltedPassword

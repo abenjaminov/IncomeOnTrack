@@ -7,9 +7,9 @@ export type IGetClientsFromRepoArgs = IGetClientsArgs & {
 
 export interface IClientsService {
     getClients(args: IGetClientsArgs): Promise<IGetClientBaseResult>;
-    addClient(args: IAddClientArgs): Promise<void>
+    addClient(args: IAddClientArgs): Promise<IClientBase | undefined>
 }
 
 export interface IClientsRepository {
-    addClient(args: IAddClientArgs): Promise<void>
+    addClient(args: IAddClientArgs): Promise<IClientBase | undefined>
 }

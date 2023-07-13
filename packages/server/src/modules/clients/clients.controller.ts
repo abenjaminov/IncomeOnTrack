@@ -18,7 +18,7 @@ export class ClientsController extends BaseHttpController {
     ) {
         const result = await this.clientService.getClients(args);
 
-        return result;
+        return this.json(result);
     }
 
     @httpPost('/')
