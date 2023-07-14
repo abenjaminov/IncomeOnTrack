@@ -1,0 +1,19 @@
+{
+ "compilerOptions": {
+  "declaration": true,
+  "declarationMap": true,
+  "emitDeclarationOnly": true,
+  "noEmitOnError": true,
+  "skipLibCheck": true,
+  "experimentalDecorators": true,
+  "allowSyntheticDefaultImports": true,
+  "esModuleInterop": true,
+  "isolatedModules": true,
+  "strict": true,
+  "target": "ESNext",
+  "moduleResolution": "node",
+  "strictPropertyInitialization": false,
+  "resolveJsonModule": true
+ },
+ "exclude": ["src/test", "node_modules", "dist"]
+}

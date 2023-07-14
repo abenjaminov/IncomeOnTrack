@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "Common utils for ProDrops workspaces",
   "author": "ProDrops ltd",
-  "types": "dist/index.d.ts",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "types": "src/index.d.ts",
+  "main": "src/index.ts",
   "scripts": {
     "build": "tsup",
     "build:watch": "tsup --watch",

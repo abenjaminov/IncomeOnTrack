@@ -1,19 +1,8 @@
 {
+  "extends": "../../tsconfig.options.json",
   "compilerOptions": {
-    "experimentalDecorators": true,
-    "target": "esnext",
-    "module": "ESNext",
-    "declaration": true,
-    "outDir": "./dist",
-    "removeComments": true,
-    "strict": true,
-    "strictPropertyInitialization": false,
-    "moduleResolution": "node",
-    "baseUrl": "./",
-    "rootDir": "./",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "declarationMap": true
-  }
+    "outDir": "./__declarations__"
+  },
+  "include": ["src/**/*", "tests/**/*", "*.js", "*.ts", "*.endpoint.ts", "src/models/index.ts"],
+  "references": []
 }
