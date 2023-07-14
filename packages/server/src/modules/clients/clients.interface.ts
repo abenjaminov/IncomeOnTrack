@@ -1,4 +1,4 @@
-import {IAddClientArgs, IClientBase, IGetClientBaseResult, IGetClientsArgs} from "@income-on-track/shared";
+import {IAddClientArgs, IClient, IGetClientsResult, IGetClientsArgs} from "@income-on-track/shared";
 import {IRepositoryBase} from "../../common";
 
 export type IGetClientsFromRepoArgs = IGetClientsArgs & {
@@ -6,10 +6,11 @@ export type IGetClientsFromRepoArgs = IGetClientsArgs & {
 }
 
 export interface IClientsService {
-    getClients(args: IGetClientsArgs): Promise<IGetClientBaseResult>;
-    addClient(args: IAddClientArgs): Promise<IClientBase | undefined>
+    getClients(args: IGetClientsArgs): Promise<IGetClientsResult>;
+    addClient(args: IAddClientArgs): Promise<IClient | undefined>
 }
 
 export interface IClientsRepository {
-    addClient(args: IAddClientArgs): Promise<IClientBase | undefined>
+    addClient(args: IAddClientArgs): Promise<IClient | undefined>
+    getClients(args: IGetClientsArgs): Promise<IGetClientsResult>
 }

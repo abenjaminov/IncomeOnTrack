@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import {ZClientBase} from "../entities";
+import {ZClient} from "../entities";
 
-export const ZAddClientArgs = ZClientBase.pick({
+export const ZAddClientArgs = ZClient.pick({
     name: true,
     isActive: true,
     defaultPayment: true

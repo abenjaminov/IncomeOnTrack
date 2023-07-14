@@ -16,6 +16,10 @@ import {
     IClientsRepository,
     IClientsService
 } from "../modules/clients";
+import {SessionsController} from "../modules/sessions/sessions.controller";
+import {ISessionService, ISessionsRepository} from "../modules/sessions/sessions.interface";
+import {SessionService} from "../modules/sessions/session.service";
+import {SessionsRepository} from "../modules/sessions/sessions.repository";
 
 cleanUpMetadata();
 
@@ -48,5 +52,13 @@ container
     .whenTargetNamed(ClientsController.name);
 container.bind<IClientsService>(InjectionTokens.clientsService).to(ClientsService).inRequestScope();
 container.bind<IClientsRepository>(InjectionTokens.clientsRepository).to(ClientsRepository).inRequestScope();
+
+// Sessions
+container
+  .bind<inversifyExpressInterfaces.Controller>(InversifyExpressInjectionTokens.Controller)
+  .to(SessionsController)
+  .whenTargetNamed(SessionsController.name);
+container.bind<ISessionService>(InjectionTokens.sessionService).to(SessionService).inRequestScope();
+container.bind<ISessionsRepository>(InjectionTokens.sessionRepository).to(SessionsRepository).inRequestScope();
 
 export default container;

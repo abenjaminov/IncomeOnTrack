@@ -1,20 +1,28 @@
 import {ISessionService, ISessionsRepository} from "./sessions.interface";
-import {IGetSessionArgs, IGetSessionsResult, ISessionBase} from "@income-on-track/shared";
-import {inject} from "inversify";
+import {ICreateSessionArgs, IGetSessionArgs, IGetSessionsResult, ISession} from "@income-on-track/shared";
+import {inject, injectable} from "inversify";
 import {InjectionTokens} from "../../config";
+import {IRequestContext} from "../../common";
 
+@injectable()
 export class SessionService implements ISessionService {
     constructor(
-        @inject(InjectionTokens.sessionRepository) private sessionRepository: ISessionsRepository
+        @inject(InjectionTokens.sessionRepository) private sessionRepository: ISessionsRepository,
+        @inject(InjectionTokens.requestContext) private requestContext: IRequestContext
     ) {
     }
     async getSessions(args: IGetSessionArgs): Promise<IGetSessionsResult> {
-        //const result = await this.sessionRepository.getObjects(args);
+        const result = await this.sessionRepository.getSessions(args);
 
-        return {
-            count: 0,
-            objects: []
-        }
+        return result;
     }
 
+    async addSession(args: ICreateSessionArgs): Promise<ISession | undefined> {
+        const result = await this.sessionRepository.addSession({
+            ...args,
+            userId: args.userId || this.requestContext.userId
+        });
+
+        return result;
+    }
 }

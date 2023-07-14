@@ -1,6 +1,9 @@
-import {ModelAttributes, DataTypes} from "sequelize";
+import {ModelAttributes, DataTypes, Model} from "sequelize";
+import {ISession} from "@income-on-track/shared";
 
-export const SessionModel: ModelAttributes = {
+export class SessionModel extends Model<ISession> {}
+
+export const SessionModelAttributes: ModelAttributes = {
     id:{
         type: DataTypes.STRING,
         primaryKey: true,
@@ -16,7 +19,7 @@ export const SessionModel: ModelAttributes = {
         allowNull: false,
     },
     payment: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.FLOAT,
         allowNull: false,
     },
     date: {

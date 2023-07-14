@@ -1,7 +1,7 @@
 import {BaseHttpController, controller, httpPost, requestBody} from "inversify-express-utils";
 import {inject} from "inversify";
 import {InjectionTokens} from "../../config";
-import {IGetSessionArgs} from "@income-on-track/shared";
+import {ICreateSessionArgs, IGetSessionArgs} from "@income-on-track/shared";
 import {ISessionService} from "./sessions.interface";
 
 @controller('/sessions')
@@ -17,6 +17,15 @@ export class SessionsController extends BaseHttpController {
         @requestBody() args: IGetSessionArgs
     ){
         const result = await this.sessionsService.getSessions(args);
+
+        return this.json(result);
+    }
+
+    @httpPost('/create')
+    private async addSession(
+        @requestBody() args: ICreateSessionArgs
+    ){
+        const result = await this.sessionsService.addSession(args);
 
         return this.json(result);
     }

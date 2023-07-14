@@ -1,6 +1,8 @@
-import {ModelAttributes, DataTypes} from "sequelize";
+import {ModelAttributes, DataTypes, Model} from "sequelize";
 
-export const ClientModel: ModelAttributes = {
+export class ClientModel extends Model {}
+
+export const ClientModelAttributes: ModelAttributes = {
     id: {
         type: DataTypes.STRING,
         primaryKey: true,

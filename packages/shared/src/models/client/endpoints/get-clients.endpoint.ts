@@ -1,17 +1,18 @@
 import { z } from 'zod';
 import {IGetObjectsResult, ZGetObjectsBase} from "../../object";
-import {IClientBase} from "../entities";
+import {IClient} from "../entities";
 
 const ZGetClientsArgs = ZGetObjectsBase.extend({
-    isActive: z.boolean().optional()
+    isActive: z.boolean().optional(),
+    userId: z.string()
 });
 
 export const ZGetClientsRequest = z.object({
     body: ZGetClientsArgs
 });
 
-export type IGetClientBaseResult = IGetObjectsResult & {
-    objects: Array<IClientBase>
+export type IGetClientsResult = Omit<IGetObjectsResult, 'objects'> & {
+    clients: Array<IClient>
 }
 
 export type IGetClientsArgs = z.infer<typeof ZGetClientsArgs>

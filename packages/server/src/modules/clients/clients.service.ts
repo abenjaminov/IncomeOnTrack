@@ -1,5 +1,5 @@
 import {IClientsRepository, IClientsService} from "./clients.interface";
-import {IAddClientArgs, IClientBase, IGetClientBaseResult, IGetClientsArgs} from "@income-on-track/shared";
+import {IAddClientArgs, IClient, IGetClientsResult, IGetClientsArgs} from "@income-on-track/shared";
 import {inject, injectable} from "inversify";
 import {InjectionTokens} from "../../config";
 import {IRequestContext} from "../../common";
@@ -12,20 +12,17 @@ export class ClientsService implements IClientsService {
     ) {
     }
 
-    async addClient(args: IAddClientArgs): Promise<IClientBase | undefined> {
+    async addClient(args: IAddClientArgs): Promise<IClient | undefined> {
         return this.clientRepo.addClient(args);
     }
 
-    async getClients(args: IGetClientsArgs): Promise<IGetClientBaseResult> {
-        // const result = await this.clientRepo.getObjects({
-        //     ...args,
-        //     userId: this.requestContext.userId
-        // });
+    async getClients(args: IGetClientsArgs): Promise<IGetClientsResult> {
+        const result = await this.clientRepo.getClients({
+            ...args,
+            userId: this.requestContext.userId || args.userId
+        });
 
-        return {
-            count: 0,
-            objects: []
-        }
+        return result;
     }
 
 }

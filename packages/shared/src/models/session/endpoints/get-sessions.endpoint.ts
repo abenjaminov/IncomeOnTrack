@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import {IGetObjectsResult, ZGetObjectsBase} from "../../object";
-import {ISessionBase} from "../entities";
+import {ISession} from "../entities";
 
 const ZGetSessionsArgs = ZGetObjectsBase.extend({
     fromDate: z.string().transform(x => new Date(x)).optional(),
@@ -16,6 +16,6 @@ export const ZGetSessionsRequest = z.object({
 
 export type IGetSessionArgs = z.infer<typeof ZGetSessionsArgs>
 
-export type IGetSessionsResult = IGetObjectsResult & {
-    objects: Array<ISessionBase>
+export type IGetSessionsResult = Omit<IGetObjectsResult, 'objects'> & {
+    sessions: Array<ISession>
 }
