@@ -12,7 +12,8 @@ export interface IClientsService {
 
 export type IAddClientArgsInternal = IAddClientArgs & { userId: string }
 
+export type IGetClientsInternal = IGetClientsArgs & { userId: string }
 export interface IClientsRepository {
     addClient(args: IAddClientArgsInternal): Promise<IClient | undefined>
-    getClients(args: IGetClientsArgs): Promise<IGetClientsResult>
+    getClients(args: IGetClientsInternal): Promise<IGetClientsResult>
 }

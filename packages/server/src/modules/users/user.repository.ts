@@ -4,9 +4,8 @@ import {nanoid} from "nanoid";
 import {InjectionTokens} from "../../config";
 import {Consts, IDBService, TableNames} from "../../common";
 import {UserModel, UserModelAttributes} from "./users.model";
-import {IGetUsersArgs, ISessionView} from "@income-on-track/shared";
+import {IGetUsersArgs} from "@income-on-track/shared";
 import {BindOrReplacements} from "sequelize/types/dialects/abstract/query-interface";
-import {GetClientsQuery} from "../clients/client.queries";
 import {GetUsersQuery} from "./user.queries";
 import {QueryTypes} from "sequelize";
 
@@ -29,7 +28,7 @@ export class UserRepository implements IUserRepository{
     async createUser(args: ICreateUserArgs): Promise<IUser | undefined> {
         const newUser: IUser = {
             id: nanoid(),
-            userName: args.userName,
+            username: args.username,
             email: args.email,
             isVerified: false,
             isActive: false,
@@ -63,7 +62,7 @@ export class UserRepository implements IUserRepository{
         }
 
         if(args.filterText) {
-            whereQueries.push(`usr.userName ILIKE :filterText`);
+            whereQueries.push(`usr.username ILIKE :filterText`);
             replacements.filterText = `%${args.filterText}%`
         }
 

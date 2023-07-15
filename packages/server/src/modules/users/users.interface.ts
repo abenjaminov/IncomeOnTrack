@@ -2,7 +2,7 @@ import {IGetObjectsResult, IGetUsersArgs, IUserBase} from "@income-on-track/shar
 import {IRepositoryBase} from "../../common";
 
 export interface ICreateUserArgs {
-    userName: string;
+    username: string;
     email: string;
     saltedPassword: string;
 }

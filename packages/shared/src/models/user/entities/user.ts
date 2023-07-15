@@ -2,7 +2,7 @@ import { z } from 'zod';
 import {ZObjectBase} from "../../object";
 
 export const ZUserBase = ZObjectBase.extend({
-    userName: z.string(),
+    username: z.string(),
     email: z.string(),
 })
 

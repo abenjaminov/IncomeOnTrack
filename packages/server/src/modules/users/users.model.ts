@@ -10,10 +10,9 @@ export const UserModelAttributes: ModelAttributes = {
         allowNull: false,
         unique: true
     },
-    userName: {
+    username: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
+        allowNull: false
     },
     email: {
         type: DataTypes.STRING,

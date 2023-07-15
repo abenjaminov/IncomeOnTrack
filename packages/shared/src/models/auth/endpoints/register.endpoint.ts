@@ -3,7 +3,7 @@ import {ZUserBase} from "../../user";
 
 export const ZRegisterArgs = ZUserBase.pick({
     email: true,
-    userName: true
+    username: true
 }).extend({
     password: z.string()
 })

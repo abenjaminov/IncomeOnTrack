@@ -4,7 +4,7 @@ import {IClientView} from "../entities";
 
 const ZGetClientsArgs = ZGetObjectsBase.extend({
     isActive: z.boolean().optional(),
-    userId: z.string()
+    userId: z.string().optional()
 });
 
 export const ZGetClientsRequest = z.object({

@@ -1,11 +1,11 @@
 import {Consts, IDBService, IRequestContext, TableNames} from "../../common";
-import {IAddClientArgsInternal, IClientsRepository} from "./clients.interface";
+import {IAddClientArgsInternal, IClientsRepository, IGetClientsInternal} from "./clients.interface";
 import {inject, injectable} from "inversify";
 import {nanoid} from "nanoid";
 import {InjectionTokens} from "../../config";
 import {ClientModel, ClientModelAttributes} from "./client.model";
 import {QueryTypes} from "sequelize";
-import {IAddClientArgs, IClient, IGetClientsResult, IGetClientsArgs, IClientView} from "@income-on-track/shared";
+import {IClient, IGetClientsResult, IClientView} from "@income-on-track/shared";
 import {GetClientsQuery} from "./client.queries";
 import {BindOrReplacements} from "sequelize/types/dialects/abstract/query-interface";
 
@@ -49,7 +49,7 @@ export class ClientsRepository implements IClientsRepository {
         return result?.toJSON();
     }
 
-    async getClients(args: IGetClientsArgs): Promise<IGetClientsResult> {
+    async getClients(args: IGetClientsInternal): Promise<IGetClientsResult> {
         const replacements: BindOrReplacements = {}
         const whereQueries: string[] = [];
 

@@ -42,8 +42,8 @@ container
     .bind<inversifyExpressInterfaces.Controller>(InversifyExpressInjectionTokens.Controller)
     .to(UsersController)
     .whenTargetNamed(UsersController.name);
-container.bind<IUsersService>(InjectionTokens.usersService).to(UsersService);
-container.bind<IUserRepository>(InjectionTokens.userRepository).to(UserRepository);
+container.bind<IUsersService>(InjectionTokens.usersService).to(UsersService).inRequestScope();
+container.bind<IUserRepository>(InjectionTokens.userRepository).to(UserRepository).inRequestScope();
 
 // Clients
 container

@@ -52,7 +52,7 @@ export class AuthService implements IAuthService {
             reason: LoginFailReason.userNotActive
         }
 
-        const passwordValidated = compare(args.password, user.saltedPassword);
+        const passwordValidated = await compare(args.password, user.saltedPassword);
 
         if(!passwordValidated) return {
             success: false,
@@ -65,7 +65,7 @@ export class AuthService implements IAuthService {
 
         const authToken = sign(tokenPayload, process.env.TOKEN_SECRET as string, {
             algorithm: 'HS256',
-            subject: user.userName,
+            subject: user.username,
             expiresIn: '2w',
             issuer: process.env.TOKEN_ISSUER as string,
             audience: process.env.TOKEN_AUDIENCE as string,

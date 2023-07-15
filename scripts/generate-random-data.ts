@@ -9,7 +9,7 @@ import addMinutes from 'date-fns/addMinutes';
   const dbService = new DBService();
 
   const userId = 'HQLDGACFis';
-
+  
   await dbService.getDatabase().query(`DELETE FROM public."Client"`)
 
   const clientIds = []
