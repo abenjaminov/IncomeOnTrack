@@ -1,5 +1,5 @@
 import {IGetUsersArgs} from "@income-on-track/shared";
-import {ICreateUserArgs, IGetUserResult, IUser, IUserRepository, IUsersService} from "./users.interface";
+import {ICreateUserArgs, IGetUsersResult, IUser, IUserRepository, IUsersService} from "./users.interface";
 import {inject, injectable} from "inversify";
 import {InjectionTokens} from "../../config";
 
@@ -10,8 +10,8 @@ export class UsersService implements IUsersService{
     ) {
     }
 
-    async getUsers(args: IGetUsersArgs): Promise<IGetUserResult> {
-        //const result = await this.userRepo.getObjects(args);
+    async getUsers(args: IGetUsersArgs): Promise<IGetUsersResult> {
+        const result = await this.userRepo.getUser(args);
 
         return {
             count: 0,
@@ -27,7 +27,7 @@ export class UsersService implements IUsersService{
         return users.objects[0];
     }
 
-    createUser(args: ICreateUserArgs): Promise<void> {
+    async createUser(args: ICreateUserArgs): Promise<IUser | undefined> {
         return this.userRepo.createUser(args);
     }
 }

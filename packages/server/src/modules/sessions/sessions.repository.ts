@@ -3,11 +3,11 @@ import {inject, injectable} from "inversify";
 import {Consts, IDBService, TableNames} from "../../common";
 import {InjectionTokens} from "../../config";
 import {SessionModel, SessionModelAttributes} from "./sessions.model";
-import {IClientView, IGetSessionArgs, IGetSessionsResult, ISession, ISessionView} from "@income-on-track/shared";
+import {IGetSessionsResult, ISession, ISessionView} from "@income-on-track/shared";
 import {nanoid} from "nanoid";
 import {BindOrReplacements} from "sequelize/types/dialects/abstract/query-interface";
-import {GetClientsQuery} from "../clients/client.queries";
 import {QueryTypes} from "sequelize";
+import {GetSessionsQuery} from "./session.queries";
 
 @injectable()
 export class SessionsRepository implements ISessionsRepository {
@@ -86,7 +86,7 @@ export class SessionsRepository implements ISessionsRepository {
         const pageSize = args.pageSize ?? 10;
         const page = args.page ?? 0 ;
 
-        const query = GetClientsQuery.replace(Consts.repositories.whereClausePlaceholder, whereQueries.length ? `WHERE ${whereQueries.join(' AND ')}` : '');
+        const query = GetSessionsQuery.replace(Consts.repositories.whereClausePlaceholder, whereQueries.length ? `WHERE ${whereQueries.join(' AND ')}` : '');
 
         const sessionsCountResult: Array<{count: number}> = await this.dbService.getDatabase().query(`SELECT COUNT(*) FROM (${query}) as sessions_count`, {
             type: QueryTypes.SELECT,

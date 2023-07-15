@@ -8,13 +8,14 @@ export interface ICreateUserArgs {
 }
 
 export interface IUsersService {
-    createUser(args: ICreateUserArgs): Promise<void>;
+    createUser(args: ICreateUserArgs): Promise<IUser | undefined>;
     getUsers(args: IGetUsersArgs): Promise<any>;
     getUser(args: IGetUsersArgs): Promise<IUser | undefined>;
 }
 
 export interface IUserRepository {
-    createUser(args: ICreateUserArgs): Promise<void>
+    createUser(args: ICreateUserArgs): Promise<IUser | undefined>
+    getUsers(args: IGetUsersArgs): Promise<IGetUsersResult>
 }
 
 export type IUser = IUserBase & {
@@ -23,6 +24,6 @@ export type IUser = IUserBase & {
     isActive: boolean;
 }
 
-export type IGetUserResult = IGetObjectsResult & {
-    objects: Array<IUser>
+export type IGetUsersResult = Omit<IGetObjectsResult, 'objects'> & {
+    users: Array<IUser>
 }
