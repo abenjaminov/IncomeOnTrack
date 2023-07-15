@@ -1,12 +1,11 @@
-import {IDBService, IRequestContext, TableNames} from "../../common";
-import {IClientsRepository } from "./clients.interface";
+import {Consts, IDBService, IRequestContext, TableNames} from "../../common";
+import {IAddClientArgsInternal, IClientsRepository} from "./clients.interface";
 import {inject, injectable} from "inversify";
 import {nanoid} from "nanoid";
 import {InjectionTokens} from "../../config";
 import {ClientModel, ClientModelAttributes} from "./client.model";
-import {Op, QueryTypes} from "sequelize";
-import {IAddClientArgs, IClient, IGetClientsResult, IGetClientsArgs} from "@income-on-track/shared";
-import {WhereOptions} from "sequelize/types/model";
+import {QueryTypes} from "sequelize";
+import {IAddClientArgs, IClient, IGetClientsResult, IGetClientsArgs, IClientView} from "@income-on-track/shared";
 import {GetClientsQuery} from "./client.queries";
 import {BindOrReplacements} from "sequelize/types/dialects/abstract/query-interface";
 
@@ -15,7 +14,6 @@ export class ClientsRepository implements IClientsRepository {
     ClientTable;
 
     constructor(
-        @inject(InjectionTokens.requestContext) private requestContext: IRequestContext,
         @inject(InjectionTokens.dbService) private dbService: IDBService
     ) {
         this.ClientTable = ClientModel.init(ClientModelAttributes, {
@@ -29,13 +27,13 @@ export class ClientsRepository implements IClientsRepository {
         })
     }
 
-    async addClient(args: IAddClientArgs): Promise<IClient | undefined> {
+    async addClient(args: IAddClientArgsInternal): Promise<IClient | undefined> {
         const newClient: IClient = {
             id: nanoid(),
             name: args.name,
             isActive: args.isActive,
             defaultPayment: args.defaultPayment,
-            userId: args.userId ?? this.requestContext.userId,
+            userId: args.userId,
         }
 
         let result;
@@ -76,32 +74,25 @@ export class ClientsRepository implements IClientsRepository {
         const pageSize = args.pageSize ?? 10;
         const page = args.page ?? 0 ;
 
-        const query = GetClientsQuery.replace('{{WHERE}}', whereQueries.length ? `WHERE ${whereQueries.join(' AND ')}` : '');
+        const query = GetClientsQuery.replace(Consts.repositories.whereClausePlaceholder, whereQueries.length ? `WHERE ${whereQueries.join(' AND ')}` : '');
 
-        try {
-            const countClientsResult: Array<{count: number}> = await this.dbService.getDatabase().query(`SELECT COUNT(*) FROM (${query}) as clients`, {
-                type: QueryTypes.SELECT,
-                replacements
-            })
+        const countClientsResult: Array<{count: number}> = await this.dbService.getDatabase().query(`SELECT COUNT(*) FROM (${query}) as clients`, {
+            type: QueryTypes.SELECT,
+            replacements
+        })
 
-            const queryWithPaging = `${query} LIMIT :limit OFFSET :offset`
-            replacements.limit = pageSize;
-            replacements.offset = page * pageSize;
+        const queryWithPaging = `${query} LIMIT :limit OFFSET :offset`
+        replacements.limit = pageSize;
+        replacements.offset = page * pageSize;
 
-            const clientsResult = await this.dbService.getDatabase().query<IClient>(queryWithPaging, {
-                type: QueryTypes.SELECT,
-                replacements
-            })
+        const clientsResult = await this.dbService.getDatabase().query<IClientView>(queryWithPaging, {
+            type: QueryTypes.SELECT,
+            replacements
+        })
 
-            return {
-                count: countClientsResult[0].count,
-                clients: clientsResult
-            }
+        return {
+            count: countClientsResult[0].count,
+            clients: clientsResult
         }
-        catch(error: any) {
-            console.log(error)
-            throw error;
-        }
-
     }
 }

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import {IGetObjectsResult, ZGetObjectsBase} from "../../object";
-import {IClient} from "../entities";
+import {IClientView} from "../entities";
 
 const ZGetClientsArgs = ZGetObjectsBase.extend({
     isActive: z.boolean().optional(),
@@ -12,7 +12,7 @@ export const ZGetClientsRequest = z.object({
 });
 
 export type IGetClientsResult = Omit<IGetObjectsResult, 'objects'> & {
-    clients: Array<IClient>
+    clients: Array<IClientView>
 }
 
 export type IGetClientsArgs = z.infer<typeof ZGetClientsArgs>

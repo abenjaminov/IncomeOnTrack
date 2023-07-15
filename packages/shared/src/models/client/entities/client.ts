@@ -8,12 +8,7 @@ export const ZClient = ZObjectBase.extend({
     isActive: z.boolean()
 })
 
-export const ZClientView = ZClient.pick({
-    isActive: true,
-    name: true,
-    defaultPayment: true,
-    id: true
-}).extend({
+export const ZClientView = ZClient.extend({
     debt: z.number()
 })
 

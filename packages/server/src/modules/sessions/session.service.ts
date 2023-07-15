@@ -12,7 +12,10 @@ export class SessionService implements ISessionService {
     ) {
     }
     async getSessions(args: IGetSessionArgs): Promise<IGetSessionsResult> {
-        const result = await this.sessionRepository.getSessions(args);
+        const result = await this.sessionRepository.getSessions({
+            ...args,
+            userId: args.userId || this.requestContext.userId
+        });
 
         return result;
     }

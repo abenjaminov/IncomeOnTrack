@@ -10,7 +10,9 @@ export interface IClientsService {
     addClient(args: IAddClientArgs): Promise<IClient | undefined>
 }
 
+export type IAddClientArgsInternal = IAddClientArgs & { userId: string }
+
 export interface IClientsRepository {
-    addClient(args: IAddClientArgs): Promise<IClient | undefined>
+    addClient(args: IAddClientArgsInternal): Promise<IClient | undefined>
     getClients(args: IGetClientsArgs): Promise<IGetClientsResult>
 }

@@ -13,13 +13,16 @@ export class ClientsService implements IClientsService {
     }
 
     async addClient(args: IAddClientArgs): Promise<IClient | undefined> {
-        return this.clientRepo.addClient(args);
+        return this.clientRepo.addClient({
+            ...args,
+            userId: args.userId || this.requestContext.userId
+        });
     }
 
     async getClients(args: IGetClientsArgs): Promise<IGetClientsResult> {
         const result = await this.clientRepo.getClients({
             ...args,
-            userId: this.requestContext.userId || args.userId
+            userId: args.userId || this.requestContext.userId
         });
 
         return result;
