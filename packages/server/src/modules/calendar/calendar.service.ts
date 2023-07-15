@@ -11,7 +11,7 @@ import {
   eachDayOfInterval,
   getDate,
   isSameDay,
-  getDay
+  getDay, getMonth
 } from "date-fns";
 import {IRequestContext} from "../../common";
 
@@ -24,12 +24,12 @@ export class CalendarService implements ICalendarService {
   }
 
   async getCalendar(monthIndex: number, year: number): Promise<ICalendarMonthView> {
-    const date = new Date(year, monthIndex, 1);
+    const date = new Date(Date.UTC(year, monthIndex));
     const monthStart = startOfMonth(date);
     const monthEnd = endOfMonth(date);
 
-    const calendarStart = startOfWeek(monthStart, {weekStartsOn: 1});
-    const calendarEnd = endOfWeek(monthEnd, {weekStartsOn: 1});
+    const calendarStart = startOfWeek(monthStart, {weekStartsOn: 0 })
+    const calendarEnd = endOfWeek(monthEnd, {weekStartsOn: 0});
 
     const sessions = await this.sessionsService.getSessions({
       ignorePaging: true,

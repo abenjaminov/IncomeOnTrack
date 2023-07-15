@@ -20,6 +20,9 @@ import {SessionsController} from "../modules/sessions/sessions.controller";
 import {ISessionService, ISessionsRepository} from "../modules/sessions/sessions.interface";
 import {SessionService} from "../modules/sessions/session.service";
 import {SessionsRepository} from "../modules/sessions/sessions.repository";
+import {CalendarService} from "../modules/calendar/calendar.service";
+import {ICalendarService} from "../modules/calendar/calendar.interface";
+import {CalendarController} from "../modules/calendar/calendar.controller";
 
 cleanUpMetadata();
 
@@ -60,5 +63,12 @@ container
   .whenTargetNamed(SessionsController.name);
 container.bind<ISessionService>(InjectionTokens.sessionService).to(SessionService).inRequestScope();
 container.bind<ISessionsRepository>(InjectionTokens.sessionRepository).to(SessionsRepository).inRequestScope();
+
+// Calendar
+container
+  .bind<inversifyExpressInterfaces.Controller>(InversifyExpressInjectionTokens.Controller)
+  .to(CalendarController)
+  .whenTargetNamed(CalendarController.name);
+container.bind<ICalendarService>(InjectionTokens.calendarService).to(CalendarService).inRequestScope()
 
 export default container;
