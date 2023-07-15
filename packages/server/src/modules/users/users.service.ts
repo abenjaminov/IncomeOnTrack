@@ -11,12 +11,7 @@ export class UsersService implements IUsersService{
     }
 
     async getUsers(args: IGetUsersArgs): Promise<IGetUsersResult> {
-        const result = await this.userRepo.getUser(args);
-
-        return {
-            count: 0,
-            objects: []
-        };
+        return this.userRepo.getUsers(args);
     }
 
     async getUser(args: IGetUsersArgs): Promise<IUser | undefined> {
@@ -24,7 +19,7 @@ export class UsersService implements IUsersService{
 
         if(!users.count || users.count > 1) return;
 
-        return users.objects[0];
+        return users.users[0];
     }
 
     async createUser(args: ICreateUserArgs): Promise<IUser | undefined> {
