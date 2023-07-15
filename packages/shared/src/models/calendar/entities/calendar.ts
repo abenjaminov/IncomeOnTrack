@@ -3,6 +3,7 @@ import {ZSessionView} from "../../session";
 
 
 export const ZCalendarDayView = z.object({
+    dayOfWeek: z.number(),
     dayOfMonth: z.number(),
     month: z.number(),
     sessions: z.array(ZSessionView)

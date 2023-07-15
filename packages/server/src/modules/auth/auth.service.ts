@@ -5,6 +5,7 @@ import {InjectionTokens} from "../../config";
 import {IUsersService} from "../users";
 import {compare, hash} from 'bcrypt';
 import {sign} from 'jsonwebtoken';
+import {ITokenPayload} from "../../common/middleware";
 
 @injectable()
 export class AuthService implements IAuthService {
@@ -58,8 +59,8 @@ export class AuthService implements IAuthService {
             reason: LoginFailReason.generalFail
         }
 
-        const tokenPayload = {
-            id: user.id
+        const tokenPayload: ITokenPayload = {
+            userId: user.id
         }
 
         const authToken = sign(tokenPayload, process.env.TOKEN_SECRET as string, {

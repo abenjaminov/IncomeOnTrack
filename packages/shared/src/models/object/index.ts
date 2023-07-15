@@ -8,7 +8,8 @@ export const ZGetObjectsBase = z.object({
     ids: z.string().array().optional(),
     filterText: z.string().optional(),
     page: z.number().optional(),
-    pageSize: z.number().optional()
+    pageSize: z.number().optional(),
+    ignorePaging: z.boolean().optional()
 })
 
 export const ZGetObjectsResult = z.object({

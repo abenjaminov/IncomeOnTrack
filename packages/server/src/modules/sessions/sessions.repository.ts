@@ -93,9 +93,13 @@ export class SessionsRepository implements ISessionsRepository {
             replacements
         })
 
-        const queryWithPaging = `${query} LIMIT :limit OFFSET :offset`
-        replacements.limit = pageSize;
-        replacements.offset = page * pageSize;
+        const queryWithPaging = args.ignorePaging ? query: `${query} LIMIT :limit OFFSET :offset`;
+
+        if(!args.ignorePaging) {
+            replacements.limit = pageSize;
+            replacements.offset = page * pageSize;
+        }
+
 
         const sessionsResult = await this.dbService.getDatabase().query<ISessionView>(queryWithPaging, {
             type: QueryTypes.SELECT,

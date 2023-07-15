@@ -3,6 +3,7 @@ import {IAddClientArgs, IGetClientsArgs} from "@income-on-track/shared";
 import {inject} from "inversify";
 import {InjectionTokens} from "../../config";
 import {IClientsService} from "./clients.interface";
+import {authenticateUserTokenMiddleware} from "../../common/middleware";
 
 @controller('/clients')
 export class ClientsController extends BaseHttpController {
@@ -12,7 +13,7 @@ export class ClientsController extends BaseHttpController {
         super();
     }
 
-    @httpPost('/get')
+    @httpPost('/get', authenticateUserTokenMiddleware)
     private async getClients(
         @requestBody() args: IGetClientsArgs
     ) {
@@ -21,7 +22,7 @@ export class ClientsController extends BaseHttpController {
         return this.json(result);
     }
 
-    @httpPost('/')
+    @httpPost('/', authenticateUserTokenMiddleware)
     private async addClient(
         @requestBody() args: IAddClientArgs
     ){

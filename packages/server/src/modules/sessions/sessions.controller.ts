@@ -3,6 +3,7 @@ import {inject} from "inversify";
 import {InjectionTokens} from "../../config";
 import {ICreateSessionArgs, IGetSessionArgs} from "@income-on-track/shared";
 import {ISessionService} from "./sessions.interface";
+import {authenticateUserTokenMiddleware} from "../../common/middleware";
 
 @controller('/sessions')
 export class SessionsController extends BaseHttpController {
@@ -12,7 +13,7 @@ export class SessionsController extends BaseHttpController {
         super();
     }
 
-    @httpPost('/get')
+    @httpPost('/get', authenticateUserTokenMiddleware)
     private async getSessions(
         @requestBody() args: IGetSessionArgs
     ){
@@ -21,7 +22,7 @@ export class SessionsController extends BaseHttpController {
         return this.json(result);
     }
 
-    @httpPost('/create')
+    @httpPost('/create', authenticateUserTokenMiddleware)
     private async addSession(
         @requestBody() args: ICreateSessionArgs
     ){
