@@ -9,6 +9,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {useClients} from "./useClients";
+import {usePopups} from "@shared/hooks/usePopups";
+import {Button} from "@mui/material";
+import {AddClientPopup} from "@shared/components";
 
 const columns = [{
     key: ClientTableColumnKey.name,
@@ -34,14 +37,23 @@ const columns = [{
 
 export const ClientsView: React.FC = () => {
     const { clients, isLoading, count } = useClients();
+    const { showPopup } = usePopups();
 
     if(isLoading) return <div>Loading...</div>
 
+    const onAddClientClicked = () => {
+        showPopup({
+            component: <AddClientPopup />,
+            popupTitle: 'Add Client',
+            props: {
+                name: 'add-client',
+            }
+        })
+    }
+
     return (
         <div className={classes.clientsView}>
-            <TableContainer component={Paper} style={{
-                height: '100%',
-            }}>
+            <TableContainer component={Paper} className={classes.tableContainer}>
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -61,6 +73,15 @@ export const ClientsView: React.FC = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
+            <aside className={classes.asideContainer}>
+                <div className={classes.asideFiltersContainer}>
+                    <div className={classes.asideTitle}>Filters</div>
+                </div>
+                <div className={classes.asideActionsContainer}>
+                    <div className={classes.asideTitle}>Actions</div>
+                    <Button onClick={onAddClientClicked}>Add Client</Button>
+                </div>
+            </aside>
         </div>
     )
 }

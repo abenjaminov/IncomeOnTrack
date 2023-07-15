@@ -9,7 +9,8 @@ const classes = {
     }),
     outletContainer: style({
         height: 'calc(100% - 4rem)',
-        width: '100%'
+        width: '100%',
+        padding: '2rem'
     })
 }
 

@@ -1,22 +1,26 @@
 import React from 'react';
 import classes from './add-client-popup.css';
 import {CForm, CFormCheck, CFormInput} from "@coreui/react";
-import {PrimaryButton} from "../buttons";
-import {SecondaryButton} from "../buttons";
+import {Button} from "@mui/material";
+import {usePopup} from "@shared/hooks";
+import {useAddClient} from "@shared/components/add-client-popup/useAddClient";
 
 export const AddClientPopup: React.FC = () => {
+  const { closePopup } = usePopup();
+  const { nameRegister, defaultPaymentRegister, isActiveRegister, onAddClient, isLoading } = useAddClient();
+
     return (
-        <div className={classes.addClientPopup}>
-            <span className={classes.title}>Add Client</span>
-            <CForm className={classes.clientDetails}>
-                <CFormInput type='text' placeholder='Name'/>
-                <CFormInput type='number' placeholder='Default payment'/>
-                <CFormCheck label='Salary payment'/>
-            </CForm>
-            <div className={classes.actionsContainer}>
-                <PrimaryButton className={classes.action}>Save</PrimaryButton>
-                <SecondaryButton className={classes.action}>Cancel</SecondaryButton>
+        <CForm className={classes.addClientPopup} onSubmit={onAddClient}>
+            <div className={classes.clientDetails}>
+                <CFormInput type='text' placeholder='Name' {...nameRegister}></CFormInput>
+                <CFormInput type='number' placeholder='Default payment' {...defaultPaymentRegister}></CFormInput>
+                <CFormCheck label='Is Active' {...isActiveRegister}></CFormCheck>
+
             </div>
-        </div>
+          <div className={classes.actionsContainer}>
+            <Button className={classes.action} variant='contained' type='submit' disabled={isLoading}>{isLoading ? 'Saving' : 'Save'}</Button>
+            <Button className={classes.action} variant='text'>Cancel</Button>
+          </div>
+        </CForm>
     )
 }

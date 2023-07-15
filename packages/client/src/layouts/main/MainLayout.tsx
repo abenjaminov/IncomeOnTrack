@@ -3,6 +3,7 @@ import {AuthorizedOnly} from "./components/AuthorizedOnly";
 import classes from './main.css';
 import {AppHeader} from "./components/header/AppHeader";
 import {Outlet} from "react-router-dom";
+import {PopupsContainer} from "@shared/components/popups-container/PopupsContainer";
 
 export const MainLayout: React.FC = () => {
     return (
@@ -10,6 +11,7 @@ export const MainLayout: React.FC = () => {
             <div className={classes.mainLayout}>
                 <AppHeader />
                 <div className={classes.outletContainer}>
+                    <PopupsContainer />
                     <Outlet />
                 </div>
             </div>

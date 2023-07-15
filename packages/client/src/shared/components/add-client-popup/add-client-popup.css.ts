@@ -1,21 +1,16 @@
 import {style} from '@vanilla-extract/css';
+import {themeVars} from "@shared/style";
 
 const classes = {
     addClientPopup: style({
         width: '25rem',
         height: '15rem',
         display: 'flex',
-        flexDirection: 'column',
-    }),
-    title: style({
-        height: '3rem',
-        display: 'flex',
-        fontSize: '2rem',
-        width: '100%'
+        flexDirection: 'column'
     }),
     clientDetails: style({
         paddingTop: '1rem',
-        height: '10rem',
+        height: '13rem',
         width: '70%',
         gap: '.5rem',
         display: 'flex',

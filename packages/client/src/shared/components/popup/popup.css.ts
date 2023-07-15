@@ -15,7 +15,7 @@ const classes = {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        backgroundColor: 'white',
+        backgroundColor: themeVars.colors.primary,
         position: 'absolute',
         padding: '0rem 1.5rem 1.5rem 1.5rem',
         display: 'flex',
@@ -26,12 +26,18 @@ const classes = {
     }),
     header: style({
         cursor: 'pointer',
-        stroke: themeVars.colors.primary,
+        stroke: themeVars.colors.text,
         height: '3rem',
         width: '100%',
         display: 'flex',
-        justifyContent: 'flex-end',
+        justifyContent: 'space-between',
         alignItems: 'center',
+        borderBottom: `1px solid ${themeVars.colors.accent2}`,
+    }),
+    headerTitle: style({
+        color: themeVars.colors.text,
+        fontSize: '1.5rem',
+        fontWeight: 'bold',
     })
 }
 
