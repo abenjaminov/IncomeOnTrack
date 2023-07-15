@@ -1,2 +1,7 @@
 # Todos
-- [ ] User token middleware
+- [X] User token middleware
+- [ ] Update session
+- [ ] Update Client
+- [ ] Rework of UI
+  - [ ] General Modal
+  - [ ] General View
