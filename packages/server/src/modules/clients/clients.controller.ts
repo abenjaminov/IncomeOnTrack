@@ -5,7 +5,7 @@ import {InjectionTokens} from "../../config";
 import {IClientsService} from "./clients.interface";
 import {authenticateUserTokenMiddleware} from "../../common/middleware";
 
-@controller('/clients')
+@controller('/api/clients')
 export class ClientsController extends BaseHttpController {
     constructor(
         @inject(InjectionTokens.clientsService) private clientService: IClientsService

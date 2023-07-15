@@ -4,7 +4,7 @@ import {inject} from "inversify";
 import {InjectionTokens} from "../../config";
 import {IAuthService} from "./auth.interface";
 
-@controller('/auth')
+@controller('/api/auth')
 export class AuthController extends BaseHttpController {
     constructor(
         @inject(InjectionTokens.authService) private authService: IAuthService

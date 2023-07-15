@@ -1,5 +1,5 @@
 import {style} from '@vanilla-extract/css';
-import {themeVars} from "../../../../shared";
+import {themeVars} from "@shared/style";
 
 const classes = {
     appHeader: style({
@@ -10,7 +10,7 @@ const classes = {
         justifyContent: 'flex-start',
         padding: '0 1rem',
         backgroundColor: themeVars.colors.primary,
-        borderBottom: `0.0625rem solid ${themeVars.colors.accent}`
+        borderBottom: `0.0625rem solid ${themeVars.colors.accent2}`
     }),
     logoContainer: style({
 
@@ -21,14 +21,14 @@ const classes = {
         gap: '.5rem'
     }),
     navigationItem: style({
-        color: themeVars.colors.secondary,
+        color: themeVars.colors.text,
         fontWeight: 600,
         fontSize: '1.25rem',
         userSelect: 'none',
         cursor: 'pointer',
         selectors: {
             '&:hover': {
-                color: themeVars.colors.accent
+                color: themeVars.colors.text
             }
         }
     })

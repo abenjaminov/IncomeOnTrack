@@ -4,7 +4,7 @@ import {InjectionTokens} from "../../config";
 import {IUsersService} from "./users.interface";
 import {IGetUsersArgs} from "@income-on-track/shared";
 
-@controller('/users')
+@controller('/api/users')
 export class UsersController extends BaseHttpController {
     constructor(
         @inject(InjectionTokens.usersService) private usersService: IUsersService

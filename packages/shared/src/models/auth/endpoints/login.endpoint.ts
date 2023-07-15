@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import {LoginFailReason} from "../../../enums/auth";
+import {LoginFailReason} from "../../../enums";
 
 export const ZLoginArgs = z.object({
-    email: z.string(),
-    password: z.string()
+    email: z.string().min(1),
+    password: z.string().min(1)
 })
 
 export const ZLoginRequest = z.object({

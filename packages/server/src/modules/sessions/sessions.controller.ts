@@ -5,7 +5,7 @@ import {ICreateSessionArgs, IGetSessionArgs} from "@income-on-track/shared";
 import {ISessionService} from "./sessions.interface";
 import {authenticateUserTokenMiddleware} from "../../common/middleware";
 
-@controller('/sessions')
+@controller('/api/sessions')
 export class SessionsController extends BaseHttpController {
     constructor(
         @inject(InjectionTokens.sessionService) private sessionsService: ISessionService

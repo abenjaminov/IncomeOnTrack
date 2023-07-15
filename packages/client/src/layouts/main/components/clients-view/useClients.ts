@@ -1,33 +1,17 @@
-import {IClientView} from "@income-on-track/shared";
+import {IClientView, IGetClientsResult} from "@income-on-track/shared";
+import {useApiQuery} from "@shared/hooks/useApi";
 
 export const useClients = () => {
-  const clients:Array<IClientView> = [{
-    id: '1234',
-    name: 'John Doe',
-    creationDate: new Date(),
-    payment: 150,
-    isActive: true,
-    isSalary: true,
-    debt: 100
-  }, {
-    id: '1235',
-    name: 'John Doe',
-    creationDate: new Date(),
-    payment: 150,
-    isActive: true,
-    isSalary: true,
-    debt: 150
-  }, {
-    id: '1236',
-    name: 'John Doe',
-    creationDate: new Date(),
-    payment: 150,
-    isActive: true,
-    isSalary: true,
-    debt: 2000
-  }]
+  const { data , isLoading} = useApiQuery<IGetClientsResult>('clients/get', {
+    method: 'POST'
+  })
+
+  const clients = data?.clients ?? [];
+  const count = data?.count ?? 0;
 
   return {
-    clients
+    clients,
+    count,
+    isLoading
   }
 }

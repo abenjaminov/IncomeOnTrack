@@ -1,8 +1,13 @@
 import React from 'react';
 import classes from './clients-view.css';
-import {IClientView} from "@income-on-track/shared";
 import {ClientTableColumnKey} from "./client-view.confog";
-import {CFormCheck, CTable, CTableDataCell, CTableRow} from "@coreui/react";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 import {useClients} from "./useClients";
 
 const columns = [{
@@ -28,25 +33,34 @@ const columns = [{
 }]
 
 export const ClientsView: React.FC = () => {
-    const { clients } = useClients();
+    const { clients, isLoading, count } = useClients();
+
+    if(isLoading) return <div>Loading...</div>
 
     return (
         <div className={classes.clientsView}>
-            <CTable columns={columns}>
-                {clients.map(client => (
-                    <CTableRow key={client.id}>
-                        <CTableDataCell>{client.name}</CTableDataCell>
-                        <CTableDataCell>{client.payment}</CTableDataCell>
-                        <CTableDataCell>{client.debt}</CTableDataCell>
-                        <CTableDataCell>
-                            <CFormCheck checked={client.isActive} />
-                        </CTableDataCell>
-                        <CTableDataCell>
-                            <CFormCheck checked={client.isSalary} />
-                        </CTableDataCell>
-                    </CTableRow>
-                ))}
-            </CTable>
+            <TableContainer component={Paper} style={{
+                height: '100%',
+            }}>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Name</TableCell>
+                            <TableCell>Default Payment</TableCell>
+                            <TableCell>Debt</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {clients.map((client) => (
+                          <TableRow key={client.id}>
+                              <TableCell>{client.name}</TableCell>
+                              <TableCell>{client.defaultPayment}</TableCell>
+                              <TableCell>{client.debt}</TableCell>
+                          </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </div>
     )
 }
