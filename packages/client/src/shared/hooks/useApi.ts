@@ -9,8 +9,8 @@ export interface UseApiOptions {
     refetchInterval?: number;
 }
 
-export interface UseQueryOptions extends UseApiOptions {
-    data?: any;
+export interface UseQueryOptions<T> extends UseApiOptions {
+    data?: T;
     enabled?: boolean;
 }
 
@@ -33,7 +33,7 @@ function getRequestHeaders() {
     return headers;
 }
 
-export function useApiQuery<TResponse>(path: string, options?: UseQueryOptions) {
+export function useApiQuery<TData, TResponse>(path: string, options?: UseQueryOptions<TData>) {
     const url = getFullUrl(path);
 
     const query = useQuery<unknown, unknown, TResponse, string[]>(

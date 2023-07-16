@@ -1,9 +1,9 @@
-import {IClientView, IGetClientsResult} from "@income-on-track/shared";
+import {IClientView, IGetClientsArgs, IGetClientsResult} from "@income-on-track/shared";
 import {useApiQuery} from "@shared/hooks/useApi";
 import {CacheKeys} from "@shared/types";
 
 export const useClients = () => {
-  const { data , isLoading} = useApiQuery<IGetClientsResult>('clients/get', {
+  const { data , isLoading} = useApiQuery<IGetClientsArgs, IGetClientsResult>('clients/get', {
     method: 'POST',
     cacheKey: CacheKeys.clients
   })

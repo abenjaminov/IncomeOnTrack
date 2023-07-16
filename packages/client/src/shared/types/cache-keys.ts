@@ -1,5 +1,6 @@
 export enum CacheKeys {
   clients = 'clients',
+  sessions = 'sessions',
 }
 
 export enum LocalStorageKeys {

@@ -1,6 +1,5 @@
 import React from 'react';
 import classes from './clients-view.css';
-import {ClientTableColumnKey} from "./client-view.confog";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -12,28 +11,6 @@ import {useClients} from "./useClients";
 import {usePopups} from "@shared/hooks/usePopups";
 import {Button} from "@mui/material";
 import {AddClientPopup} from "@shared/components";
-
-const columns = [{
-    key: ClientTableColumnKey.name,
-    label: 'Name',
-    _props: { scope: 'col' },
-},{
-    key: ClientTableColumnKey.payment,
-    label: 'Payment',
-    _props: { scope: 'col' },
-},{
-    key: ClientTableColumnKey.debt,
-    label: 'Debt',
-    _props: { scope: 'col' },
-},{
-    key: ClientTableColumnKey.isActive,
-    label: 'Active',
-    _props: { scope: 'col' },
-},{
-    key: ClientTableColumnKey.isSalary,
-    label: 'Salary',
-    _props: { scope: 'col' },
-}]
 
 export const ClientsView: React.FC = () => {
     const { clients, isLoading, count } = useClients();

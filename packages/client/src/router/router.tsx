@@ -1,6 +1,7 @@
 import {createBrowserRouter} from "react-router-dom";
 import {LoginLayout, MainLayout} from "../layouts";
 import {ClientsView} from "../layouts/main/components/clients-view/ClientsView";
+import {SessionsView} from "../layouts/main/components/sessions-view/SessionsView";
 
 export enum Routes {
     login = "/login",
@@ -27,7 +28,7 @@ export const mainRouter = createBrowserRouter([{
             element: <div>Dashboard</div>
         }, {
             path: Routes.sessions,
-            element: <div>sessions</div>
+            element: <SessionsView />
         }, {
             path: Routes.clients,
             element: <ClientsView />
