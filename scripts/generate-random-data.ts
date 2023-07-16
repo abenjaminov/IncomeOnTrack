@@ -36,14 +36,14 @@ import addMinutes from 'date-fns/addMinutes';
 
   // Create 270 random sessions for random clients, add random time for each session starting in 2023 Jan 01
   for(let i = 0; i < sessionCount; i++) {
+    const id = nanoid()
     const clientId = clientIds[Math.floor(Math.random() * clientIds.length)]
     // Add random time to start date
     const payment = Math.floor(Math.random() * 100) + 100
     const notes = `Notes ${i}`
-    const datePayed = null
     const issuedReceipt = Math.random() > 0.1
     const now = new Date().toISOString();
-    const query = `INSERT INTO public."Session" (id, "clientId", date, payment, notes, "issuedReceipt", "userId", "createdAt", "updatedAt") VALUES ('${i}', '${clientId}', '${startDate.toISOString()}', '${payment}', '${notes}', ${issuedReceipt}, '${userId}', '${now}', '${now}');`
+    const query = `INSERT INTO public."Session" (id, "clientId", date, payment, notes, "issuedReceipt", "userId", "createdAt", "updatedAt") VALUES ('${id}', '${clientId}', '${startDate.toISOString()}', '${payment}', '${notes}', ${issuedReceipt}, '${userId}', '${now}', '${now}');`
     await dbService.getDatabase().query(query)
     startDate = addMinutes(startDate, timeBetweenSessions);
   }

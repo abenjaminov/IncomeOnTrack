@@ -6,7 +6,8 @@ export const ZCalendarDayView = z.object({
     dayOfWeek: z.number(),
     dayOfMonth: z.number(),
     month: z.number(),
-    sessions: z.array(ZSessionView)
+    sessions: z.array(ZSessionView),
+    date: z.date()
 })
 
 export const ZCalendarWeekView = z.object({

@@ -25,11 +25,13 @@ export const AppHeader: React.FC = () => {
         navigate(item.route)
     }
 
+    const keyPrefix = React.useId();
+
     return (
         <header className={classes.appHeader}>
             <div className={classes.navigationItemsContainer}>
                 {navigationItems.map((item, index) => (
-                    <div className={classes.navigationItem} onClick={() => onNavigationItemClick(item)}>{item.text}</div>
+                    <div className={classes.navigationItem}  key={item.text + keyPrefix} onClick={() => onNavigationItemClick(item)}>{item.text}</div>
                 ))}
             </div>
         </header>

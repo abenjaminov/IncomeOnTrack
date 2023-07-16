@@ -2,6 +2,23 @@
   height: 100%;
   width: 100%;
   margin: 0px;
+
+  ::-webkit-scrollbar {
+    width: .75rem;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(233, 30, 99);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(255, 152, 0);
+    cursor: pointer;
+  }
 }
 * {
   margin: 0;

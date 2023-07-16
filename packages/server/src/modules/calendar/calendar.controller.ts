@@ -6,7 +6,7 @@ import {authenticateUserTokenMiddleware} from "../../common/middleware";
 import {zodValidationMiddleware} from "../../common/middleware/zod-validation.middleware";
 import {ZGetCalendarRequest} from "@income-on-track/shared";
 
-@controller("/calendar")
+@controller("/api/calendar")
 export class CalendarController extends BaseHttpController {
 
   constructor(

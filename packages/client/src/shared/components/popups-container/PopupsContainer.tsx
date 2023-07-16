@@ -11,6 +11,7 @@ export const PopupsContainer: React.FC = () => {
     width: '100%',
     top: 0,
     left: 0,
+    pointerEvents: popups.length > 0 ? 'all' : 'none',
   }}>
     {popups.length > 0 && popups.map((args, i) =>
       <PopupContext.Provider value={{ name: args.props.name, closePopup: () => closePopup(args.props.name)}}>

@@ -57,7 +57,8 @@ export class CalendarService implements ICalendarService {
         dayOfWeek: getDay(date),
         dayOfMonth: getDate(date),
         month: monthIndex,
-        sessions: sessions.sessions.filter(session => isSameDay(session.date, date))
+        sessions: sessions.sessions.filter(session => isSameDay(session.date, date)),
+        date: date
       }
 
       weekView.days.push(weekDay);

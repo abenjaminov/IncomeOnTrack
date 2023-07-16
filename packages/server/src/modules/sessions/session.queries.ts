@@ -1,10 +1,15 @@
 // Select all sessions between 2 dates
 import {Consts} from "../../common";
+import {SessionState} from "@income-on-track/shared";
 
 export const GetSessionsQuery = `
-select *,
+select se.*,
        cl.name as "clientName",
-       case when date > '2023-07-13' then true else false end as isFuture
+       case 
+        when se."datePayed" is not null then '${SessionState.payed}'
+        when se."date" > now() then '${SessionState.future}' 
+        else '${SessionState.debt}' 
+       end as "sessionState"
 from "incomeOnTrackDb".public."Session" se
 left join "incomeOnTrackDb".public."Client" cl on cl.id = se."clientId"
 ${Consts.repositories.whereClausePlaceholder}`

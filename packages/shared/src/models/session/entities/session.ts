@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import {ZObjectBase} from "../../object";
+import {SessionState} from "../../../enums";
 
 export const ZSession = ZObjectBase.extend({
     clientId: z.string(),
@@ -13,6 +14,7 @@ export const ZSession = ZObjectBase.extend({
 
 export const ZSessionView = ZSession.extend({
     clientName: z.string(),
+    sessionState: z.nativeEnum(SessionState)
 })
 
 export type ISession = z.infer<typeof ZSession>;
