@@ -8,6 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
 import {format} from 'date-fns';
+import Paper from "@mui/material/Paper";
 
 export const SessionsView: React.FC = () => {
   const { sessions, isLoading} = useSessions();
@@ -16,7 +17,7 @@ export const SessionsView: React.FC = () => {
 
   return (
     <div className={sessionsView}>
-      <TableContainer className={tableContainer}>
+      <TableContainer className={tableContainer} component={Paper}>
         <Table>
           <TableHead>
             <TableRow>
