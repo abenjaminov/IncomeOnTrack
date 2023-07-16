@@ -1,5 +1,5 @@
 import {useApiQuery} from "@shared/hooks/useApi";
-import {ICalendarMonthView} from "@income-on-track/shared";
+import {ICalendarMonthView, SessionState} from "@income-on-track/shared";
 
 export const useCalendar = (year: number, monthIndex: number) => {
   const { data } = useApiQuery<unknown, ICalendarMonthView>(`calendar/${year}/${monthIndex}`);
@@ -16,7 +16,35 @@ export const useCalendar = (year: number, monthIndex: number) => {
     })
   }
 
+  const thisMonthDebt = data?.weeks.reduce((acc, week) => {
+    return acc + week.days.reduce((acc, day) => {
+      return acc + day.sessions.filter(x => x.sessionState === SessionState.debt).reduce((acc, session) => {
+        return acc + session.payment
+      }, 0)
+    }, 0)
+  }, 0)
+
+  const thisMonthForecast = data?.weeks.reduce((acc, week) => {
+    return acc + week.days.reduce((acc, day) => {
+      return acc + day.sessions.reduce((acc, session) => {
+        return acc + session.payment
+      }, 0)
+    }, 0)
+  }, 0)
+
+  const thisMonthIncome = data?.weeks.reduce((acc, week) => {
+    return acc + week.days.reduce((acc, day) => {
+      return acc + day.sessions.filter(x => x.sessionState === SessionState.payed).reduce((acc, session) => {
+        return acc + session.payment
+      }, 0)
+    }, 0)
+  }, 0)
+
+
   return {
-    calendarMonth: data
+    calendarMonth: data,
+    thisMonthDebt,
+    thisMonthForecast,
+    thisMonthIncome
   }
 }
