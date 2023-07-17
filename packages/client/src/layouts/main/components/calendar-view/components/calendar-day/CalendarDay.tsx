@@ -33,10 +33,13 @@ export const CalendarDay: React.FC<CalendarDayProps> = ({ dayView }) => {
         {dayOfWeekToName[dayView.dayOfWeek]}
       </div>
     </div>
-    <div className={calendarDayEvents}>
+    {firstThreeSessions.length > 0 && <div className={calendarDayEvents}>
       {firstThreeSessions.map((session, index) => <CalendarSession session={session} key={session.id + sessionKeyPrefix} />)}
-      {firstThreeSessions.map((session, index) => <CalendarSession session={session} key={session.id + sessionKeyPrefix} />)}
-      {firstThreeSessions.map((session, index) => <CalendarSession session={session} key={session.id + sessionKeyPrefix} />)}
-    </div>
+    </div>}
+    {firstThreeSessions.length === 0 && <div className={calendarDayEvents} style={{
+      alignItems: 'center',
+    }}>
+      No sessions
+    </div>}
   </div>
 }

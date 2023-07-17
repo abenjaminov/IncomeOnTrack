@@ -67,7 +67,7 @@ export function useApiQuery<TData, TResponse>(path: string, options?: UseQueryOp
       {
           enabled: options?.enabled,
           suspense: false,
-          refetchInterval: options?.refetchInterval,
+          refetchInterval: options?.refetchInterval
       },
     );
 

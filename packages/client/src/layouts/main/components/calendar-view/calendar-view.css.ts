@@ -14,3 +14,21 @@ export const calendarContainer = style({
   display: 'flex',
   flexDirection: 'column'
 })
+
+export const calendarAsideContainer = style({
+  height: '100%',
+  width: '20%',
+  display: 'flex',
+  flexDirection: 'column',
+})
+
+export const calendarInfoTitle = style({
+  height: '2rem',
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: themeVars.colors.accent2,
+  fontSize: '1.5rem',
+  fontWeight: 'bold'
+});

@@ -7,13 +7,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import {useClients} from "./useClients";
 import {usePopups} from "@shared/hooks/usePopups";
 import {Button} from "@mui/material";
 import {AddClientPopup} from "@shared/components";
+import {useFilteredClients} from "@shared/hooks";
 
 export const ClientsView: React.FC = () => {
-    const { clients, isLoading, count } = useClients();
+    const { clients, isLoading, count } = useFilteredClients();
     const { showPopup } = usePopups();
 
     if(isLoading) return <div>Loading...</div>

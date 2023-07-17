@@ -2,12 +2,12 @@ import { style } from '@vanilla-extract/css';
 import {themeVars} from "@shared/style";
 
 export const calendarDayView =  style({
-  width: '14.28%',
+  width: 'calc(14.28% - .1rem)',
   height: '100%',
   display: 'flex',
   position: 'relative',
   flexDirection: 'column',
-  borderRight: `1px solid ${themeVars.colors.accent2}`
+  margin: '0 .05rem',
 })
 
 export const calendarDayOfMonth = style({
