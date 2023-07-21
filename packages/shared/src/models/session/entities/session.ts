@@ -7,7 +7,7 @@ export const ZSession = ZObjectBase.extend({
     userId: z.string(),
     payment: z.number(),
     date: z.date(),
-    datePayed: z.date().optional(),
+    datePayed: z.date().nullable().optional(),
     issuedReceipt: z.boolean(),
     notes: z.string().optional()
 })

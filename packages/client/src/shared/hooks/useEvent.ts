@@ -12,6 +12,7 @@ type EventStore = {
 export const useEventInternal = create<EventStore>((set, get) => ({
   subscribers: {
     [EventType.onSessionClicked]: [],
+    [EventType.onSessionSaved]: [],
   },
   subscribe: (eventType, callback) => {
     set((state) => {

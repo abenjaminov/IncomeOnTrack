@@ -22,10 +22,14 @@ export const sectionTitle = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-start',
+  height: '3.5rem'
 })
 
 export const sectionValue = style({
   width: '70%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
 })
 
 export const dynamicSection = style({

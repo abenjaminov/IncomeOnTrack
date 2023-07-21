@@ -6,7 +6,8 @@ export const useFilteredClients = (filter?: IGetClientsArgs) => {
   const { data , isLoading} = useApiQuery<IGetClientsArgs, IGetClientsResult>('clients/get', {
     method: 'POST',
     cacheKey: CacheKeys.clients,
-    data: filter
+    data: filter,
+    enabled: !!filter
   })
 
   const clients = data?.clients ?? [];

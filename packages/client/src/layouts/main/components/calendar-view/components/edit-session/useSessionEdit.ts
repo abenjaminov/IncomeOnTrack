@@ -1,7 +1,10 @@
+import React from 'react';
 import {ISessionView, ZSession} from "@income-on-track/shared";
 import {useForm} from "react-hook-form";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
+import {useEvent} from "@shared/hooks";
+import {EventType} from "@shared/types/events";
 
 const ZSessionEdit = ZSession.omit({
   userId: true,
@@ -11,21 +14,28 @@ const ZSessionEdit = ZSession.omit({
 type ISessionEdit = z.infer<typeof ZSessionEdit>
 
 export const useSessionEdit = (session?: ISessionView) => {
+  const { emit } = useEvent(EventType.onSessionSaved);
+
   const {
     register,
-    formState: { errors },
+    formState: { errors, isDirty },
     setValue,
-    watch
+    watch,
+    reset,
+    handleSubmit
   } = useForm<ISessionEdit>({
     resolver: zodResolver(ZSessionEdit),
     defaultValues: session
   })
 
-  const clientIdRegister = register('clientId')
+  React.useEffect(() => {
+    reset(session)
+  }, [session])
+
   const paymentRegister = register('payment')
   const notesRegister = register('notes')
 
-  const [date, datePayed] = watch(['date', 'datePayed'])
+  const [date, datePayed, issuedReceipt] = watch(['date', 'datePayed', 'issuedReceipt'])
 
   const setDate = (date: Date) => {
     setValue('date', date)
@@ -40,13 +50,31 @@ export const useSessionEdit = (session?: ISessionView) => {
     setValue('datePayed', new Date())
   }
 
+  const setClientId = (clientId: string) => {
+    setValue('clientId', clientId)
+  }
+
+  const toggleIssuedReceipt = () => {
+    setValue('issuedReceipt', !issuedReceipt)
+  }
+
+  const onSubmit = handleSubmit((data) => {
+    emit();
+  }, errors => {
+
+  });
+
   return {
-    clientIdRegister,
     paymentRegister,
     notesRegister,
     setDate,
     date,
     setDatePayed,
     datePayed,
+    isDirty,
+    setClientId,
+    issuedReceipt,
+    toggleIssuedReceipt,
+    onSubmit
   }
 }

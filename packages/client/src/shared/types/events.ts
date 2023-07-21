@@ -2,6 +2,7 @@ import {ISessionView} from "@income-on-track/shared";
 
 export enum EventType {
   onSessionClicked= 'onSessionClicked',
+  onSessionSaved= 'onSessionSaved',
 }
 
 export interface IEventPayload {
@@ -20,4 +21,5 @@ export interface OnSessionClickedEventPayload extends IEventPayload {
 
 export type EventPayloads = {
   [EventType.onSessionClicked]: OnSessionClickedData
+  [EventType.onSessionSaved]: void
 }
