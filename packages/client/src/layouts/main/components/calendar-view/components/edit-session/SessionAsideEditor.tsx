@@ -7,7 +7,7 @@ import {DatePicker} from "@mui/x-date-pickers";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import PriceCheckIcon from '@mui/icons-material/PriceCheck';
 import EditIcon from '@mui/icons-material/Edit';
-import {useSessionEdit} from "./useSessionEdit";
+import {useSessionEditor} from "./useSessionEditor";
 
 type SessionAsideEditorProps = {
   session?: ISessionView
@@ -26,7 +26,7 @@ export const SessionAsideEditor: React.FC<SessionAsideEditorProps> = ({ session 
     issuedReceipt,
     toggleIssuedReceipt,
     onSubmit
-  } = useSessionEdit(session);
+  } = useSessionEditor(session);
 
   return <div className={sessionAsideEditor}>
     <div className={section}>

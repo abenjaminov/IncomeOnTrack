@@ -1,19 +1,20 @@
 import React from 'react';
-import {ISessionView, ZSession} from "@income-on-track/shared";
+import {ISessionView, ZCreateSessionArgs} from "@income-on-track/shared";
 import {useForm} from "react-hook-form";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useEvent} from "@shared/hooks";
 import {EventType} from "@shared/types/events";
+import {useSessionsCRUD} from "@shared/hooks/useSessionsCRUD";
 
-const ZSessionEdit = ZSession.omit({
-  userId: true,
-  id: true,
+const ZSessionEdit = ZCreateSessionArgs.omit({
+  userId: true
 })
 
 type ISessionEdit = z.infer<typeof ZSessionEdit>
 
-export const useSessionEdit = (session?: ISessionView) => {
+export const useSessionEditor = (session?: ISessionView) => {
+  const { createOrUpdateSession } = useSessionsCRUD();
   const { emit } = useEvent(EventType.onSessionSaved);
 
   const {
@@ -58,7 +59,8 @@ export const useSessionEdit = (session?: ISessionView) => {
     setValue('issuedReceipt', !issuedReceipt)
   }
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit(async (data) => {
+    await createOrUpdateSession(data)
     emit();
   }, errors => {
 

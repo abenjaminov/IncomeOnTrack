@@ -1,8 +1,11 @@
 import {useApiQuery} from "@shared/hooks/useApi";
 import {ICalendarMonthView, SessionState} from "@income-on-track/shared";
+import {CacheKeys} from "@shared/types";
 
 export const useCalendar = (year: number, monthIndex: number) => {
-  const { data } = useApiQuery<unknown, ICalendarMonthView>(`calendar/${year}/${monthIndex}`);
+  const { data } = useApiQuery<unknown, ICalendarMonthView>(`calendar/${year}/${monthIndex}`, {
+    cacheKey: CacheKeys.calendar
+  });
 
   if(data) {
     data.weeks.forEach(week => {

@@ -1,10 +1,12 @@
 import { z } from 'zod';
 import {ZSession} from "../entities";
 
-const ZCreateSessionArgs = ZSession.omit({
+export const ZCreateSessionArgs = ZSession.omit({
     userId: true,
+    id: true
 }).extend({
-    userId: z.string().optional()
+    userId: z.string().optional(),
+    id: z.string().optional()
 })
 
 export const ZCreateSessionRequest = z.object({

@@ -22,11 +22,11 @@ export class SessionsController extends BaseHttpController {
         return this.json(result);
     }
 
-    @httpPost('/create', authenticateUserTokenMiddleware)
-    private async addSession(
+    @httpPost('/', authenticateUserTokenMiddleware)
+    private async createOrUpdate(
         @requestBody() args: ICreateSessionArgs
     ){
-        const result = await this.sessionsService.addSession(args);
+        const result = await this.sessionsService.createOrUpdate(args);
 
         return this.json(result);
     }

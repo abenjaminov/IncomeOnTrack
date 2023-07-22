@@ -20,8 +20,8 @@ export class SessionService implements ISessionService {
         return result;
     }
 
-    async addSession(args: ICreateSessionArgs): Promise<ISession | undefined> {
-        const result = await this.sessionRepository.addSession({
+    async createOrUpdate(args: ICreateSessionArgs): Promise<ISession | undefined> {
+        const result = await this.sessionRepository.createOrUpdate({
             ...args,
             userId: args.userId || this.requestContext.userId
         });

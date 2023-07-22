@@ -2,7 +2,7 @@ import {ICreateSessionArgsInternal, IGetSessionArgsInternal, ISessionsRepository
 import {inject, injectable} from "inversify";
 import {Consts, IDBService, TableNames} from "../../common";
 import {InjectionTokens} from "../../config";
-import {SessionModel, SessionModelAttributes} from "./sessions.model";
+import { SessionModel, SessionModelAttributes} from "./sessions.model";
 import {IGetSessionsResult, ISession, ISessionView} from "@income-on-track/shared";
 import {nanoid} from "nanoid";
 import {BindOrReplacements} from "sequelize/types/dialects/abstract/query-interface";
@@ -26,9 +26,9 @@ export class SessionsRepository implements ISessionsRepository {
         })
     }
 
-    async addSession(args: ICreateSessionArgsInternal) {
+    async createOrUpdate(args: ICreateSessionArgsInternal) {
         const newSession: ISession = {
-            id: nanoid(),
+            id: args.id ?? nanoid(),
             clientId: args.clientId,
             date: args.date,
             payment: args.payment,
@@ -41,13 +41,17 @@ export class SessionsRepository implements ISessionsRepository {
         let result;
 
         try {
-            result = await this.SessionsTable.create(newSession);
+            const [_result, isCreated] = await this.SessionsTable.upsert(newSession, {
+                returning: true
+            });
+
+            result = _result.toJSON();
         }
         catch(error: any) {
             console.log(error)
         }
 
-        return result?.toJSON();
+        return result as ISession;
     }
 
     async getSessions(args: IGetSessionArgsInternal): Promise<IGetSessionsResult> {
