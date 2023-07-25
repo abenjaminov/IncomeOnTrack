@@ -17,7 +17,8 @@ export const progress = style({
   height: '100%',
   width: percentageVar,
   zIndex: 0,
-  backgroundColor: themeVars.colors.accent2
+  backgroundColor: themeVars.colors.accent2,
+  transition: 'width 0.35s ease-in-out',
 })
 
 export const progressText = style({
