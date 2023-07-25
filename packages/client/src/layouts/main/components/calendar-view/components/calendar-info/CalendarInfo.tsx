@@ -15,10 +15,12 @@ export type CalendarAsideProps = {
 }
 
 export const CalendarInfo: React.FC<CalendarAsideProps> = ({ onMonthChange, defaultMonthIndex, onYearChange, thisMonthDebt, thisMonthForecast, thisMonthIncome }) => {
-  const defaultItem = MonthItems.find(item => item.id === defaultMonthIndex);
-  if(!defaultItem) {
+  const _defaultItem = MonthItems.find(item => item.id === defaultMonthIndex);
+  if(!_defaultItem) {
     throw new Error(`Invalid default month index: ${defaultMonthIndex}`);
   }
+
+  const [defaultItem, setDefaultItem] = React.useState(_defaultItem);
 
   const incomePercentage = thisMonthIncome === undefined || thisMonthForecast === undefined ? undefined :(thisMonthIncome / (thisMonthForecast === 0 ? 1 : thisMonthForecast)) * 100;
   const debtPercentage = thisMonthDebt === undefined || thisMonthForecast === undefined ? undefined :(thisMonthDebt / (thisMonthForecast === 0 ? 1 : thisMonthForecast)) * 100;

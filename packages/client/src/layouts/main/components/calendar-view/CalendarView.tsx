@@ -16,7 +16,7 @@ import {ISessionView} from "@income-on-track/shared";
 import { getMonth } from "date-fns";
 import {SessionAsideEditor} from "./components/edit-session/SessionAsideEditor";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import {Button, IconButton} from "@mui/material";
+import {IconButton} from "@mui/material";
 
 export const CalendarView: React.FC = () => {
   const [monthIndex, setMonthIndex] = React.useState(getMonth(new Date()));
@@ -66,7 +66,6 @@ export const CalendarView: React.FC = () => {
     setIsEditingSession(false)
     setAsideTitle('Info')
   }
-
   return <div className={calendarView}>
     <div className={calendarContainer}>
       {calendarMonth?.weeks.map((week, index) => <CalendarWeek selectedSessionId={sessionToEdit?.id} weekView={week} key={week.weekIndex + keyPrefix}/>)}
@@ -81,7 +80,7 @@ export const CalendarView: React.FC = () => {
         <span className={calendarInfoTitleText}>{asideTitle}</span>
       </div>
       {!isEditingSession &&
-        <CalendarInfo onMonthChange={_monthIndex => setMonthIndex(_monthIndex)}
+        <CalendarInfo onMonthChange={_monthIndex => {setMonthIndex(_monthIndex); console.log(_monthIndex)}}
                     defaultMonthIndex={monthIndex}
                     onYearChange={_year => setYear(_year)}
                     thisMonthDebt={thisMonthDebt}

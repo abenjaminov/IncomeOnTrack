@@ -2,9 +2,9 @@ import {useApiQuery} from "@shared/hooks/useApi";
 import {ICalendarMonthView, SessionState} from "@income-on-track/shared";
 import {CacheKeys} from "@shared/types";
 
-export const useCalendar = (year: number, monthIndex: number) => {
-  const { data } = useApiQuery<unknown, ICalendarMonthView>(`calendar/${year}/${monthIndex}`, {
-    cacheKey: CacheKeys.calendar
+export const useCalendar = (year: number, monthIndex: number, clientId?: string) => {
+  const { data } = useApiQuery<unknown, ICalendarMonthView>(`calendar/${year}/${monthIndex}${clientId ? `/${clientId}` : ''}`, {
+    cacheKey: CacheKeys.calendar,
   });
 
   if(data) {

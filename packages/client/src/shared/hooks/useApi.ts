@@ -1,11 +1,11 @@
-import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { baseURL } from '@shared/utils/base-url';
-import axios, { AxiosRequestConfig } from 'axios';
-import { CacheKeys, LocalStorageKeys } from '../types';
+import {useMutation, useQuery, useQueryClient} from 'react-query';
+import {baseURL} from '@shared/utils/base-url';
+import axios, {AxiosRequestConfig} from 'axios';
+import {CacheKeys, LocalStorageKeys} from '../types';
 
 export interface UseApiOptions {
     method?: AxiosRequestConfig['method'];
-    cacheKey?: string;
+    cacheKey?: CacheKeys;
     refetchInterval?: number;
 }
 
@@ -37,7 +37,7 @@ export function useApiQuery<TData, TResponse>(path: string, options?: UseQueryOp
     const url = getFullUrl(path);
 
     const query = useQuery<unknown, unknown, TResponse, string[]>(
-      [options?.cacheKey ?? url, JSON.stringify(options?.data) ?? ''],
+      [options?.cacheKey ?? CacheKeys.default,url, JSON.stringify(options?.data) ?? ''],
       () => {
           return new Promise((resolve, reject) => {
               const axiosConfig: AxiosRequestConfig = {};

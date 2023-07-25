@@ -1,7 +1,8 @@
 export enum CacheKeys {
   clients = 'clients',
   sessions = 'sessions',
-  calendar = 'calendar'
+  calendar = 'calendar',
+  default = 'default'
 }
 
 export enum LocalStorageKeys {

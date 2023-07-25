@@ -15,12 +15,13 @@ export class CalendarController extends BaseHttpController {
     super();
   }
 
-  @httpGet("/:year/:monthIndex", authenticateUserTokenMiddleware, zodValidationMiddleware(ZGetCalendarRequest))
+  @httpGet("/:year/:monthIndex/:clientId?", authenticateUserTokenMiddleware, zodValidationMiddleware(ZGetCalendarRequest))
   private async getCalendar(
     @requestParam("year") year: number,
-    @requestParam("monthIndex") monthIndex: number
+    @requestParam("monthIndex") monthIndex: number,
+  @requestParam("clientId") clientId?: string
   ) {
-    const result = await this.calendarService.getCalendar(monthIndex, year);
+    const result = await this.calendarService.getCalendar(monthIndex, year, clientId);
 
     return this.json(result);
   }

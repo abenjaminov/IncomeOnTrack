@@ -23,7 +23,7 @@ export class CalendarService implements ICalendarService {
   ) {
   }
 
-  async getCalendar(monthIndex: number, year: number): Promise<ICalendarMonthView> {
+  async getCalendar(monthIndex: number, year: number, clientId?: string): Promise<ICalendarMonthView> {
     const date = new Date(Date.UTC(year, monthIndex));
     const monthStart = startOfMonth(date);
     const monthEnd = endOfMonth(date);
@@ -32,6 +32,7 @@ export class CalendarService implements ICalendarService {
     const calendarEnd = endOfWeek(monthEnd, {weekStartsOn: 0});
 
     const sessions = await this.sessionsService.getSessions({
+      clientId,
       ignorePaging: true,
       dateRange: {
         fromDate: calendarStart,
