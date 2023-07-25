@@ -6,7 +6,7 @@ import {AutocompleteProps} from "@mui/material/Autocomplete/Autocomplete";
 
 type ClientsDropdownProps = {
   defaultClientId?: string
-  onClientChange?: (clientId: string) => void
+  onClientChange?: (clientId: string, clientName: string) => void
 } & Omit<AutocompleteProps<any, any, any, any>, 'renderInput' | 'onChange' | 'onFocus' | 'inputValue' | 'onInputChange' | 'options' | 'defaultValue' | 'value'>
 
 export const ClientsDropdown: React.FC<ClientsDropdownProps> = ({ defaultClientId, onClientChange, ...divProps }) => {
@@ -20,26 +20,26 @@ export const ClientsDropdown: React.FC<ClientsDropdownProps> = ({ defaultClientI
     setClientsFilter({ ...clientsFilter, filterText })
   }
 
-  const onClientSelected = (clientId?: string) => {
-    setSelectedClientId(clientId)
-    clientId && onClientChange && onClientChange(clientId)
-
-    if(!clientId) {
-      setClientsFilter({ ...clientsFilter, filterText: undefined })
-    }
-  }
-
   const {clients} = useFilteredClients(clientsFilter);
 
   const clientsOptions = clients.map(client => ({ label: client.name, value: client.id }))
 
   const selectedOption = clientsOptions.find(option => option.value === selectedClientId);
 
+  const onClientSelected = (clientId?: string, clientName?: string) => {
+    setSelectedClientId(clientId)
+    clientId && clientName && onClientChange && onClientChange(clientId, clientName)
+
+    if(!clientId) {
+      setClientsFilter({ ...clientsFilter, filterText: undefined })
+    }
+  }
+
   return <Autocomplete renderInput={( params) => <TextField {...params} placeholder='Clients' />} {...divProps}
-                       onChange={(e, value) => onClientSelected(value?.value)}
+                       onChange={(e, value) => onClientSelected(value?.value, value?.label)}
                        onFocus={() => updateFilterText('')}
                        inputValue={clientsFilter.filterText ?? ''}
-                       value={selectedClientId ? selectedOption : undefined}
+                       getOptionLabel={(option) => option.label}
                        onInputChange={(e, value) => updateFilterText(value)}
                        options={clientsOptions}
                        defaultValue={selectedOption}/>

@@ -12,4 +12,6 @@ select se.*,
        end as "sessionState"
 from "incomeOnTrackDb".public."Session" se
 left join "incomeOnTrackDb".public."Client" cl on cl.id = se."clientId"
-${Consts.repositories.whereClausePlaceholder}`
+${Consts.repositories.whereClausePlaceholder}
+order by se."date" asc
+`

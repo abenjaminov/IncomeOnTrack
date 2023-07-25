@@ -13,7 +13,7 @@ import {AddClientPopup} from "@shared/components";
 import {useFilteredClients} from "@shared/hooks";
 
 export const ClientsView: React.FC = () => {
-    const { clients, isLoading, count } = useFilteredClients();
+    const { clients, isLoading, count } = useFilteredClients({});
     const { showPopup } = usePopups();
 
     if(isLoading) return <div>Loading...</div>

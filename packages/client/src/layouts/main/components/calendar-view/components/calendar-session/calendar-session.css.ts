@@ -2,6 +2,8 @@ import {style, styleVariants} from '@vanilla-extract/css';
 import {SessionState} from "@income-on-track/shared";
 import {themeVars} from "@shared/style";
 
+export const sessionSelected = style({})
+
 export const calendarSessionBase = style({
   width: '100%',
   display: 'flex',
@@ -13,6 +15,9 @@ export const calendarSessionBase = style({
   selectors: {
     '&:hover': {
       opacity: .8
+    },
+    [`${sessionSelected}.&`]: {
+      border: `1px solid white`,
     }
   }
 })

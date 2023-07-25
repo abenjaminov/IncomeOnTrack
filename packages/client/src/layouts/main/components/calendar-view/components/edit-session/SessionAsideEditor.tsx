@@ -3,20 +3,30 @@ import React from "react";
 import {dynamicSection, section, sectionTitle, sectionValue, sessionAsideEditor} from "./session-aside-editor.css";
 import {ClientsDropdown} from "@shared/components";
 import {Button, IconButton, TextField, ToggleButton, Tooltip} from "@mui/material";
-import {DatePicker} from "@mui/x-date-pickers";
+import {DateTimePicker} from "@mui/x-date-pickers";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import PriceCheckIcon from '@mui/icons-material/PriceCheck';
 import EditIcon from '@mui/icons-material/Edit';
+import CheckIcon from '@mui/icons-material/Check';
 import {useSessionEditor} from "./useSessionEditor";
+import { Controller } from 'react-hook-form'
 
 type SessionAsideEditorProps = {
   session?: ISessionView
+  sessionDate: Date
 }
 
-export const SessionAsideEditor: React.FC<SessionAsideEditorProps> = ({ session }) => {
-  const [isEditClient, setIsEditClient] = React.useState(!session)
+const getParsedNumber = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const _value = e.target.value;
+
+  const _payment = parseInt(_value, 10);
+
+  return isNaN(_payment) ? 0 : _payment;
+};
+
+export const SessionAsideEditor: React.FC<SessionAsideEditorProps> = ({ session, sessionDate }) => {
+  const [isEditClient, setIsEditClient] = React.useState(!!session)
   const {
-    paymentRegister,
     setDate,
     date,
     notesRegister,
@@ -25,24 +35,35 @@ export const SessionAsideEditor: React.FC<SessionAsideEditorProps> = ({ session 
     setClientId,
     issuedReceipt,
     toggleIssuedReceipt,
-    onSubmit
-  } = useSessionEditor(session);
+    onSubmit,
+    canSubmit,
+    clientId,
+    selectedClientName,
+    control,
+    setSelectedClientName,
+  } = useSessionEditor(sessionDate, session);
+
+  const onClientSelected = (clientId: string, clientName: string) => {
+    setClientId(clientId);
+    setSelectedClientName(clientName);
+    setIsEditClient(false);
+  }
 
   return <div className={sessionAsideEditor}>
     <div className={section}>
       <div className={sectionTitle}>Client</div>
-      {isEditClient && <ClientsDropdown className={sectionValue} defaultClientId={session?.clientId} onClientChange={setClientId}/>}
-      {!isEditClient && <div className={sectionValue}>{session?.clientName}<IconButton onClick={() => setIsEditClient(true)}><EditIcon /></IconButton></div>}
+      {isEditClient && <div className={sectionValue}><ClientsDropdown className={sectionValue} defaultClientId={clientId} onClientChange={onClientSelected}/><IconButton onClick={() => setIsEditClient(false)}><CheckIcon /></IconButton></div>}
+      {!isEditClient && <div className={sectionValue}><span>{selectedClientName ?? 'Select Client'}</span><IconButton onClick={() => setIsEditClient(true)}><EditIcon /></IconButton></div>}
     </div>
     <div className={section}>
       <div className={sectionTitle}>Payment</div>
-      <TextField type='number' fullWidth style={{
-        width: '70%'
-      }} {...paymentRegister}/>
+      <Controller control={control} render={props => <TextField {...props.field} onChange={(e) => {
+        props.field.onChange(getParsedNumber(e));
+      }} fullWidth style={{width: '70%'}} />} name={'payment'} />
     </div>
     <div className={section}>
       <div className={sectionTitle}>Date & Time</div>
-      <DatePicker label='Session time' className={sectionValue} onChange={date => date && setDate} value={date}/>
+      <DateTimePicker label='Session time' className={sectionValue} onChange={date => date && setDate(date)} value={date}/>
     </div>
     <div className={section} style={{
       gap: '1rem',
@@ -65,7 +86,7 @@ export const SessionAsideEditor: React.FC<SessionAsideEditorProps> = ({ session 
       }} {...notesRegister}/>
     </div>
     <div className={dynamicSection}>
-      <Button variant='contained' color='primary' fullWidth onClick={onSubmit}>Save</Button>
+      <Button variant='contained' color='primary' fullWidth onClick={onSubmit} disabled={!canSubmit}>{ session ? 'Save Changes' : 'Add session'}</Button>
     </div>
   </div>
 }

@@ -23,25 +23,38 @@ export const CalendarView: React.FC = () => {
   const [year, setYear] = React.useState(ThisYearItem.id);
   const [isEditingSession, setIsEditingSession] = React.useState(false);
   const [sessionToEdit, setSessionToEdit] = React.useState<ISessionView | undefined>(undefined);
+  const [dayOfSessionToEdit, setDayOfSessionToEdit] = React.useState<Date | undefined>(undefined);
   const [asideTitle, setAsideTitle] = React.useState('Info');
   const { subscribe: subscribeSessionClicked } = useEvent(EventType.onSessionClicked)
   const { subscribe: subscribeSessionSaved } = useEvent(EventType.onSessionSaved);
+  const { subscribe: onAddSessionClicked } = useEvent(EventType.onAddSessionClicked);
 
   React.useEffect(() => {
     const unsubscribeSessionClicked = subscribeSessionClicked(({session}) => {
       setIsEditingSession(true)
       setSessionToEdit(session)
       setAsideTitle('Edit Session')
+      setDayOfSessionToEdit(session.date)
     })
 
     const unsubscribeSessionSaved = subscribeSessionSaved(() => {
       setIsEditingSession(false)
+      setDayOfSessionToEdit(undefined)
+      setSessionToEdit(undefined)
       setAsideTitle('Info')
+    })
+
+    const unsubscribeAddSessionClicked = onAddSessionClicked(({ dayView }) => {
+      setIsEditingSession(true)
+      setAsideTitle('Add Session')
+      setDayOfSessionToEdit(dayView.date)
+      setSessionToEdit(undefined)
     })
 
     return () => {
       unsubscribeSessionClicked();
       unsubscribeSessionSaved();
+      unsubscribeAddSessionClicked();
     }
   }, [])
 
@@ -56,7 +69,7 @@ export const CalendarView: React.FC = () => {
 
   return <div className={calendarView}>
     <div className={calendarContainer}>
-      {calendarMonth?.weeks.map((week, index) => <CalendarWeek weekView={week} key={week.weekIndex + keyPrefix}/>)}
+      {calendarMonth?.weeks.map((week, index) => <CalendarWeek selectedSessionId={sessionToEdit?.id} weekView={week} key={week.weekIndex + keyPrefix}/>)}
     </div>
     <div className={calendarAsideContainer}>
       <div className={calendarInfoTitle}>
@@ -75,7 +88,7 @@ export const CalendarView: React.FC = () => {
                     thisMonthForecast={thisMonthForecast}
                     thisMonthIncome={thisMonthIncome}/>
       }
-      {isEditingSession && <SessionAsideEditor session={sessionToEdit}/> }
+      {isEditingSession && dayOfSessionToEdit && <SessionAsideEditor session={sessionToEdit} sessionDate={dayOfSessionToEdit} /> }
     </div>
   </div>
 }

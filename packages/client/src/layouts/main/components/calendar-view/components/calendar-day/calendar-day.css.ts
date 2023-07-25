@@ -10,6 +10,24 @@ export const calendarDayView =  style({
   margin: '0 .05rem',
 })
 
+export const addSessionButton = style({
+  position: 'absolute',
+  top: '.25rem',
+  right: '.5rem',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  cursor: 'pointer',
+  selectors: {
+    '&:hover': {
+      color: themeVars.colors.accent3,
+    },
+    '&:active': {
+      color: themeVars.colors.text,
+    }
+  }
+})
+
 export const calendarDayOfMonth = style({
   position: 'absolute',
   top: '.25rem',
@@ -32,7 +50,6 @@ export const dayHeader = style({
   backgroundColor: themeVars.colors.accent2,
   color: themeVars.colors.text,
   userSelect: 'none',
-  cursor: 'pointer',
   selectors: {
     [`${isTodayDate} &`]: {
       backgroundColor: themeVars.colors.accent3,

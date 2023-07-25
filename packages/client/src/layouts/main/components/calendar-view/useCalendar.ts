@@ -14,6 +14,8 @@ export const useCalendar = (year: number, monthIndex: number) => {
 
         day.sessions.forEach(session => {
           session.date = new Date(session.date)
+
+          if(session.datePayed) session.datePayed = new Date(session.datePayed)
         });
       })
     })
