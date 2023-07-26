@@ -1,14 +1,17 @@
 {
   "name": "@income-on-track/shared",
   "version": "1.0.0",
-  "description": "Common utils for ProDrops workspaces",
-  "author": "ProDrops ltd",
+  "description": "Utils for IOC packages",
+  "author": "Income On Track",
   "types": "src/index.d.ts",
   "main": "src/index.ts",
   "scripts": {
     "build": "tsup",
     "build:watch": "tsup --watch",
     "pre-commit": "yarn lint"
+  },
+  "engines": {
+    "node": "20.x"
   },
   "license": "ISC",
   "devDependencies": {

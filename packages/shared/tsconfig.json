@@ -3,6 +3,6 @@
   "compilerOptions": {
     "outDir": "./__declarations__"
   },
-  "include": ["src/**/*", "tests/**/*", "*.js", "*.ts", "*.endpoint.ts", "src/models/index.ts"],
+  "include": ["src/**/*", "tests/**/*", "*.js", "*.ts", "*.endpoint.ts"],
   "references": []
 }

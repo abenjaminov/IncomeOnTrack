@@ -1,11 +1,12 @@
 {
   "extends": "../../tsconfig.options.json",
   "compilerOptions": {
+    "outDir": "./dist",
     "paths": {
       "@income-on-track/shared":["../shared/src/index.ts"]
     }
   },
-  "include": ["src/**/*", "tests/**/*", "*.js", "*.ts"],
+  "include": ["src/**/*", "tests/**/*", "*.js", "*.ts", "dist", "node_modules"],
   "references": [
     {
       "path": "../shared"

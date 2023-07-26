@@ -8,9 +8,10 @@
   "experimentalDecorators": true,
   "allowSyntheticDefaultImports": true,
   "esModuleInterop": true,
-  "isolatedModules": true,
+  "isolatedModules": false,
   "strict": true,
   "target": "ESNext",
+  "module": "ESNext",
   "moduleResolution": "node",
   "strictPropertyInitialization": false,
   "resolveJsonModule": true
