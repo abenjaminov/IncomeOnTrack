@@ -5,7 +5,6 @@
     "packages/*"
   ],
   "scripts": {
-    "heroku-postbuild": "yarn && yarn workspace @income-on-track/server build",
     "build": "rimraf ./packages/server/dist && yarn workspace @income-on-track/server build",
     "start": "yarn workspace @income-on-track/server start",
     "serve": "cd ./packages/server && yarn dev",
