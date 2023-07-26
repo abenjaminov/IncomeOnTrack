@@ -9,7 +9,7 @@ import {Routes} from "../../router/router";
 export const useLogin = () => {
   const { navigate } = useNavigation()
 
-  const { fetchAsync: login } = useApiMutation<ILoginArgs, ILoginResponse>('/auth/login');
+  const { fetchAsync: login } = useApiMutation<ILoginArgs, ILoginResponse>('auth/login');
 
   const {
     register,

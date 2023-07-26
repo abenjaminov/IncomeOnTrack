@@ -19,6 +19,7 @@ export interface UseMutationOptions extends UseApiOptions {
 }
 
 function getFullUrl(path: string) {
+    if(path.startsWith('/')) path = path.slice(1);
     return `${baseURL}/api/${path}`;
 }
 
