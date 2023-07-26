@@ -11,6 +11,11 @@ export class DBService implements IDBService {
             host: process.env.DB_HOST,
             database: process.env.DB_NAME,
             dialect: 'postgres',
+            dialectOptions: {
+                ssl: {
+                    rejectUnauthorized: false
+                }
+            },
             username: process.env.DB_USER,
             password: process.env.DB_PASSWORD,
             port: Number(process.env.DB_PORT),
