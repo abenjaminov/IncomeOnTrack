@@ -34,8 +34,10 @@ export const CalendarInfo: React.FC<CalendarAsideProps> = ({ onMonthChange, defa
       fontWeight: 'bold',
       fontSize: '1.5rem',
     }}/>
-    {thisMonthDebt && <div>Debt: {thisMonthDebt}</div>}
-    {thisMonthForecast && <div>Forecast: {thisMonthForecast}</div>}
+    {thisMonthForecast && <Tooltip title={'This represents the forecast income for this month'}><div className={progressSection}>
+      <span className={progressTitle}>Forecast</span>
+      <ProgressWithText text={thisMonthForecast.toString()} percentage={100} className={progressContainer}/>
+    </div></Tooltip>}
     {incomePercentage !== undefined && <Tooltip title={'This represents how much % you have made out of your forecast for this month'}><div className={progressSection}>
       <span className={progressTitle}>Income</span>
       <ProgressWithText text={thisMonthIncome?.toString() ?? ''} percentage={incomePercentage} className={progressContainer}/>
