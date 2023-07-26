@@ -6,12 +6,7 @@
   ],
   "scripts": {
     "build": "rimraf ./packages/server/dist && yarn workspace @income-on-track/server build",
-    "start": "yarn workspace @income-on-track/server start",
-    "serve": "cd ./packages/server && yarn dev",
-    "client": "cd ./packages/client && yarn dev"
-  },
-  "engines": {
-    "node": "20.x"
+    "start": "yarn workspace @income-on-track/server start"
   },
   "dependencies": {
     "date-fns": "^2.30.0",
