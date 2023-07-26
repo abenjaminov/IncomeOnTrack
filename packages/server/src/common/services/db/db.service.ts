@@ -7,10 +7,15 @@ export class DBService implements IDBService {
     database: Sequelize;
 
     constructor() {
-        if (!process.env.DB_CONNECTION_STRING) {
-            throw new Error('Missing DB URI');
-        }
-        this.database = new Sequelize(process.env.DB_CONNECTION_STRING);
+        this.database = new Sequelize({
+            host: process.env.DB_HOST,
+            database: process.env.DB_NAME,
+            dialect: 'postgres',
+            username: process.env.DB_USER,
+            password: process.env.DB_PASSWORD,
+            port: Number(process.env.DB_PORT),
+            logging: false,
+        });
 
         this.database.authenticate().then(() => {
             console.log('Connection has been established successfully.');
