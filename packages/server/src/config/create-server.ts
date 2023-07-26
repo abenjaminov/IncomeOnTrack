@@ -16,7 +16,7 @@ export const createServer = () => {
 
 export const bootstrapServer = (app: express.Application) => {
     const corsOptions = {
-        origin: [/overwolf/, /prodrops/],
+        origin: [/vercel/, /ioc/, /income-on-track/],
         methods: ['POST', 'GET', 'PUT', 'DELETE'],
         credentials: true,
         maxAge: 3600,
