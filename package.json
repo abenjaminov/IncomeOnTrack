@@ -9,6 +9,9 @@
     "serve": "cd ./packages/server && yarn dev",
     "client": "cd ./packages/client && yarn dev"
   },
+  "engines": {
+    "node": "20.x"
+  },
   "dependencies": {
     "date-fns": "^2.30.0",
     "typescript": "^4.9.5"

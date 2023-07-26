@@ -10,9 +10,6 @@
     "build:watch": "tsup --watch",
     "pre-commit": "yarn lint"
   },
-  "engines": {
-    "node": "20.x"
-  },
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^4.17.14",
