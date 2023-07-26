@@ -10,8 +10,8 @@ select se.*,
         when se."date" > now() then '${SessionState.future}' 
         else '${SessionState.debt}' 
        end as "sessionState"
-from "incomeOnTrackDb".public."Session" se
-left join "incomeOnTrackDb".public."Client" cl on cl.id = se."clientId"
+from public."Session" se
+left join public."Client" cl on cl.id = se."clientId"
 ${Consts.repositories.whereClausePlaceholder}
 order by se."date" asc, se.id desc
 `
