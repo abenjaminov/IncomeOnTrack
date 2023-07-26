@@ -1,4 +1,4 @@
-import {BaseHttpController, controller, httpPost, requestBody} from "inversify-express-utils";
+import {BaseHttpController, controller, httpGet, httpPost, requestBody} from "inversify-express-utils";
 import {ILoginArgs, IRegisterArgs} from "@income-on-track/shared";
 import {inject} from "inversify";
 import {InjectionTokens} from "../../config";
@@ -10,6 +10,11 @@ export class AuthController extends BaseHttpController {
         @inject(InjectionTokens.authService) private authService: IAuthService
     ) {
         super()
+    }
+
+    @httpGet('/health')
+    private async health() {
+        return this.ok("YO");
     }
 
     @httpPost('/login')
