@@ -6,7 +6,7 @@ const app = createServer();
 
 const { PORT } = process.env;
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
     console .info(`Server listening on ${PORT}`);
 });
 
