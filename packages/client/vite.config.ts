@@ -22,15 +22,11 @@ export default ({ mode, command }: ConfigEnv) => {
   const realMode = command === 'serve' ? 'dev' : safeMode;
   const releaseName = `${process.env.npm_package_version}.${mode}`;
 
-  const { CONFIG_SERVER_PORT } = ZConfigVars.parse(
-    loadEnv(safeMode, envDir, 'CONFIG'),
-  );
-
   return defineConfig({
     envDir,
     root: __dirname,
     server: {
-      port: CONFIG_SERVER_PORT,
+      port: 7777,
       proxy: {
         '/api/': {
           target: 'http://localhost:3000'
