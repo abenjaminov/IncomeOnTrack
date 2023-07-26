@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "cd ./packages/server && yarn dev",
+    "start": "cd ./packages/server && npm build && npm start",
     "serve": "cd ./packages/server && yarn dev",
     "client": "cd ./packages/client && yarn dev"
   },
