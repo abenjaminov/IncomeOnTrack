@@ -5,7 +5,7 @@ export const classes = {
     clientsView: style({
         height: '100%',
         width: '100%',
-        color: themeVars.colors.text,
+        color: themeVars.colors.text1,
         display: 'flex'
     }),
     tableContainer: style({
@@ -34,7 +34,7 @@ export const classes = {
     asideTitle: style({
         fontSize: '1.5rem',
         fontWeight: 'bold',
-        color: themeVars.colors.text,
+        color: themeVars.colors.text1,
         height: '3rem',
         borderBottom: `1px solid ${themeVars.colors.accent2}`,
         padding: '.5rem',

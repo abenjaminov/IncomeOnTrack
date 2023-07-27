@@ -26,7 +26,7 @@ const classes = {
     }),
     header: style({
         cursor: 'pointer',
-        stroke: themeVars.colors.text,
+        stroke: themeVars.colors.text1,
         height: '3rem',
         width: '100%',
         display: 'flex',
@@ -35,7 +35,7 @@ const classes = {
         borderBottom: `1px solid ${themeVars.colors.accent2}`,
     }),
     headerTitle: style({
-        color: themeVars.colors.text,
+        color: themeVars.colors.text1,
         fontSize: '1.5rem',
         fontWeight: 'bold',
     })

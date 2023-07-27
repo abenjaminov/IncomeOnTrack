@@ -1,5 +1,12 @@
 import { style } from '@vanilla-extract/css';
 import {themeVars} from "@shared/style";
+import {SessionState} from "@income-on-track/shared";
+
+export const sessionColors = {
+  [SessionState.future]: '#9E9E9E',
+  [SessionState.payed]: '#4CAF50',
+  [SessionState.debt]: '#E57373',
+}
 
 export const calendarView =  style({
   height: '100%',
@@ -32,7 +39,7 @@ export const calendarInfoTitle = style({
 });
 
 export const calendarInfoTitleText = style({
-  color: themeVars.colors.text,
+  color: themeVars.colors.text1,
   fontSize: '1.5rem',
   fontWeight: 'bold',
   position: 'absolute',
@@ -53,10 +60,10 @@ export const backButton = style({
   cursor: 'pointer',
   selectors: {
     '&:hover': {
-      color: themeVars.colors.accent3
+      color: themeVars.colors.accent2
     },
     '&:active': {
-      color: themeVars.colors.text
+      color: themeVars.colors.text1
     }
   }
 })

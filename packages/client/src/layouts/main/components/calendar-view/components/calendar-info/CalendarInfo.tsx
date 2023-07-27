@@ -1,8 +1,17 @@
-import {calendarInfoContainer, progressContainer, progressSection, progressTitle} from "./calendar-info.css";
+import {
+  calendarInfoContainer,
+  colorLegend, colorLegendColor, colorLegendItem, colorLegendText,
+  progressContainer,
+  progressSection,
+  progressTitle
+} from "./calendar-info.css";
 import {ArrowPicker, ProgressWithText} from "@shared/components";
 import {MonthItems, ThisYearItem, YearItems} from "./calendar-info.helpers";
 import React from "react";
 import {Tooltip} from "@mui/material";
+import {sessionColors} from "../../calendar-view.css";
+import {SessionState} from "@income-on-track/shared";
+import {colorPallete} from "@shared/style";
 
 
 export type CalendarAsideProps = {
@@ -25,6 +34,20 @@ export const CalendarInfo: React.FC<CalendarAsideProps> = ({ onMonthChange, defa
   const incomePercentage = thisMonthIncome === undefined || thisMonthForecast === undefined ? undefined :(thisMonthIncome / (thisMonthForecast === 0 ? 1 : thisMonthForecast)) * 100;
   const debtPercentage = thisMonthDebt === undefined || thisMonthForecast === undefined ? undefined :(thisMonthDebt / (thisMonthForecast === 0 ? 1 : thisMonthForecast)) * 100;
 
+  const colorLegendItems = [{
+    color: colorPallete.text1,
+    text: 'Today'
+  },{
+    color: sessionColors[SessionState.future],
+    text: 'Future Session'
+  }, {
+    color: sessionColors[SessionState.payed],
+    text: 'Payed Session'
+  }, {
+    color: sessionColors[SessionState.debt],
+    text: 'Not Payed Session'
+  }]
+
   return <div className={calendarInfoContainer}>
     <ArrowPicker items={YearItems} defaultItem={ThisYearItem}  onItemChange={(item) => onYearChange(item.id)} style={{
       fontWeight: 'bold',
@@ -46,5 +69,11 @@ export const CalendarInfo: React.FC<CalendarAsideProps> = ({ onMonthChange, defa
       <span className={progressTitle}>Debt</span>
       <ProgressWithText text={thisMonthDebt?.toString() ?? ''} percentage={debtPercentage} className={progressContainer}/>
     </div></Tooltip>}
+    <div className={colorLegend}>
+      {colorLegendItems.map(item => <div className={colorLegendItem}>
+        <div className={colorLegendColor} style={{backgroundColor: item.color}}></div>
+        <div className={colorLegendText}> {item.text}</div>
+      </div>)}
+    </div>
   </div>
 }

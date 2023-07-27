@@ -25,7 +25,7 @@ const getParsedNumber = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaEle
 };
 
 export const SessionAsideEditor: React.FC<SessionAsideEditorProps> = ({ session, sessionDate }) => {
-  const [isEditClient, setIsEditClient] = React.useState(!!session)
+  const [isEditClient, setIsEditClient] = React.useState(session === undefined)
   const {
     setDate,
     date,
@@ -52,8 +52,8 @@ export const SessionAsideEditor: React.FC<SessionAsideEditorProps> = ({ session,
   return <div className={sessionAsideEditor}>
     <div className={section}>
       <div className={sectionTitle}>Client</div>
-      {isEditClient && <div className={sectionValue}><ClientsDropdown className={sectionValue} defaultClientId={clientId} onClientChange={onClientSelected}/><IconButton onClick={() => setIsEditClient(false)}><CheckIcon /></IconButton></div>}
-      {!isEditClient && <div className={sectionValue}><span>{selectedClientName ?? 'Select Client'}</span><IconButton onClick={() => setIsEditClient(true)}><EditIcon /></IconButton></div>}
+      {isEditClient && <div className={sectionValue}><ClientsDropdown className={sectionValue} defaultClientId={clientId} onClientChange={onClientSelected}/><IconButton onClick={() => setIsEditClient(false)}><CheckIcon style={{fill: 'inherit'}}/></IconButton></div>}
+      {!isEditClient && <div className={sectionValue}><span>{selectedClientName ?? 'Select Client'}</span><IconButton onClick={() => setIsEditClient(true)}><EditIcon style={{fill: 'inherit'}}/></IconButton></div>}
     </div>
     <div className={section}>
       <div className={sectionTitle}>Payment</div>

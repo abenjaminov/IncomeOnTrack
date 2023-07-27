@@ -17,6 +17,7 @@ import { getMonth } from "date-fns";
 import {SessionAsideEditor} from "./components/edit-session/SessionAsideEditor";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {IconButton} from "@mui/material";
+import Paper from "@mui/material/Paper";
 
 export const CalendarView: React.FC = () => {
   const [monthIndex, setMonthIndex] = React.useState(getMonth(new Date()));
@@ -70,7 +71,7 @@ export const CalendarView: React.FC = () => {
     <div className={calendarContainer}>
       {calendarMonth?.weeks.map((week, index) => <CalendarWeek selectedSessionId={sessionToEdit?.id} weekView={week} key={week.weekIndex + keyPrefix}/>)}
     </div>
-    <div className={calendarAsideContainer}>
+    <Paper className={calendarAsideContainer}>
       <div className={calendarInfoTitle}>
         <IconButton  className={backButton} onClick={onCloseClicked} style={{
           position: 'absolute'
@@ -88,6 +89,6 @@ export const CalendarView: React.FC = () => {
                     thisMonthIncome={thisMonthIncome}/>
       }
       {isEditingSession && dayOfSessionToEdit && <SessionAsideEditor session={sessionToEdit} sessionDate={dayOfSessionToEdit} /> }
-    </div>
+    </Paper>
   </div>
 }

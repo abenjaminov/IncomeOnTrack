@@ -1,11 +1,14 @@
 import React from 'react';
 import { Routes } from '../../../../router/router';
 import { useNavigation } from '../../../../shared';
-import classes from './app-header.css';
+import classes, {selectedItem} from './app-header.css';
+import {useLocation} from "react-router-dom";
+import clsx from "clsx";
 
 export const AppHeader: React.FC = () => {
 
     const { navigate } = useNavigation()
+    const location = useLocation();
 
     const navigationItems = [{
         text: 'Dashboard',
@@ -31,7 +34,12 @@ export const AppHeader: React.FC = () => {
         <header className={classes.appHeader}>
             <div className={classes.navigationItemsContainer}>
                 {navigationItems.map((item, index) => (
-                    <div className={classes.navigationItem}  key={item.text + keyPrefix} onClick={() => onNavigationItemClick(item)}>{item.text}</div>
+                  <React.Fragment key={item.text + keyPrefix}>
+                    <div className={clsx(classes.navigationItem, {
+                        [selectedItem]: location.pathname.includes(item.route)
+                    })} onClick={() => onNavigationItemClick(item)}>{item.text}</div>
+                      <div className={classes.seperator}> </div>
+                  </React.Fragment>
                 ))}
             </div>
         </header>

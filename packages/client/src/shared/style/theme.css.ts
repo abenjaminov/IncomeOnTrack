@@ -1,12 +1,19 @@
-import { createTheme } from '@vanilla-extract/css';
+import { createTheme as createVanillaTheme } from '@vanilla-extract/css';
 
-export const [themeClass, themeVars] = createTheme({
+export const colorPallete = {
+      primary: '#F5F5F5',
+      accent1: '#F2EAD3',
+      accent2: '#DFD7BF',
+      text1: '#3F2305',
+      text2: 'whitesmoke',
+}
+
+export const [themeClass, themeVars] = createVanillaTheme({
     colors: {
-        primary: 'rgb(10, 25, 41)',
-        accent1: 'rgb(3, 169, 244)',
-        accent2: 'rgb(233, 30, 99)',
-        accent3: 'rgb(156, 39, 176)',
-        accent4: 'rgb(255, 152, 0)',
-        text: 'whitesmoke'
+        primary: colorPallete.primary,
+        accent1: colorPallete.accent1,
+        accent2: colorPallete.accent2,
+        text1: colorPallete.text1,
+        text2: colorPallete.text2,
     }
 })

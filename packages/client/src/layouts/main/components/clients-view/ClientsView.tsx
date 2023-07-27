@@ -31,7 +31,7 @@ export const ClientsView: React.FC = () => {
     return (
         <div className={classes.clientsView}>
             <TableContainer component={Paper} className={classes.tableContainer}>
-                <Table>
+                <Table stickyHeader>
                     <TableHead>
                         <TableRow>
                             <TableCell>Name</TableCell>

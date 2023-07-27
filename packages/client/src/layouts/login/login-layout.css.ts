@@ -44,6 +44,6 @@ const classes = {
     })
 }
 
-export const inputBoxStyle: CSSProperties = {backgroundColor: '#454557', border: 'none', color: themeVars.colors.text}
+export const inputBoxStyle: CSSProperties = {backgroundColor: '#454557', border: 'none', color: themeVars.colors.text1}
 
 export default classes;

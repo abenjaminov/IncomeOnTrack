@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import {themeVars} from "@shared/style";
 
 export const sessionAsideEditor = style({
   width: '100%',
@@ -7,7 +8,7 @@ export const sessionAsideEditor = style({
   paddingLeft: '1rem',
   display: 'flex',
   flexDirection: 'column',
-  gap: '1rem',
+  gap: '1rem'
 })
 
 export const section = style({

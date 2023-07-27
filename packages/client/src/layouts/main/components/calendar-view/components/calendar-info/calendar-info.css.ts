@@ -32,3 +32,31 @@ export const progressSection = style({
   marginTop: '1rem',
   userSelect: 'none',
 })
+
+export const colorLegendItem = style({
+  width: '100%',
+  height: '1.5rem',
+  display: 'flex',
+  alignItems: 'center',
+})
+
+export const colorLegendColor = style({
+  width: '1rem',
+  height: '1rem',
+  borderRadius: '50%',
+  marginRight: '.5rem',
+})
+
+export const colorLegendText = style({
+  fontSize: '1.25rem',
+  fontWeight: 'bold',
+})
+
+export const colorLegend = style({
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  marginTop: 'auto',
+  marginBottom: '1rem',
+  gap: '.5rem',
+})

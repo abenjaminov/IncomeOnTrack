@@ -1,6 +1,7 @@
 import {style, styleVariants} from '@vanilla-extract/css';
 import {SessionState} from "@income-on-track/shared";
 import {themeVars} from "@shared/style";
+import {sessionColors} from "../../calendar-view.css";
 
 export const sessionSelected = style({})
 
@@ -17,23 +18,23 @@ export const calendarSessionBase = style({
       opacity: .8
     },
     [`${sessionSelected}.&`]: {
-      border: `1px solid white`,
+      border: `2px solid ${themeVars.colors.text1}`,
     }
   }
 })
 
 export const calendarSession = styleVariants({
   [SessionState.future]: [calendarSessionBase, {
-    backgroundColor: '#4682B4',
-    color: themeVars.colors.text
+    backgroundColor: sessionColors[SessionState.future],
+    color: themeVars.colors.text2
   }],
   [SessionState.payed]: [calendarSessionBase, {
-    backgroundColor: '#FF8C00',
+    backgroundColor: sessionColors[SessionState.payed],
     color: themeVars.colors.primary,
   }],
   [SessionState.debt]: [calendarSessionBase, {
-    backgroundColor: '#8B0000',
-    color: themeVars.colors.text,
+    backgroundColor: sessionColors[SessionState.debt],
+    color: themeVars.colors.text2,
   }],
 })
 

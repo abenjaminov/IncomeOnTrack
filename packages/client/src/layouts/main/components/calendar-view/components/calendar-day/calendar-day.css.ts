@@ -20,10 +20,10 @@ export const addSessionButton = style({
   cursor: 'pointer',
   selectors: {
     '&:hover': {
-      color: themeVars.colors.accent3,
+      color: 'black',
     },
     '&:active': {
-      color: themeVars.colors.text,
+      color: themeVars.colors.text1,
     }
   }
 })
@@ -47,13 +47,14 @@ export const dayHeader = style({
   position: 'relative',
   width: '100%',
   height: '2rem',
-  backgroundColor: themeVars.colors.accent2,
-  color: themeVars.colors.text,
+  backgroundColor: themeVars.colors.accent1,
+  color: themeVars.colors.text1,
+  fontWeight: 'bold',
   userSelect: 'none',
   selectors: {
     [`${isTodayDate} &`]: {
-      backgroundColor: themeVars.colors.accent3,
-      color: themeVars.colors.text,
+      backgroundColor: themeVars.colors.text1,
+      color: themeVars.colors.text2,
     }
   }
 })

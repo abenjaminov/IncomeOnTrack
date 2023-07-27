@@ -1,10 +1,11 @@
 import {createVar, style} from '@vanilla-extract/css'
-import {themeVars} from "@shared/style";
+import {colorPallete, themeVars} from "@shared/style";
 
 export const progressWithText = style({
   position: 'relative',
   isolation: 'isolate',
-  border: `1px solid ${themeVars.colors.accent2}`,
+  border: `1px solid ${themeVars.colors.text1}`,
+  backgroundColor: `${colorPallete.text1}7F`,
   userSelect: 'none',
 })
 
@@ -17,7 +18,7 @@ export const progress = style({
   height: '100%',
   width: percentageVar,
   zIndex: 0,
-  backgroundColor: themeVars.colors.accent2,
+  backgroundColor: themeVars.colors.text1,
   transition: 'width 0.35s ease-in-out',
 })
 
@@ -30,4 +31,5 @@ export const progressText = style({
   justifyContent: 'center',
   transform: 'translate(-50%, -50%)',
   zIndex: 1,
+  color: themeVars.colors.accent1,
 })
