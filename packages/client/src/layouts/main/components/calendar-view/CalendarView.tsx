@@ -67,17 +67,18 @@ export const CalendarView: React.FC = () => {
     setIsEditingSession(false)
     setAsideTitle('Info')
   }
+
   return <div className={calendarView}>
     <div className={calendarContainer}>
       {calendarMonth?.weeks.map((week, index) => <CalendarWeek selectedSessionId={sessionToEdit?.id} weekView={week} key={week.weekIndex + keyPrefix}/>)}
     </div>
     <Paper className={calendarAsideContainer}>
       <div className={calendarInfoTitle}>
-        <IconButton  className={backButton} onClick={onCloseClicked} style={{
+        {isEditingSession && <IconButton  className={backButton} onClick={onCloseClicked} style={{
           position: 'absolute'
         }}>
           <ArrowBackIcon />
-        </IconButton>
+        </IconButton>}
         <span className={calendarInfoTitleText}>{asideTitle}</span>
       </div>
       {!isEditingSession &&

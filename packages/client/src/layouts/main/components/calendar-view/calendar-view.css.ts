@@ -58,12 +58,4 @@ export const backButton = style({
   alignItems: 'center',
   justifyContent: 'center',
   cursor: 'pointer',
-  selectors: {
-    '&:hover': {
-      color: themeVars.colors.accent2
-    },
-    '&:active': {
-      color: themeVars.colors.text1
-    }
-  }
 })

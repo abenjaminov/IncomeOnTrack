@@ -32,6 +32,31 @@ const muiTheme = createTheme({
     }
   },
   components: {
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          color: colorPallete.text1,
+          ":hover": {
+            backgroundColor: `${colorPallete.text1}33`,
+          }
+        }
+      }
+    },
+    MuiMenu: {
+      styleOverrides: {
+        paper: {
+          border: `1px solid ${colorPallete.text1}`,
+          boxShadow: `1px 1px 5px 0px ${colorPallete.text1}BB`,
+        }
+      }
+    },
+    MuiList: {
+      styleOverrides: {
+        root: {
+          padding: '0',
+        }
+      }
+    },
     MuiPaper: {
       styleOverrides: {
         root: {

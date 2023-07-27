@@ -13,9 +13,15 @@ export const arrowPickerSelectedItemLabel = style({
   lineHeight: '1em!important',
 })
 
+export const arrowPickerContainer = style({
+  width: '15%',
+  height: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+})
 export const arrowPickerArrow = style({
   display: 'flex!important',
-  width: '15%!important',
   alignItems: 'center',
   justifyContent: 'center',
   fontSize: 'calc(1em + 1rem)!important',
