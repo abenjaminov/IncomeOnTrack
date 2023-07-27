@@ -1,7 +1,7 @@
 import React from 'react';
-import classes from './login-layout.css';
+import classes, {inputBoxStyle} from './login-layout.css';
 import {CForm, CFormInput, CFormLabel} from "@coreui/react";
-import {useNavigation} from "../../shared";
+import {themeVars, useNavigation} from "../../shared";
 import {Button} from "@mui/material";
 import {useLogin} from "./useLogin";
 import clsx from "clsx";
@@ -19,13 +19,13 @@ export const LoginLayout: React.FC = () => {
                         <CFormLabel htmlFor='loginUserNameOrEmail'>Username \ Email</CFormLabel>
                         <CFormInput id="loginUserNameOrEmail" {...emailRegistration} className={clsx({
                             [errorInput]: emailFieldError
-                        })}></CFormInput>
+                        })} style={inputBoxStyle}></CFormInput>
                     </div>
                     <div className={classes.loginSingleCredentialContainer}>
                         <CFormLabel htmlFor='loginPassword'>Password</CFormLabel>
                         <CFormInput id="loginPassword" type="password" {...passwordRegistration} className={clsx({
                             [errorInput]: passwordFieldError
-                        })}></CFormInput>
+                        })} style={inputBoxStyle}></CFormInput>
                     </div>
                     <div className={classes.actionsContainer}>
                         <Button variant='contained' type="submit">Login</Button>

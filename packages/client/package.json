@@ -1,10 +1,11 @@
 {
-  "name": "vite-number-conversion",
+  "name": "@income-on-track/client",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --mode dev",
+    "dev:prod": "vite --mode production",
     "start": "vite preview --mode prod",
     "build": "vite build",
     "preview": "vite preview"
