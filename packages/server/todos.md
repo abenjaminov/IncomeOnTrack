@@ -1,7 +1,10 @@
 # Todos
 - [X] User token middleware
-- [ ] Update session
-- [ ] Update Client
-- [ ] Rework of UI
-  - [ ] General Modal
+- [X] Update session
+  - Disbale button while saving / creating
+- [X] Update Client
+- [X] Rework of UI
+  - [X] General Modal
   - [ ] General View
+- [ ] Decimals in price
+- [ ] Add new client
