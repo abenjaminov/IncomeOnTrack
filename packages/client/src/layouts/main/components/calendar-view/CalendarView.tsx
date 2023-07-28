@@ -70,7 +70,7 @@ export const CalendarView: React.FC = () => {
 
   return <div className={calendarView}>
     <div className={calendarContainer}>
-      {calendarMonth?.weeks.map((week, index) => <CalendarWeek selectedSessionId={sessionToEdit?.id} weekView={week} key={week.weekIndex + keyPrefix}/>)}
+      {calendarMonth?.weeks.map((week, index) => <CalendarWeek selectedMonthIndex={monthIndex} selectedSessionId={sessionToEdit?.id} weekView={week} key={week.weekIndex + keyPrefix}/>)}
     </div>
     <Paper className={calendarAsideContainer}>
       <div className={calendarInfoTitle}>
