@@ -57,7 +57,7 @@ export class CalendarService implements ICalendarService {
       const weekDay: ICalendarDayView = {
         dayOfWeek: getDay(date),
         dayOfMonth: getDate(date),
-        month: monthIndex,
+        month: getMonth(date),
         sessions: sessions.sessions.filter(session => isSameDay(session.date, date)),
         date: date
       }
