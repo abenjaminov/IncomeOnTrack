@@ -6,7 +6,7 @@ import {
   calendarDayOfMonth,
   calendarDayView,
   calendarWeekDayName,
-  dayHeader, isTodayDate
+  dayHeader, isTodayDate, notThisMonth
 } from "./calendar-day.css";
 import {dayOfWeekToName} from "./calendar-day.helpers";
 import { isToday } from 'date-fns';
@@ -22,8 +22,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 type CalendarDayProps = {
   dayView: ICalendarDayView
   selectedSessionId?: string
+  isThisMonth?: boolean
 }
-export const CalendarDay: React.FC<CalendarDayProps> = ({ dayView, selectedSessionId }) => {
+export const CalendarDay: React.FC<CalendarDayProps> = ({ dayView,isThisMonth, selectedSessionId }) => {
   const _isTodayDate = isToday(dayView.date);
   const { emit } = useEvent(EventType.onAddSessionClicked)
   const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | SVGElement>(null);
@@ -65,6 +66,7 @@ export const CalendarDay: React.FC<CalendarDayProps> = ({ dayView, selectedSessi
   return <div className={clsx(calendarDayView, {
     [isTodayDate]: _isTodayDate
   })}>
+    {!isThisMonth && <div className={notThisMonth}></div>}
     <div className={dayHeader}>
       <div className={calendarDayOfMonth}>
         {dayView.dayOfMonth}

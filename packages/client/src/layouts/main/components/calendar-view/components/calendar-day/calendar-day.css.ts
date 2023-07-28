@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import {themeVars} from "@shared/style";
+import {colorPallete, themeVars} from "@shared/style";
 
 export const calendarDayView =  style({
   width: 'calc(14.28% - .1rem)',
@@ -8,6 +8,15 @@ export const calendarDayView =  style({
   position: 'relative',
   flexDirection: 'column',
   margin: '0 .05rem',
+})
+
+export const notThisMonth = style({
+  position: 'absolute',
+  top: '2rem',
+  left: 0,
+  width: '100%',
+  height: 'calc(100% - 2rem)',
+  backgroundColor: '#00000080',
 })
 
 export const addSessionButton = style({
