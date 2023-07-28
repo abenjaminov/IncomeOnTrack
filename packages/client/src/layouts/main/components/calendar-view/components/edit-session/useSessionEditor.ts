@@ -29,7 +29,7 @@ export const useSessionEditor = (sessionDate: Date, session?: ISessionView) => {
     control
   } = useForm<ISessionEdit>({
     resolver: zodResolver(ZSessionEdit),
-    defaultValues: session
+    defaultValues: session ? ZSessionEdit.parse({ ...session, payment: session.payment.toString()}) : undefined
   })
 
   React.useEffect(() => {
@@ -44,7 +44,7 @@ export const useSessionEditor = (sessionDate: Date, session?: ISessionView) => {
         issuedReceipt: false
       }
     } else {
-      _session = ZSessionEdit.parse(session)
+      _session = ZSessionEdit.parse({ ...session, payment: session.payment.toString()})
     }
 
     setSelectedClientName(session?.clientName);

@@ -4,3 +4,4 @@ export * from './object';
 export * from './client';
 export * from './session';
 export * from './calendar';
+export * from './graph';

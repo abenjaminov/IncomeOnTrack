@@ -3,6 +3,8 @@ import {LoginLayout, MainLayout} from "../layouts";
 import {ClientsView} from "../layouts/main/components/clients-view/ClientsView";
 import {SessionsView} from "../layouts/main/components/sessions-view/SessionsView";
 import {CalendarView} from "../layouts/main/components/calendar-view/CalendarView";
+import {HomeView} from "../layouts/main/components/home-view/HomeView";
+import {DashboardView} from "../layouts/main/components/dashboard-view/DashboardView";
 
 export enum Routes {
     login = "/login",
@@ -22,11 +24,11 @@ export const mainRouter = createBrowserRouter([{
     children: [
         {
             path: '',
-            element: <div>Home</div>
+            element: <HomeView />
         },
         {
             path: Routes.dashboard,
-            element: <div>Dashboard</div>
+            element: <DashboardView />
         }, {
             path: Routes.sessions,
             element: <SessionsView />

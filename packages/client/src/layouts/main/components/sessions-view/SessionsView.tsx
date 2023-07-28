@@ -20,7 +20,7 @@ export const SessionsView: React.FC = () => {
   return (
     <div className={sessionsView}>
       <TableContainer className={tableContainer} component={Paper}>
-        <Table>
+        <Table stickyHeader>
           <TableHead>
             <TableRow>
               <TableCell>Date</TableCell>
@@ -43,15 +43,15 @@ export const SessionsView: React.FC = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <aside className={asideContainer}>
-        <div className={asideFiltersContainer}>
-          <div className={asideTitle}>Filters</div>
-        </div>
-        <div className={asideActionsContainer}>
-          <div className={asideTitle}>Actions</div>
-          <Button>Add Session</Button>
-        </div>
-      </aside>
+      {/*<aside className={asideContainer}>*/}
+      {/*  <div className={asideFiltersContainer}>*/}
+      {/*    <div className={asideTitle}>Filters</div>*/}
+      {/*  </div>*/}
+      {/*  <div className={asideActionsContainer}>*/}
+      {/*    <div className={asideTitle}>Actions</div>*/}
+      {/*    <Button>Add Session</Button>*/}
+      {/*  </div>*/}
+      {/*</aside>*/}
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import {BaseHttpController, controller, httpPost, requestBody} from "inversify-express-utils";
+import {BaseHttpController, controller, httpGet, httpPost, requestBody} from "inversify-express-utils";
 import {inject} from "inversify";
 import {InjectionTokens} from "../../config";
 import {ICreateSessionArgs, IGetSessionArgs} from "@income-on-track/shared";
@@ -27,6 +27,13 @@ export class SessionsController extends BaseHttpController {
         @requestBody() args: ICreateSessionArgs
     ){
         const result = await this.sessionsService.createOrUpdate(args);
+
+        return this.json(result);
+    }
+
+    @httpGet('/twelve-month-sum', authenticateUserTokenMiddleware)
+    private async getLastTwelveMonthsPaymentsSummary() {
+        const result = await this.sessionsService.getLastTwelveMonthsPaymentsSummary();
 
         return this.json(result);
     }

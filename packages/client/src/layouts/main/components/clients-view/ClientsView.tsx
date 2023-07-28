@@ -50,15 +50,15 @@ export const ClientsView: React.FC = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <aside className={classes.asideContainer}>
-                <div className={classes.asideFiltersContainer}>
-                    <div className={classes.asideTitle}>Filters</div>
-                </div>
-                <div className={classes.asideActionsContainer}>
-                    <div className={classes.asideTitle}>Actions</div>
-                    <Button onClick={onAddClientClicked}>Add Client</Button>
-                </div>
-            </aside>
+            {/*<aside className={classes.asideContainer}>*/}
+            {/*    <div className={classes.asideFiltersContainer}>*/}
+            {/*        <div className={classes.asideTitle}>Filters</div>*/}
+            {/*    </div>*/}
+            {/*    <div className={classes.asideActionsContainer}>*/}
+            {/*        <div className={classes.asideTitle}>Actions</div>*/}
+            {/*        <Button onClick={onAddClientClicked}>Add Client</Button>*/}
+            {/*    </div>*/}
+            {/*</aside>*/}
         </div>
     )
 }

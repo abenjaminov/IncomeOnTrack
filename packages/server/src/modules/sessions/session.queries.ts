@@ -15,3 +15,11 @@ left join public."Client" cl on cl.id = se."clientId"
 ${Consts.repositories.whereClausePlaceholder}
 order by se."date" asc, se.id desc
 `
+
+export const GetLastTwelveMonthPaymentsQuery = `
+select cast(extract(month from "datePayed") as INTEGER) as month_payed, cast(extract(year from "datePayed") as INTEGER) as year_payed, sum(payment) as total_payment 
+from public."Session"
+where "datePayed" is not null and "userId" = :userId
+group by year_payed, month_payed
+order by year_payed desc, month_payed desc
+limit 12`

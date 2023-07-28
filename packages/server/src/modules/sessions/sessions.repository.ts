@@ -1,4 +1,9 @@
-import {ICreateSessionArgsInternal, IGetSessionArgsInternal, ISessionsRepository} from "./sessions.interface";
+import {
+    ICreateSessionArgsInternal,
+    IGetSessionArgsInternal,
+    IMonthPaymentSum,
+    ISessionsRepository
+} from "./sessions.interface";
 import {inject, injectable} from "inversify";
 import {Consts, IDBService, TableNames} from "../../common";
 import {InjectionTokens} from "../../config";
@@ -7,7 +12,7 @@ import {IGetSessionsResult, ISession, ISessionView} from "@income-on-track/share
 import {nanoid} from "nanoid";
 import {BindOrReplacements} from "sequelize/types/dialects/abstract/query-interface";
 import {QueryTypes} from "sequelize";
-import {GetSessionsQuery} from "./session.queries";
+import {GetLastTwelveMonthPaymentsQuery, GetSessionsQuery} from "./session.queries";
 
 @injectable()
 export class SessionsRepository implements ISessionsRepository {
@@ -114,5 +119,22 @@ export class SessionsRepository implements ISessionsRepository {
             count: sessionsCountResult[0].count,
             sessions: sessionsResult
         }
+    }
+
+    async getLastTwelveMonthsPaymentsSummary(userId: string): Promise<Array<IMonthPaymentSum>> {
+        try {
+            const result = await this.dbService.getDatabase().query<IMonthPaymentSum>(GetLastTwelveMonthPaymentsQuery, {
+                type: QueryTypes.SELECT,
+                replacements: {
+                    userId
+                }
+            })
+            return result;
+        }
+        catch(error: any) {
+            console.log(error?.message)
+            throw error;
+        }
+
     }
 }

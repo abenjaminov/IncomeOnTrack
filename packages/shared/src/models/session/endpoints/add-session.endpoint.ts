@@ -3,10 +3,12 @@ import {ZSession} from "../entities";
 
 export const ZCreateSessionArgs = ZSession.omit({
     userId: true,
-    id: true
+    id: true,
+    payment: true
 }).extend({
     userId: z.string().optional(),
-    id: z.string().optional()
+    id: z.string().optional(),
+    payment: z.string().transform(x => parseFloat(x))
 })
 
 export const ZCreateSessionRequest = z.object({

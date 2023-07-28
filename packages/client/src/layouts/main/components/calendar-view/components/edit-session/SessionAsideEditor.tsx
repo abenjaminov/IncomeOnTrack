@@ -19,7 +19,7 @@ type SessionAsideEditorProps = {
 const getParsedNumber = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
   const _value = e.target.value;
 
-  const _payment = parseInt(_value, 10);
+  const _payment = parseFloat(_value);
 
   return isNaN(_payment) ? 0 : _payment;
 };
@@ -57,13 +57,11 @@ export const SessionAsideEditor: React.FC<SessionAsideEditorProps> = ({ session,
     </div>
     <div className={section}>
       <div className={sectionTitle}>Payment</div>
-      <Controller control={control} render={props => <TextField {...props.field} onChange={(e) => {
-        props.field.onChange(getParsedNumber(e));
-      }} fullWidth style={{width: '70%'}} />} name={'payment'} />
+      <Controller control={control} render={props => <TextField {...props.field} fullWidth style={{width: '70%'}} />} name={'payment'} />
     </div>
     <div className={section}>
       <div className={sectionTitle}>Date & Time</div>
-      <DateTimePicker label='Session time' className={sectionValue} onChange={date => date && setDate(date)} value={date}/>
+      <DateTimePicker className={sectionValue} onChange={date => date && setDate(date)} value={date}/>
     </div>
     <div className={section} style={{
       gap: '1rem',
