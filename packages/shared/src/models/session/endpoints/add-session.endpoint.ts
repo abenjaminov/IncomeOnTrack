@@ -8,7 +8,7 @@ export const ZCreateSessionArgs = ZSession.omit({
 }).extend({
     userId: z.string().optional(),
     id: z.string().optional(),
-    payment: z.string().transform(x => parseFloat(x))
+    payment: z.string().transform(x => parseFloat(x)).or(z.number())
 })
 
 export const ZCreateSessionRequest = z.object({
