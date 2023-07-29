@@ -76,13 +76,15 @@ export const CalendarDay: React.FC<CalendarDayProps> = ({ dayView,isThisMonth, s
       </div>
       {topRightActions}
     </div>
-    {firstThreeSessions.length > 0 && <div className={calendarDayEvents}>
-      {firstThreeSessions.map((session, index) => <CalendarSession selected={session.id === selectedSessionId} session={session} key={session.id + sessionKeyPrefix} />)}
-    </div>}
-    {firstThreeSessions.length === 0 && <div className={calendarDayEvents} style={{
-      alignItems: 'center',
-    }}>
-      No sessions
-    </div>}
+    {isThisMonth && <>
+      {firstThreeSessions.length > 0 && <div className={calendarDayEvents}>
+        {firstThreeSessions.map((session, index) => <CalendarSession selected={session.id === selectedSessionId} session={session} key={session.id + sessionKeyPrefix} />)}
+      </div>}
+      {firstThreeSessions.length === 0 && <div className={calendarDayEvents} style={{
+        alignItems: 'center',
+      }}>
+        No sessions
+      </div>}
+    </>}
   </div>
 }

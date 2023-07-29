@@ -16,7 +16,7 @@ export const notThisMonth = style({
   left: 0,
   width: '100%',
   height: 'calc(100% - 2rem)',
-  backgroundColor: '#00000080',
+  backgroundColor: `${colorPallete.text1}77`,
 })
 
 export const addSessionButton = style({
